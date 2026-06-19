@@ -17,8 +17,11 @@ A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz 
 > Preencher em ordem alfabética, conforme solicitado na entrega.
 
 Amanda Ayumi Guedes Ueno - RM573609
+
 Francisco Caetano Bernardes - RM 571399
+
 Giovanna Camargo Budin - RM571861
+
 Mariana Costa Cruz Maciel - RM570455 
 
 
