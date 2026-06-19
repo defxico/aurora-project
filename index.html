@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora · People Analytics para Empresas</title>
+  <meta name="description" content="Aurora transforma dados de RH em decisões estratégicas. Reduza turnover, aumente engajamento e tome decisões 3× mais rápidas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a href="#main" class="skip-link">Ir para o conteúdo principal</a>
+
+<header role="banner">
+  <nav class="nav" aria-label="Navegação principal">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo" aria-label="Aurora — página inicial">
+        <img src="assets/aurora-logo.svg" alt="Aurora" class="nav__logo-img" />
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#dores">Desafios</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#features">Funcionalidades</a></li>
+        <li><a href="#numeros">Resultados</a></li>
+      </ul>
+
+      <a href="#contato" class="nav__cta">Agendar demonstração</a>
+
+      <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="nav__mobile" aria-label="Menu móvel">
+      <a href="#dores">Desafios</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#features">Funcionalidades</a>
+      <a href="#numeros">Resultados</a>
+      <a href="#contato" class="nav__mobile-cta">Agendar demonstração</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <h1 id="hero-title" class="hero__title reveal reveal--blur">
+        Transforme dados de pessoas<br />
+        em <span class="c-teal">decisões estratégicas</span><br />
+        <span class="c-magenta">que geram resultado</span>.
+      </h1>
+
+      <p class="hero__sub reveal reveal-d1">
+        Aurora é a plataforma de people analytics que conecta dados de RH à estratégia do
+        negócio — reduzindo turnover, aumentando engajamento e acelerando decisões.
+      </p>
+
+      <div class="hero__actions reveal reveal-d2">
+        <a href="#contato" class="btn-primary">
+          <span>Agendar demonstração</span><span aria-hidden="true">→</span>
+        </a>
+        <a href="#quiz" class="btn-ghost">Descobrir meu perfil <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="dores" class="dores" aria-labelledby="dores-title">
+    <div class="container">
+      <p class="section-label section-label--magenta reveal">O que impede o RH de ser estratégico</p>
+      <h2 id="dores-title" class="section-title reveal reveal--blur">
+        Você toma decisões sobre pessoas<br />sem dados que sustentem.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Planilhas desconectadas, relatórios atrasados, intuição no lugar de evidência —
+        o resultado é turnover invisível, engajamento em queda e diretoria cética.
+      </p>
+
+      <div class="dores__list" role="list">
+        <div class="dores__item reveal reveal--left" role="listitem">
+          <span class="dores__num">01</span>
+          <div class="dores__content">
+            <p class="dores__title">Dados fragmentados, visão nenhuma</p>
+            <p class="dores__text">Informações espalhadas em sistemas que não conversam entre si impossibilitam qualquer análise integrada do capital humano.</p>
+          </div>
+        </div>
+        <div class="dores__item reveal reveal--right" role="listitem">
+          <span class="dores__num">02</span>
+          <div class="dores__content">
+            <p class="dores__title">Turnover só aparece quando já é tarde</p>
+            <p class="dores__text">A saída de um colaborador fica visível apenas no pedido de demissão — sem espaço para agir, reter ou planejar a reposição.</p>
+          </div>
+        </div>
+        <div class="dores__item reveal reveal--left reveal-d1" role="listitem">
+          <span class="dores__num">03</span>
+          <div class="dores__content">
+            <p class="dores__title">Engajamento medido uma vez por ano</p>
+            <p class="dores__text">Pesquisas anuais de clima não capturam o que acontece semana a semana. O problema cresce no escuro, entre uma pesquisa e outra.</p>
+          </div>
+        </div>
+        <div class="dores__item reveal reveal--right reveal-d1" role="listitem">
+          <span class="dores__num">04</span>
+          <div class="dores__content">
+            <p class="dores__title">Decisões que demoram dias</p>
+            <p class="dores__text">Gerar um relatório de headcount leva dias. Cruzar absenteísmo com produtividade, semanas. O negócio não pode esperar tanto.</p>
+          </div>
+        </div>
+        <div class="dores__item reveal reveal--left reveal-d2" role="listitem">
+          <span class="dores__num">05</span>
+          <div class="dores__content">
+            <p class="dores__title">ROI de RH que ninguém consegue provar</p>
+            <p class="dores__text">A diretoria pede impacto financeiro e não há como demonstrar o retorno real de cada iniciativa de pessoas.</p>
+          </div>
+        </div>
+        <div class="dores__item reveal reveal--right reveal-d2" role="listitem">
+          <span class="dores__num">06</span>
+          <div class="dores__content">
+            <p class="dores__title">Sem antecipação, só reação</p>
+            <p class="dores__text">Sem análise preditiva, os problemas só aparecem depois de explodir — e o RH fica eternamente apagando incêndios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="diagram-section" aria-labelledby="diagram-title">
+    <div class="container">
+      <p class="section-label section-label--teal reveal">Como Aurora funciona</p>
+      <h2 id="diagram-title" class="section-title reveal reveal--blur">
+        Seus dados entram.<br />Decisões saem.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Aurora integra fontes dispersas de RH, cruza indicadores em tempo real
+        e entrega insights acionáveis — para cada perfil, no momento certo.
+      </p>
+
+      <div class="diagram-wrap reveal reveal-d2" id="diagram-wrap">
+        <svg class="diagram-svg" viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-label="Diagrama: dados de RH entram na Aurora e saem como insights de retenção, engajamento, ROI e decisão">
+          <g transform="translate(0,30)">
+            <rect x="4" y="0" width="186" height="44" rx="10" fill="rgba(83,64,121,.12)" stroke="rgba(106,82,153,.3)" stroke-width="1"/>
+            <circle cx="22" cy="22" r="7" fill="#534079" opacity=".7" class="d-dot show"/>
+            <text x="36" y="17" class="d-label-title">HRIS / HCM</text>
+            <text x="36" y="30" class="d-label-sub">Admissões, cargos, histórico</text>
+          </g>
+          <g transform="translate(0,92)">
+            <rect x="4" y="0" width="186" height="44" rx="10" fill="rgba(83,64,121,.12)" stroke="rgba(106,82,153,.3)" stroke-width="1"/>
+            <circle cx="22" cy="22" r="7" fill="#534079" opacity=".7" class="d-dot show"/>
+            <text x="36" y="17" class="d-label-title">Folha de Pagamento</text>
+            <text x="36" y="30" class="d-label-sub">Custos, benefícios, turnover</text>
+          </g>
+          <g transform="translate(0,154)">
+            <rect x="4" y="0" width="186" height="44" rx="10" fill="rgba(83,64,121,.12)" stroke="rgba(106,82,153,.3)" stroke-width="1"/>
+            <circle cx="22" cy="22" r="7" fill="#534079" opacity=".7" class="d-dot show"/>
+            <text x="36" y="17" class="d-label-title">ATS / Recrutamento</text>
+            <text x="36" y="30" class="d-label-sub">Tempo de contratação, pipeline</text>
+          </g>
+          <g transform="translate(0,216)">
+            <rect x="4" y="0" width="186" height="44" rx="10" fill="rgba(83,64,121,.12)" stroke="rgba(106,82,153,.3)" stroke-width="1"/>
+            <circle cx="22" cy="22" r="7" fill="#534079" opacity=".7" class="d-dot show"/>
+            <text x="36" y="17" class="d-label-title">Pulse Surveys</text>
+            <text x="36" y="30" class="d-label-sub">Engajamento, NPS interno</text>
+          </g>
+
+          <line x1="190" y1="52"  x2="380" y2="132" stroke="rgba(106,82,153,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line1"/>
+          <line x1="190" y1="114" x2="378" y2="152" stroke="rgba(106,82,153,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line2"/>
+          <line x1="190" y1="176" x2="378" y2="172" stroke="rgba(106,82,153,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line3"/>
+          <line x1="190" y1="238" x2="380" y2="192" stroke="rgba(106,82,153,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line4"/>
+
+          <circle cx="430" cy="162" r="74" fill="none" stroke="rgba(106,82,153,.07)" stroke-width="1"/>
+          <circle cx="430" cy="162" r="64" fill="none" stroke="rgba(106,82,153,.11)" stroke-width="1"/>
+          <circle cx="430" cy="162" r="52" fill="url(#aurora-grad)" class="d-dot show"/>
+          <circle cx="430" cy="98"  r="3.5" fill="#238076" opacity=".7"/>
+          <circle cx="475" cy="117" r="2.5" fill="#534079" opacity=".55"/>
+          <circle cx="494" cy="162" r="3.5" fill="#6A5299" opacity=".7"/>
+          <circle cx="475" cy="207" r="2.5" fill="#534079" opacity=".55"/>
+          <circle cx="430" cy="226" r="3.5" fill="#238076" opacity=".7"/>
+          <circle cx="385" cy="207" r="2.5" fill="#534079" opacity=".55"/>
+          <circle cx="366" cy="162" r="3.5" fill="#6A5299" opacity=".7"/>
+          <circle cx="385" cy="117" r="2.5" fill="#534079" opacity=".55"/>
+          <text x="430" y="156" text-anchor="middle" class="d-node-center-title">aurora</text>
+          <text x="430" y="172" text-anchor="middle" class="d-node-center-sub">people analytics</text>
+
+          <line x1="482" y1="132" x2="700" y2="52"  stroke="rgba(35,128,118,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line5"/>
+          <line x1="482" y1="152" x2="700" y2="114" stroke="rgba(35,128,118,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line6"/>
+          <line x1="482" y1="172" x2="700" y2="176" stroke="rgba(35,128,118,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line7"/>
+          <line x1="482" y1="192" x2="700" y2="238" stroke="rgba(35,128,118,.35)" stroke-width="1.5" stroke-dasharray="5 4" class="d-line" id="line8"/>
+
+          <g transform="translate(700,30)" class="d-output-group" id="out1"><rect x="0" y="0" width="200" height="44" rx="10" fill="rgba(35,128,118,.1)" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="22" r="7" fill="#238076" opacity=".8"/><text x="34" y="17" class="d-output-title">Risco de saída</text><text x="34" y="30" class="d-label-sub">Alertas preditivos por colaborador</text></g>
+          <g transform="translate(700,92)" class="d-output-group" id="out2"><rect x="0" y="0" width="200" height="44" rx="10" fill="rgba(35,128,118,.1)" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="22" r="7" fill="#238076" opacity=".8"/><text x="34" y="17" class="d-output-title">Pulso de engajamento</text><text x="34" y="30" class="d-label-sub">Semana a semana, por equipe</text></g>
+          <g transform="translate(700,154)" class="d-output-group" id="out3"><rect x="0" y="0" width="200" height="44" rx="10" fill="rgba(35,128,118,.1)" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="22" r="7" fill="#238076" opacity=".8"/><text x="34" y="17" class="d-output-title">ROI de RH calculado</text><text x="34" y="30" class="d-label-sub">Impacto financeiro de cada ação</text></g>
+          <g transform="translate(700,216)" class="d-output-group" id="out4"><rect x="0" y="0" width="200" height="44" rx="10" fill="rgba(35,128,118,.1)" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="22" r="7" fill="#238076" opacity=".8"/><text x="34" y="17" class="d-output-title">Decisão em tempo real</text><text x="34" y="30" class="d-label-sub">Dashboard pronto para a diretoria</text></g>
+
+          <circle cx="190" cy="52"  r="3.5" fill="rgba(106,82,153,.5)"/>
+          <circle cx="190" cy="114" r="3.5" fill="rgba(106,82,153,.5)"/>
+          <circle cx="190" cy="176" r="3.5" fill="rgba(106,82,153,.5)"/>
+          <circle cx="190" cy="238" r="3.5" fill="rgba(106,82,153,.5)"/>
+          <circle cx="700" cy="52"  r="3.5" fill="rgba(35,128,118,.5)" class="d-dot" id="od1"/>
+          <circle cx="700" cy="114" r="3.5" fill="rgba(35,128,118,.5)" class="d-dot" id="od2"/>
+          <circle cx="700" cy="176" r="3.5" fill="rgba(35,128,118,.5)" class="d-dot" id="od3"/>
+          <circle cx="700" cy="238" r="3.5" fill="rgba(35,128,118,.5)" class="d-dot" id="od4"/>
+
+          <defs>
+            <radialGradient id="aurora-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#1E1040"/>
+              <stop offset="100%" stop-color="#0D0B14"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="quiz-section" aria-labelledby="quiz-title">
+    <div class="container">
+      <p class="section-label section-label--teal reveal">Diagnóstico em 2 minutos</p>
+      <h2 id="quiz-title" class="section-title reveal reveal--blur">
+        Qual é a maturidade analítica<br />da sua empresa?
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Responda 4 perguntas e descubra onde sua organização está — e o que fazer a seguir.
+      </p>
+
+      <div class="quiz-wrapper reveal reveal-d2">
+        <div class="quiz-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do quiz">
+          <div class="quiz-progress-fill" style="width:0%"></div>
+        </div>
+
+        <div class="quiz-body" id="quiz-body">
+          <div class="quiz-step active" data-step="1" aria-live="polite">
+            <p class="quiz-q">1. Como sua empresa toma decisões sobre pessoas hoje?</p>
+            <p class="quiz-hint">Escolha a opção que mais se aproxima da realidade atual</p>
+            <ul class="quiz-options" role="radiogroup">
+              <li><button class="quiz-option" data-score="1" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">A</span><span class="quiz-option__text">Por percepção e experiência do gestor, sem dados sistematizados</span></button></li>
+              <li><button class="quiz-option" data-score="2" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">B</span><span class="quiz-option__text">Com relatórios manuais feitos em planilha, de forma esporádica</span></button></li>
+              <li><button class="quiz-option" data-score="3" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">C</span><span class="quiz-option__text">Com dashboards básicos, mas sem cruzamento de indicadores</span></button></li>
+              <li><button class="quiz-option" data-score="4" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">D</span><span class="quiz-option__text">Com análises integradas e modelos preditivos em tempo real</span></button></li>
+            </ul>
+            <div class="quiz-nav"><span class="quiz-counter">Pergunta 1 de 4</span><button class="quiz-next" disabled>Próxima →</button></div>
+          </div>
+          <div class="quiz-step" data-step="2" aria-live="polite">
+            <p class="quiz-q">2. Qual situação mais acontece na sua empresa?</p>
+            <p class="quiz-hint">Escolha a opção mais frequente no dia a dia</p>
+            <ul class="quiz-options" role="radiogroup">
+              <li><button class="quiz-option" data-score="1" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">A</span><span class="quiz-option__text">Descobrimos que o colaborador ia sair só quando ele pediu demissão</span></button></li>
+              <li><button class="quiz-option" data-score="2" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">B</span><span class="quiz-option__text">Usamos pesquisa de clima anual para entender o engajamento</span></button></li>
+              <li><button class="quiz-option" data-score="3" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">C</span><span class="quiz-option__text">Monitoramos indicadores mensais mas sem alertas automáticos</span></button></li>
+              <li><button class="quiz-option" data-score="4" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">D</span><span class="quiz-option__text">Identificamos riscos de saída antes de acontecerem e agimos preventivamente</span></button></li>
+            </ul>
+            <div class="quiz-nav"><span class="quiz-counter">Pergunta 2 de 4</span><button class="quiz-next" disabled>Próxima →</button></div>
+          </div>
+          <div class="quiz-step" data-step="3" aria-live="polite">
+            <p class="quiz-q">3. Com que frequência você antecipa problemas de equipe?</p>
+            <p class="quiz-hint">Pense nas situações dos últimos 6 meses</p>
+            <ul class="quiz-options" role="radiogroup">
+              <li><button class="quiz-option" data-score="1" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">A</span><span class="quiz-option__text">Nunca — sempre reagimos depois que o problema se torna visível</span></button></li>
+              <li><button class="quiz-option" data-score="2" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">B</span><span class="quiz-option__text">Raramente — às vezes um gestor percebe algo intuitivamente</span></button></li>
+              <li><button class="quiz-option" data-score="3" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">C</span><span class="quiz-option__text">Às vezes — quando acompanhamos indicadores com regularidade</span></button></li>
+              <li><button class="quiz-option" data-score="4" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">D</span><span class="quiz-option__text">Frequentemente — temos alertas e protocolos preventivos rodando</span></button></li>
+            </ul>
+            <div class="quiz-nav"><span class="quiz-counter">Pergunta 3 de 4</span><button class="quiz-next" disabled>Próxima →</button></div>
+          </div>
+          <div class="quiz-step" data-step="4" aria-live="polite">
+            <p class="quiz-q">4. O RH consegue mostrar impacto financeiro para a diretoria?</p>
+            <p class="quiz-hint">Considere as apresentações e reports dos últimos 12 meses</p>
+            <ul class="quiz-options" role="radiogroup">
+              <li><button class="quiz-option" data-score="1" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">A</span><span class="quiz-option__text">Não — apresentamos ações, mas não conseguimos vincular ao resultado financeiro</span></button></li>
+              <li><button class="quiz-option" data-score="2" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">B</span><span class="quiz-option__text">Parcialmente — temos alguns números, mas falta consistência</span></button></li>
+              <li><button class="quiz-option" data-score="3" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">C</span><span class="quiz-option__text">Sim, com esforço — construímos os dados manualmente para cada apresentação</span></button></li>
+              <li><button class="quiz-option" data-score="4" role="radio" aria-checked="false"><span class="quiz-option__score" aria-hidden="true">D</span><span class="quiz-option__text">Sim, sempre — temos dashboards de ROI de RH atualizados automaticamente</span></button></li>
+            </ul>
+            <div class="quiz-nav"><span class="quiz-counter">Pergunta 4 de 4</span><button class="quiz-next" disabled>Ver resultado →</button></div>
+          </div>
+
+          <div class="quiz-result" id="quiz-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solucao" class="solucao" aria-labelledby="solucao-title">
+    <div style="padding-block: 5.5rem; padding-inline: 1.5rem; max-width: 1120px; margin-inline: auto;">
+      <div class="solucao__card">
+        <p class="section-label section-label--teal reveal">A plataforma</p>
+        <h2 id="solucao-title" class="section-title reveal reveal--blur">
+          Uma plataforma.<br />Todas as respostas que o RH precisa.
+        </h2>
+
+        <div class="solucao__grid">
+          <div class="solucao__visual reveal reveal--left">
+            <p class="solucao__visual-label">Indicadores em tempo real</p>
+            <div class="solucao__visual-row"><span class="solucao__bar-label">Turnover</span><div class="solucao__bar-track"><div class="solucao__bar-fill" data-width=".32"></div></div><span class="solucao__bar-val">32%</span></div>
+            <div class="solucao__visual-row"><span class="solucao__bar-label">Engajamento</span><div class="solucao__bar-track"><div class="solucao__bar-fill" data-width=".47"></div></div><span class="solucao__bar-val">47%</span></div>
+            <div class="solucao__visual-row"><span class="solucao__bar-label">ROI de RH</span><div class="solucao__bar-track"><div class="solucao__bar-fill" data-width=".67"></div></div><span class="solucao__bar-val">67%</span></div>
+          </div>
+
+          <div class="solucao__points">
+            <div class="solucao__point reveal reveal--right">
+              <div class="solucao__point-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="10" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="18" r="5" fill="#238076" opacity=".8"/><circle cx="18" cy="8" r="2" fill="#238076" opacity=".4"/><circle cx="28" cy="18" r="2" fill="#534079" opacity=".4"/></svg></div>
+              <div><p class="solucao__point-title">Integração com seus sistemas</p><p class="solucao__point-text">Conecta com HCM, ATS, ERP e folha de pagamento — sem exportação manual, sem planilha, sem atraso.</p></div>
+            </div>
+            <div class="solucao__point reveal reveal--right reveal-d1">
+              <div class="solucao__point-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="10" stroke="rgba(83,64,121,.3)" stroke-width="1"/><circle cx="18" cy="18" r="5" fill="#534079" opacity=".8"/><circle cx="18" cy="8" r="2" fill="#238076" opacity=".4"/><circle cx="28" cy="18" r="2" fill="#6A5299" opacity=".4"/></svg></div>
+              <div><p class="solucao__point-title">Análise preditiva de risco</p><p class="solucao__point-text">Modelos de machine learning identificam risco de saída, burnout e baixa performance antes que virem problema.</p></div>
+            </div>
+            <div class="solucao__point reveal reveal--right reveal-d2">
+              <div class="solucao__point-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="10" stroke="rgba(35,128,118,.3)" stroke-width="1"/><circle cx="18" cy="18" r="5" fill="#238076" opacity=".8"/><circle cx="8" cy="18" r="2" fill="#534079" opacity=".4"/><circle cx="18" cy="28" r="2" fill="#238076" opacity=".4"/></svg></div>
+              <div><p class="solucao__point-title">Dashboards para a diretoria</p><p class="solucao__point-text">Relatórios executivos prontos que conectam indicadores de RH ao impacto financeiro do negócio.</p></div>
+            </div>
+            <div class="solucao__point reveal reveal--right reveal-d3">
+              <div class="solucao__point-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="10" stroke="rgba(106,82,153,.3)" stroke-width="1"/><circle cx="18" cy="18" r="5" fill="#6A5299" opacity=".8"/><circle cx="18" cy="8" r="2" fill="#238076" opacity=".4"/><circle cx="28" cy="18" r="2" fill="#534079" opacity=".4"/></svg></div>
+              <div><p class="solucao__point-title">Insights em tempo real</p><p class="solucao__point-text">Alertas automáticos e recomendações personalizadas para que seu time aja no momento certo.</p></div>
+            </div>
+            <a href="#contato" class="btn-primary" style="margin-top:.5rem;justify-content:center;">
+              <span>Conhecer a plataforma</span><span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features" aria-labelledby="features-title">
+    <div class="container">
+      <p class="section-label reveal">Funcionalidades</p>
+      <h2 id="features-title" class="section-title reveal reveal--blur">
+        Tudo que o RH estratégico precisa<br />em um só lugar.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Da coleta de dados ao relatório executivo, Aurora cobre todo o ciclo de people analytics —
+        sem precisar de uma equipe de dados dedicada.
+      </p>
+
+      <div class="constellation-wrap" id="constellation-wrap">
+        <svg class="constellation-svg" viewBox="0 0 1040 580" fill="none" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Constelação das funcionalidades Aurora conectadas em rede">
+          <line x1="520" y1="90"  x2="693" y2="190" stroke="rgba(83,64,121,.25)" stroke-width="1.2" class="c-line" id="cl1"/>
+          <line x1="693" y1="190" x2="693" y2="390" stroke="rgba(83,64,121,.2)"  stroke-width="1.2" class="c-line" id="cl2"/>
+          <line x1="693" y1="390" x2="520" y2="490" stroke="rgba(83,64,121,.25)" stroke-width="1.2" class="c-line" id="cl3"/>
+          <line x1="520" y1="490" x2="347" y2="390" stroke="rgba(83,64,121,.2)"  stroke-width="1.2" class="c-line" id="cl4"/>
+          <line x1="347" y1="390" x2="347" y2="190" stroke="rgba(83,64,121,.25)" stroke-width="1.2" class="c-line" id="cl5"/>
+          <line x1="347" y1="190" x2="520" y2="90"  stroke="rgba(83,64,121,.2)"  stroke-width="1.2" class="c-line" id="cl6"/>
+
+          <line x1="520" y1="90"  x2="520" y2="490" stroke="rgba(35,128,118,.2)" stroke-width="1" stroke-dasharray="6 5" class="c-line" id="cl7"/>
+          <line x1="693" y1="190" x2="347" y2="390" stroke="rgba(35,128,118,.2)" stroke-width="1" stroke-dasharray="6 5" class="c-line" id="cl8"/>
+          <line x1="693" y1="390" x2="347" y2="190" stroke="rgba(35,128,118,.2)" stroke-width="1" stroke-dasharray="6 5" class="c-line" id="cl9"/>
+
+          <circle cx="520" cy="223" r="2.5" fill="rgba(35,128,118,.45)" class="c-dot" id="cj1"/>
+          <circle cx="520" cy="357" r="2.5" fill="rgba(35,128,118,.45)" class="c-dot" id="cj2"/>
+          <circle cx="606" cy="240" r="2.5" fill="rgba(83,64,121,.5)"   class="c-dot" id="cj3"/>
+          <circle cx="434" cy="340" r="2.5" fill="rgba(83,64,121,.5)"   class="c-dot" id="cj4"/>
+          <circle cx="606" cy="340" r="2.5" fill="rgba(35,128,118,.45)" class="c-dot" id="cj5"/>
+          <circle cx="434" cy="240" r="2.5" fill="rgba(83,64,121,.5)"   class="c-dot" id="cj6"/>
+          <circle cx="520" cy="290" r="4" fill="none" stroke="rgba(106,82,153,.4)" stroke-width="1.5" class="c-dot" id="cj0"/>
+          <circle cx="520" cy="290" r="2" fill="rgba(106,82,153,.55)" class="c-dot" id="cj0b"/>
+
+          <circle cx="520" cy="90"  r="7"  fill="#534079" class="c-dot show"/>
+          <circle cx="520" cy="90"  r="11" fill="none" stroke="rgba(83,64,121,.3)" stroke-width="1" class="c-dot show"/>
+          <circle cx="693" cy="190" r="7"  fill="#238076" class="c-dot show"/>
+          <circle cx="693" cy="190" r="11" fill="none" stroke="rgba(35,128,118,.3)" stroke-width="1" class="c-dot show"/>
+          <circle cx="693" cy="390" r="7"  fill="#534079" class="c-dot show"/>
+          <circle cx="693" cy="390" r="11" fill="none" stroke="rgba(83,64,121,.3)" stroke-width="1" class="c-dot show"/>
+          <circle cx="520" cy="490" r="7"  fill="#238076" class="c-dot show"/>
+          <circle cx="520" cy="490" r="11" fill="none" stroke="rgba(35,128,118,.3)" stroke-width="1" class="c-dot show"/>
+          <circle cx="347" cy="390" r="7"  fill="#6A5299" class="c-dot show"/>
+          <circle cx="347" cy="390" r="11" fill="none" stroke="rgba(106,82,153,.3)" stroke-width="1" class="c-dot show"/>
+          <circle cx="347" cy="190" r="7"  fill="#6A5299" class="c-dot show"/>
+          <circle cx="347" cy="190" r="11" fill="none" stroke="rgba(106,82,153,.3)" stroke-width="1" class="c-dot show"/>
+
+          <text x="520" y="56"  text-anchor="middle" class="c-node-title">Predição de turnover</text>
+          <text x="520" y="72"  text-anchor="middle" class="c-node-desc">Absenteísmo, NPS e desempenho cruzados em tempo real</text>
+          <text x="712" y="183" text-anchor="start"  class="c-node-title">Pulse surveys contínuos</text>
+          <text x="712" y="198" text-anchor="start"  class="c-node-desc">Engajamento medido semana a semana por equipe</text>
+          <text x="712" y="383" text-anchor="start"  class="c-node-title">Mapa organizacional</text>
+          <text x="712" y="398" text-anchor="start"  class="c-node-desc">Estruturas e lideranças visíveis em tempo real</text>
+          <text x="520" y="516" text-anchor="middle" class="c-node-title">ROI de RH calculado</text>
+          <text x="520" y="531" text-anchor="middle" class="c-node-desc">Impacto financeiro de cada iniciativa de pessoas</text>
+          <text x="328" y="383" text-anchor="end" class="c-node-title">Planos de ação guiados</text>
+          <text x="328" y="398" text-anchor="end" class="c-node-desc">Ações concretas com benchmarks do setor</text>
+          <text x="328" y="183" text-anchor="end" class="c-node-title">Conformidade e segurança</text>
+          <text x="328" y="198" text-anchor="end" class="c-node-desc">LGPD, SSO e criptografia integrados</text>
+        </svg>
+      </div>
+
+      <div class="features-mobile" role="list">
+        <div class="features-mobile__item reveal" role="listitem"><p class="features-mobile__title">Predição de turnover</p><p class="features-mobile__text">Absenteísmo, NPS interno e desempenho cruzados em tempo real para identificar risco de saída com antecedência.</p></div>
+        <div class="features-mobile__item reveal reveal-d1" role="listitem"><p class="features-mobile__title">Pulse surveys contínuos</p><p class="features-mobile__text">Pesquisas rápidas e recorrentes que medem engajamento semana a semana, por equipe.</p></div>
+        <div class="features-mobile__item reveal reveal-d2" role="listitem"><p class="features-mobile__title">Mapa organizacional</p><p class="features-mobile__text">Estruturas formais e informais, colaboradores-chave e gaps de liderança visíveis em tempo real.</p></div>
+        <div class="features-mobile__item reveal reveal-d1" role="listitem"><p class="features-mobile__title">ROI de RH calculado</p><p class="features-mobile__text">Custo de turnover evitado, ganho de produtividade e economia em recrutamento quantificados automaticamente.</p></div>
+        <div class="features-mobile__item reveal reveal-d2" role="listitem"><p class="features-mobile__title">Planos de ação guiados</p><p class="features-mobile__text">Aurora não só aponta o problema — sugere ações concretas com benchmarks do setor e estimativa de impacto.</p></div>
+        <div class="features-mobile__item reveal reveal-d3" role="listitem"><p class="features-mobile__title">Conformidade e segurança</p><p class="features-mobile__text">LGPD by design, SSO, criptografia em repouso e em trânsito, controles de acesso granulares.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="numeros" class="numeros" aria-labelledby="numeros-title">
+    <div class="container">
+      <p class="section-label section-label--magenta reveal">Impacto esperado</p>
+      <h2 id="numeros-title" class="section-title reveal reveal--blur">
+        O que é possível quando<br />dados guiam decisões.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Indicadores de referência construídos a partir das premissas da plataforma.
+        Resultados reais dependem do contexto e maturidade de cada organização.
+      </p>
+
+      <div class="numeros__grid reveal reveal-d2">
+        <div class="numero-card">
+          <p class="numero-card__value"><span data-target="32" data-suffix="%">0%</span></p>
+          <p class="numero-card__label">Redução de turnover</p>
+          <p class="numero-card__sub">Antecipando riscos de saída antes que aconteçam</p>
+        </div>
+        <div class="numero-card">
+          <p class="numero-card__value"><span data-target="47" data-suffix="%">0%</span></p>
+          <p class="numero-card__label">Aumento de engajamento</p>
+          <p class="numero-card__sub">Com pulse surveys semanais e ações guiadas</p>
+        </div>
+        <div class="numero-card">
+          <p class="numero-card__value"><span data-target="3" data-suffix="×">0×</span></p>
+          <p class="numero-card__label">Decisões mais rápidas</p>
+          <p class="numero-card__sub">De semanas para horas no ciclo analítico de RH</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="form-section" aria-labelledby="form-title">
+    <div class="container">
+      <p class="section-label section-label--teal reveal">Fale com a Aurora</p>
+      <h2 id="form-title" class="section-title reveal reveal--blur">
+        Veja Aurora em ação<br />na sua empresa.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Agende uma demonstração personalizada. Nosso time mostra como Aurora se integra
+        aos seus sistemas e entrega os primeiros insights em dias.
+      </p>
+
+      <div class="form-card reveal reveal-d2">
+        <form id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field" id="ff-nome">
+              <label for="nome">Nome <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="given-name" aria-required="true" aria-describedby="err-nome" aria-invalid="false"/>
+              <span class="form-error" id="err-nome">Por favor, informe seu nome.</span>
+            </div>
+            <div class="form-field" id="ff-sobrenome">
+              <label for="sobrenome">Sobrenome <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="sobrenome" name="sobrenome" placeholder="Seu sobrenome" autocomplete="family-name" aria-required="true" aria-describedby="err-sobrenome" aria-invalid="false"/>
+              <span class="form-error" id="err-sobrenome">Por favor, informe seu sobrenome.</span>
+            </div>
+            <div class="form-field" id="ff-email">
+              <label for="email">E-mail corporativo <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="voce@empresa.com" autocomplete="email" aria-required="true" aria-describedby="err-email" aria-invalid="false"/>
+              <span class="form-error" id="err-email">Por favor, informe um e-mail válido.</span>
+            </div>
+            <div class="form-field" id="ff-empresa">
+              <label for="empresa">Empresa <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" aria-required="true" aria-describedby="err-empresa" aria-invalid="false"/>
+              <span class="form-error" id="err-empresa">Por favor, informe a empresa.</span>
+            </div>
+            <div class="form-field" id="ff-cargo">
+              <label for="cargo">Cargo</label>
+              <input type="text" id="cargo" name="cargo" placeholder="Seu cargo" autocomplete="organization-title"/>
+            </div>
+            <div class="form-field" id="ff-tamanho">
+              <label for="tamanho">Tamanho da empresa</label>
+              <select id="tamanho" name="tamanho">
+                <option value="">Selecione</option>
+                <option value="100-499">100–499 colaboradores</option>
+                <option value="500-999">500–999 colaboradores</option>
+                <option value="1000-4999">1.000–4.999 colaboradores</option>
+                <option value="5000+">5.000+ colaboradores</option>
+              </select>
+            </div>
+            <div class="form-field span-2" id="ff-mensagem">
+              <label for="mensagem">O que você quer resolver?</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Descreva o principal desafio de people analytics da sua empresa..."></textarea>
+            </div>
+            <div class="form-field span-2">
+              <div class="form-consent">
+                <input type="checkbox" id="lgpd" name="lgpd" aria-required="true"/>
+                <label for="lgpd">Concordo com o <a href="#">tratamento dos meus dados</a> conforme a Política de Privacidade da Aurora, em conformidade com a LGPD.</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="form-submit" id="form-submit">Agendar demonstração</button>
+        </form>
+        <div class="sr-only" id="form-status" aria-live="polite"></div>
+        <div class="form-success" id="form-success" role="alert">
+          <p class="form-success__icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#238076" stroke-width="1.5"/><polyline points="14,24 21,31 34,17" stroke="#238076" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          <p class="form-success__title">Recebemos seu contato!</p>
+          <p class="form-success__text">Nossa equipe entrará em contato em até 1 dia útil para agendar sua demonstração personalizada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand">
+          <img src="assets/aurora-logo.svg" alt="Aurora" class="footer__brand-img" />
+        </div>
+        <p class="footer__brand-text">Plataforma de people analytics que transforma dados de RH em decisões estratégicas.</p>
+      </div>
+      <div>
+        <p class="footer__col-title">Produto</p>
+        <nav class="footer__links" aria-label="Links do produto">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#features">Funcionalidades</a>
+          <a href="#numeros">Resultados</a>
+          <a href="#contato">Demonstração</a>
+        </nav>
+      </div>
+      <div>
+        <p class="footer__col-title">Empresa</p>
+        <nav class="footer__links" aria-label="Links da empresa">
+          <a href="#">Sobre Aurora</a>
+          <a href="#">Segurança e LGPD</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Aurora People Analytics. Todos os direitos reservados.</p>
+      <nav class="footer__legal" aria-label="Links legais">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+        <a href="#">LGPD</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="#contato" class="fab" id="fab" aria-label="Agendar demonstração">Agendar demo</a>
+
+<script>
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+const fab = document.getElementById('fab');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) fab.classList.add('visible');
+  else fab.classList.remove('visible');
+}, { passive: true });
+
+const navLinks = document.querySelectorAll('.nav__links a');
+const sections = document.querySelectorAll('section[id]');
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => {
+        a.removeAttribute('aria-current');
+        if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => navObs.observe(s));
+
+const hamburger = document.querySelector('.nav__hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    hamburger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false');
+  }));
+}
+
+const diagObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const lines = e.target.querySelectorAll('.d-line');
+    lines.forEach((l, i) => setTimeout(() => l.classList.add('draw'), i * 110));
+    const dots  = e.target.querySelectorAll('.d-dot:not(.show)');
+    dots.forEach((d, i) => setTimeout(() => d.classList.add('show'), 380 + i * 90));
+    const outs  = e.target.querySelectorAll('.d-output-group');
+    outs.forEach((o, i) => setTimeout(() => o.classList.add('show'), 760 + i * 130));
+    diagObs.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const diag = document.getElementById('diagram-wrap');
+if (diag) diagObs.observe(diag);
+
+const constellObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.c-line').forEach((l, i) => setTimeout(() => l.classList.add('draw'), i * 90));
+    e.target.querySelectorAll('.c-dot:not(.show)').forEach((d, i) => setTimeout(() => d.classList.add('show'), 400 + i * 80));
+    constellObs.unobserve(e.target);
+  });
+}, { threshold: 0.25 });
+const consWrap = document.getElementById('constellation-wrap');
+if (consWrap) constellObs.observe(consWrap);
+
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.solucao__bar-fill').forEach(b => {
+        b.style.width = (parseFloat(b.dataset.width) * 100) + '%';
+        b.classList.add('animate');
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const solV = document.querySelector('.solucao__visual');
+if (solV) barObs.observe(solV);
+
+function animateCounter(el) {
+  const suffix = el.dataset.suffix || '';
+  const target = parseInt(el.dataset.target, 10);
+  const fps = 30, steps = 1800 / (1000 / fps);
+  let step = 0;
+  const iv = setInterval(() => {
+    step++;
+    el.textContent = Math.round((1 - Math.pow(1 - step / steps, 3)) * target) + suffix;
+    if (step >= steps) { el.textContent = target + suffix; clearInterval(iv); }
+  }, 1000 / fps);
+}
+const numObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+      numObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+const numGrid = document.querySelector('.numeros__grid');
+if (numGrid) numObs.observe(numGrid);
+
+const profiles = [
+  { range:[4,7],  badge:'Gestão Intuitiva', bg:'rgba(137,39,94,.15)',   color:'#c0547e', title:'Sua empresa decide pela percepção', desc:'O RH ainda opera de forma reativa, sem dados estruturados. O turnover é invisível e as decisões dependem da intuição dos gestores. Aurora pode mudar isso em semanas — começando pela integração dos seus sistemas e os primeiros dashboards de liderança.' },
+  { range:[8,11], badge:'Em Transição',     bg:'rgba(83,64,121,.15)',   color:'#8b72c2', title:'Você tem dados, mas chegam tarde', desc:'Existem relatórios, mas são manuais, esporádicos e lentos. Com Aurora, você automatiza o que já faz e ganha análise preditiva em tempo real — sem construir do zero.' },
+  { range:[12,16],badge:'Quase lá',         bg:'rgba(35,128,118,.15)', color:'#3aad9f', title:'Sua estrutura é boa. Aurora turbina.', desc:'Você já tem uma base analítica sólida. O próximo passo é integrar predição de risco, ROI de RH automático e planos de ação guiados para levar o people analytics ao próximo nível.' },
+];
+let quizScore = 0, currentStep = 1;
+const totalSteps = 4;
+
+function setupQuizFocus(group) {
+  const options = [...group.querySelectorAll('.quiz-option')];
+  const selectedIndex = options.findIndex(opt => opt.classList.contains('selected'));
+  const fallbackIndex = selectedIndex >= 0 ? selectedIndex : 0;
+  options.forEach((opt, index) => {
+    opt.tabIndex = index === fallbackIndex ? 0 : -1;
+  });
+}
+
+function selectQuizOption(btn) {
+  const group = btn.closest('.quiz-options');
+  const options = [...group.querySelectorAll('.quiz-option')];
+  options.forEach(option => {
+    const selected = option === btn;
+    option.classList.toggle('selected', selected);
+    option.setAttribute('aria-checked', selected ? 'true' : 'false');
+    option.tabIndex = selected ? 0 : -1;
+  });
+  const nextBtn = btn.closest('.quiz-step').querySelector('.quiz-next');
+  if (nextBtn) { nextBtn.classList.add('enabled'); nextBtn.disabled = false; }
+}
+
+function moveQuizFocus(group, targetIndex) {
+  const options = [...group.querySelectorAll('.quiz-option')];
+  const nextIndex = (targetIndex + options.length) % options.length;
+  options.forEach((option, index) => {
+    option.tabIndex = index === nextIndex ? 0 : -1;
+  });
+  options[nextIndex].focus();
+}
+
+function updateProgress(step) {
+  const pct = ((step - 1) / totalSteps * 100);
+  const bar = document.querySelector('.quiz-progress-fill');
+  const pb  = document.querySelector('.quiz-progress-bar');
+  if (bar) bar.style.width = pct + '%';
+  if (pb)  pb.setAttribute('aria-valuenow', pct);
+}
+
+document.querySelectorAll('.quiz-option').forEach(btn => {
+  btn.tabIndex = -1;
+  btn.addEventListener('click', () => selectQuizOption(btn));
+  btn.addEventListener('keydown', e => {
+    const group = btn.closest('.quiz-options');
+    const options = [...group.querySelectorAll('.quiz-option')];
+    const currentIndex = options.indexOf(btn);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      moveQuizFocus(group, currentIndex + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      moveQuizFocus(group, currentIndex - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      moveQuizFocus(group, 0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      moveQuizFocus(group, options.length - 1);
+    } else if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      selectQuizOption(btn);
+    }
+  });
+});
+
+document.querySelectorAll('.quiz-options').forEach(setupQuizFocus);
+
+document.querySelectorAll('.quiz-next').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const step = btn.closest('.quiz-step');
+    const sel  = step.querySelector('.quiz-option.selected');
+    if (!sel) return;
+    quizScore += parseInt(sel.dataset.score, 10);
+
+    const stepNum  = parseInt(step.dataset.step, 10);
+    const nextStep = document.querySelector(`.quiz-step[data-step="${stepNum + 1}"]`);
+
+    if (nextStep) {
+      step.classList.remove('active');
+      nextStep.classList.add('active');
+      currentStep = stepNum + 1;
+      updateProgress(currentStep);
+    } else {
+      showResult();
+    }
+  });
+});
+
+function showResult() {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  const profile = profiles.find(p => quizScore >= p.range[0] && quizScore <= p.range[1]) || profiles[0];
+  const result  = document.getElementById('quiz-result');
+  if (!result) return;
+  result.classList.add('active');
+  const bar = document.querySelector('.quiz-progress-fill');
+  if (bar) bar.style.width = '100%';
+  result.innerHTML = `
+    <div class="quiz-result__badge" style="background:${profile.bg};color:${profile.color}">${profile.badge}</div>
+    <p class="quiz-result__title">${profile.title}</p>
+    <p class="quiz-result__desc">${profile.desc}</p>
+    <a href="#contato" class="quiz-result__cta"><span>Quero ver Aurora em ação</span><span aria-hidden="true">→</span></a>
+    <br/>
+    <button class="quiz-result__restart" id="quiz-restart">Refazer o diagnóstico</button>
+  `;
+  document.getElementById('quiz-restart')?.addEventListener('click', resetQuiz);
+}
+
+function resetQuiz() {
+  quizScore = 0; currentStep = 1;
+  document.querySelectorAll('.quiz-step').forEach(s => {
+    s.classList.remove('active');
+    s.querySelectorAll('.quiz-option').forEach(b => {
+      b.classList.remove('selected');
+      b.setAttribute('aria-checked','false');
+      b.tabIndex = -1;
+    });
+    s.querySelectorAll('.quiz-next').forEach(b => { b.classList.remove('enabled'); b.disabled = true; });
+    const group = s.querySelector('.quiz-options');
+    if (group) setupQuizFocus(group);
+  });
+  const result = document.getElementById('quiz-result');
+  if (result) { result.classList.remove('active'); result.innerHTML = ''; }
+  document.querySelector('.quiz-step[data-step="1"]')?.classList.add('active');
+  updateProgress(1);
+}
+
+const form = document.getElementById('contact-form');
+if (form) {
+  const formStatus = document.getElementById('form-status');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+    const required = [
+      { id: 'nome',      err: 'err-nome',      check: v => v.trim().length > 1 },
+      { id: 'sobrenome', err: 'err-sobrenome',  check: v => v.trim().length > 1 },
+      { id: 'email',     err: 'err-email',      check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'empresa',   err: 'err-empresa',    check: v => v.trim().length > 1 },
+    ];
+    required.forEach(({ id, err, check }) => {
+      const input = document.getElementById(id);
+      const errEl = document.getElementById(err);
+      const ff    = input?.closest('.form-field');
+      if (!input) return;
+      if (check(input.value)) {
+        ff?.classList.remove('error');
+        errEl?.classList.remove('show');
+        input.setAttribute('aria-invalid', 'false');
+      } else {
+        ff?.classList.add('error');
+        errEl?.classList.add('show');
+        input.setAttribute('aria-invalid', 'true');
+        valid = false;
+      }
+    });
+    const lgpd = document.getElementById('lgpd');
+    if (!lgpd?.checked) { valid = false; lgpd?.focus(); }
+    if (!valid) {
+      if (formStatus) formStatus.textContent = 'Existem campos obrigatórios com erro no formulário.';
+      return;
+    }
+
+    const btn = document.getElementById('form-submit');
+    if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+    setTimeout(() => {
+      form.style.display = 'none';
+      document.getElementById('form-success')?.classList.add('show');
+      if (formStatus) formStatus.textContent = 'Formulário enviado com sucesso em modo demonstrativo.';
+    }, 800);
+  });
+}
+</script>
+</body>
+</html>
