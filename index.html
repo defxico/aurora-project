@@ -454,7 +454,17 @@
       </p>
 
       <div class="form-card reveal reveal-d2">
-        <form id="contact-form" novalidate>
+        <form id="contact-form" name="agendar-demonstracao" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="agendar-demonstracao" />
+          <p class="hp-field" hidden>
+            <label>Não preencha este campo: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+          <p class="form-diagnostico" id="form-diagnostico" hidden>
+            Diagnóstico do quiz: <strong id="form-diagnostico-valor"></strong>
+          </p>
+          <input type="hidden" name="perfil-diagnostico" id="lead-perfil-diagnostico" />
+          <input type="hidden" name="colaboradores" id="lead-colaboradores" />
+          <input type="hidden" name="economia-estimada" id="lead-economia" />
           <div class="form-grid">
             <div class="form-field" id="ff-nome">
               <label for="nome">Nome <span class="req" aria-hidden="true">*</span></label>
@@ -504,6 +514,9 @@
           <button type="submit" class="form-submit" id="form-submit">Agendar demonstração</button>
         </form>
         <div class="sr-only" id="form-status" aria-live="polite"></div>
+        <p class="form-neterror" id="form-neterror" role="alert" hidden>
+          Não foi possível enviar agora. Verifique sua conexão e tente novamente.
+        </p>
         <div class="form-success" id="form-success" role="alert">
           <p class="form-success__icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#238076" stroke-width="1.5"/><polyline points="14,24 21,31 34,17" stroke="#238076" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           <p class="form-success__title">Recebemos seu contato!</p>

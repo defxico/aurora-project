@@ -472,6 +472,18 @@ section { padding-block: 5.5rem; }
 .form-success__title { font-family: var(--ff-title); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: .75rem; }
 .form-success__text  { font-family: var(--ff-body); font-size: .95rem; color: var(--text-muted); }
 
+.hp-field { position: absolute; left: -9999px; }
+.form-diagnostico {
+  font-family: var(--ff-body); font-size: .85rem; color: var(--text-on-dark);
+  background: rgba(35,128,118,.12); border: 1px solid rgba(35,128,118,.3);
+  border-radius: 8px; padding: .6rem .9rem; margin-bottom: 1.25rem;
+}
+.form-diagnostico strong { color: var(--teal); }
+.form-neterror {
+  font-family: var(--ff-body); font-size: .82rem; color: #f87171;
+  text-align: center; margin-top: 1rem;
+}
+
 footer { background: rgba(13,11,20,.6); border-top: 1px solid var(--border-dark); padding-block: 3rem 2rem; }
 .footer__inner { display: grid; gap: 2.5rem; }
 @media (min-width: 768px) { .footer__inner { grid-template-columns: 1.5fr 1fr 1fr; } }

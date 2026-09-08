@@ -272,11 +272,25 @@ if (form) {
     }
 
     const btn = document.getElementById('form-submit');
+    const neterror = document.getElementById('form-neterror');
+    if (neterror) neterror.hidden = true;
     if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
-    setTimeout(() => {
-      form.style.display = 'none';
-      document.getElementById('form-success')?.classList.add('show');
-      if (formStatus) formStatus.textContent = 'Formulário enviado com sucesso em modo demonstrativo.';
-    }, 800);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.style.display = 'none';
+        document.getElementById('form-success')?.classList.add('show');
+        if (formStatus) formStatus.textContent = 'Formulário enviado com sucesso.';
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.textContent = 'Agendar demonstração'; }
+        if (neterror) neterror.hidden = false;
+        if (formStatus) formStatus.textContent = 'Erro de rede ao enviar o formulário.';
+      });
   });
 }
