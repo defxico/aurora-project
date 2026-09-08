@@ -525,6 +525,50 @@
       </div>
     </div>
   </section>
+
+  <section id="acessibilidade" class="a11y" aria-labelledby="a11y-title">
+    <div class="container">
+      <p class="section-label section-label--teal reveal">Compromisso com acessibilidade</p>
+      <h2 id="a11y-title" class="section-title reveal reveal--blur">
+        Recursos de acessibilidade<br />aplicados nesta página.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        A landing page da Aurora segue boas práticas das WCAG 2.1 nível AA. Abaixo, os
+        recursos efetivamente implementados e onde encontrá-los.
+      </p>
+
+      <div class="a11y__grid reveal reveal-d2" role="list">
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Estrutura semântica</h3>
+          <p class="a11y__item-text">Marcação com <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code> e <code>footer</code>, títulos em hierarquia e link "Ir para o conteúdo principal" no início da página.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Navegação por teclado</h3>
+          <p class="a11y__item-text">Todos os elementos interativos são focáveis. O quiz e a calculadora operam por Tab, setas, Home, End, Enter e Espaço, com contorno de foco sempre visível.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Leitores de tela</h3>
+          <p class="a11y__item-text">Uso de <code>aria-label</code>, <code>aria-labelledby</code>, <code>aria-current</code> na navegação e regiões <code>aria-live</code> para etapas do quiz, resultado da calculadora e status do formulário. Elementos decorativos com <code>aria-hidden</code>.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Contraste e cores</h3>
+          <p class="a11y__item-text">Paleta validada em contraste AA. Nenhuma informação é transmitida apenas por cor — estados também usam texto, ícone ou posição.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Formulários</h3>
+          <p class="a11y__item-text">Cada campo tem <code>label</code> associado, campos obrigatórios marcados com <code>aria-required</code>, erros vinculados por <code>aria-describedby</code> e <code>aria-invalid</code> atualizado na validação.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Movimento reduzido</h3>
+          <p class="a11y__item-text">Com <code>prefers-reduced-motion</code> ativo no sistema, todas as animações são desativadas e o conteúdo aparece imediatamente no estado final.</p>
+        </div>
+        <div class="a11y__item" role="listitem">
+          <h3 class="a11y__item-title">Zoom e responsividade</h3>
+          <p class="a11y__item-text">Layout utilizável até 200% de zoom, unidades relativas e adaptação a telas de 360&nbsp;px a desktop sem rolagem horizontal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer role="contentinfo">
@@ -548,6 +592,7 @@
       <div>
         <p class="footer__col-title">Empresa</p>
         <nav class="footer__links" aria-label="Links da empresa">
+          <a href="#acessibilidade">Acessibilidade</a>
           <a href="#">Sobre Aurora</a>
           <a href="#">Segurança e LGPD</a>
           <a href="#">Política de Privacidade</a>
