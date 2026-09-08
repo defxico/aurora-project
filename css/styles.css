@@ -374,7 +374,7 @@ section { padding-block: 5.5rem; }
 .solucao__grid { margin-top: 3.5rem; display: grid; gap: 2.5rem; }
 @media (min-width: 768px) {
   .solucao__grid { grid-template-columns: 1fr; }
-  .solucao__visual { max-width: 640px; margin-inline: auto; }
+  .solucao__visual { width: 100%; max-width: 640px; margin-inline: auto; }
 }
 
 .solucao__visual {
