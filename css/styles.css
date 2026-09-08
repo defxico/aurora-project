@@ -454,6 +454,21 @@ section { padding-block: 5.5rem; }
 .numero-card:nth-child(3) .numero-card__value { color: var(--purple-light); }
 .numero-card__label { font-family: var(--ff-title); font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
 .numero-card__sub   { font-family: var(--ff-body); font-size: .8rem; line-height: 1.55; color: var(--text-muted); }
+.numero-card { position: relative; transition: transform .2s var(--ease-out), border-color .2s; }
+.numero-card:hover { transform: translateY(-3px); border-color: rgba(106,82,153,.4); }
+.numero-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  padding: 1px; pointer-events: none;
+  background: linear-gradient(140deg, rgba(106,82,153,.5), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.numero-card__spark { width: 80px; height: 24px; margin: 0 auto 1rem; display: block; opacity: .8; }
+.numeros__note {
+  margin-top: 1.5rem; text-align: center;
+  font-family: var(--ff-body); font-size: .78rem; line-height: 1.6;
+  color: var(--text-dimmed); max-width: 520px; margin-inline: auto;
+}
 
 .form-section { background: transparent; }
 .form-section .section-label { color: var(--teal); }
