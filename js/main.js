@@ -1,4 +1,5 @@
 'use strict';
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
@@ -94,7 +95,13 @@ function animateCounter(el) {
 const numObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+      e.target.querySelectorAll('[data-target]').forEach(el => {
+        if (prefersReducedMotion) {
+          el.textContent = el.dataset.target + (el.dataset.suffix || '');
+        } else {
+          animateCounter(el);
+        }
+      });
       numObs.unobserve(e.target);
     }
   });
