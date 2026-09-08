@@ -1,6 +1,6 @@
 # Aurora — Landing Page B2B
 
-Projeto desenvolvido para o **People First Cup — Enterprise Challenge — Etapa 1**, com o objetivo de construir uma landing page navegável para a marca fictícia **Aurora**, voltada ao público B2B.
+Projeto desenvolvido para o **People First Cup — Enterprise Challenge — Etapa 2**, com o objetivo de publicar online uma landing page para a marca fictícia **Aurora**, voltada ao público B2B, com formulário de captação de lead funcionando.
 
 A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz de transformar dados de RH em decisões estratégicas, ajudando empresas a reduzir turnover, acompanhar engajamento, prever riscos e demonstrar o impacto financeiro das iniciativas de pessoas.
 
@@ -9,8 +9,15 @@ A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz 
 **Curso:** Web Design
 **Turma:** 1TWDOA
 **Challenge:** People First Cup — Enterprise Challenge
-**Etapa:** 1
+**Etapa:** 2
 **Tema:** Landing page B2B para Aurora
+
+## Deploy
+
+- **Landing page publicada:** `https://aurora-people-analytics.netlify.app/` *(ajustar para a URL real após publicar na Netlify)*
+- **Hospedagem:** Netlify, com deploy automático a cada push na branch `main`.
+- **Formulário:** Netlify Forms — os leads chegam no painel do site em **Forms** e podem
+  notificar por e-mail.
 
 ## Integrantes
 
@@ -53,7 +60,8 @@ A landing page possui as seguintes seções principais:
    - Mostra, por meio de um diagrama visual, como os dados entram na plataforma e são transformados em insights acionáveis.
 
 4. **Diagnóstico**
-   - Inclui um quiz interativo para avaliar a maturidade analítica da empresa.
+   - Inclui um quiz interativo para avaliar a maturidade analítica da empresa. O
+     resultado acompanha o lead enviado pelo formulário.
 
 5. **Solução**
    - Apresenta a Aurora como plataforma integrada de People Analytics.
@@ -64,11 +72,16 @@ A landing page possui as seguintes seções principais:
 7. **Resultados**
    - Apresenta indicadores de impacto esperado.
 
-8. **Formulário de lead**
-   - Permite que o visitante simule o envio de uma solicitação de demonstração.
+8. **Calculadora de ROI**
+   - Estima o custo anual de turnover e a economia potencial com a Aurora, com a fórmula
+     exibida de forma transparente. O resultado acompanha o lead.
 
-9. **Rodapé**
-   - Reúne links institucionais e navegação complementar.
+9. **Formulário de lead**
+   - Envio real via Netlify Forms, com validação no navegador e mensagem de sucesso na
+     própria página.
+
+10. **Rodapé**
+    - Reúne links institucionais e navegação complementar.
 
 ## Identidade visual
 
@@ -95,61 +108,78 @@ Foram utilizadas fontes do Google Fonts:
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (vanilla)
 - SVG
 - Google Fonts
+- Netlify (hospedagem) + Netlify Forms (captação de lead)
+- Node.js apenas para rodar os testes da calculadora (`node --test`)
 
 Não foram utilizados frameworks ou bibliotecas externas para a construção da interface principal.
 
 ## Recursos de acessibilidade
 
-A landing page inclui recursos básicos de acessibilidade, como:
+Os recursos abaixo estão implementados no próprio código da página (verificáveis por
+inspeção). A identificação detalhada, com referências WCAG, está no dossiê de entrega
+(`docs/entrega-etapa-2.md`, seção 4).
 
-- uso de HTML semântico;
-- navegação principal com `aria-label`;
-- link de pular para o conteúdo principal;
-- textos alternativos em imagens relevantes;
-- labels associados aos campos do formulário;
-- atributos `aria` em elementos interativos;
-- navegação por âncoras;
-- contraste visual adequado entre textos e fundos;
-- estados de foco em elementos navegáveis;
-- estrutura responsiva para diferentes tamanhos de tela.
+- uso de HTML semântico e link de pular para o conteúdo principal;
+- navegação e seções com `aria-label` / `aria-labelledby`;
+- regiões `aria-live` para o quiz, a calculadora e o status do formulário;
+- navegação completa por teclado (inclui quiz e calculadora com setas / Home / End);
+- foco sempre visível (`:focus-visible`);
+- `label` associado a cada campo, com `aria-required`, `aria-invalid` e `aria-describedby`;
+- contraste validado em nível AA;
+- todas as animações respeitam `prefers-reduced-motion`;
+- layout utilizável até 200% de zoom, sem rolagem horizontal.
 
 ## Funcionalidades implementadas
 
 - Navegação entre seções por âncoras;
 - Menu mobile com botão hamburguer;
 - Animações de entrada ao rolar a página;
-- Quiz interativo de maturidade analítica;
+- Quiz interativo de maturidade analítica, com o resultado enviado junto do lead;
+- Calculadora de ROI com fórmula transparente;
 - Contadores animados de indicadores;
-- Formulário de captação de lead com validação básica;
-- Mensagem de sucesso após envio simulado;
+- Formulário de captação de lead com validação no navegador e **envio real** (Netlify Forms);
+- Mensagem de sucesso exibida na própria página;
 - Botão flutuante de chamada para ação em dispositivos móveis;
 - Layout responsivo.
 
 ## Observação sobre o formulário
 
-O formulário desta landing page é **demonstrativo**, em linha com o escopo da **Etapa 1**.
+Na **Etapa 2** o formulário realiza **envio real**:
 
-- possui validação local básica no navegador;
-- exibe mensagens de erro e estado de sucesso;
-- simula o envio para fins de apresentação da interface;
-- **não realiza envio real**;
-- **não persiste dados** em backend, banco de dados ou serviço externo nesta etapa.
+- validação local no navegador (campos obrigatórios + consentimento LGPD);
+- envio via **Netlify Forms** (`fetch` no padrão AJAX), sem sair da página;
+- proteção anti-spam por honeypot;
+- campos ocultos enviados junto do lead: `perfil-diagnostico` (resultado do quiz),
+  `colaboradores` e `economia-estimada` (calculadora de ROI);
+- os leads ficam disponíveis no painel da Netlify em **Forms**.
 
 ## Estrutura de arquivos
 
 ```txt
-aurora-landing-page/
+aurora-project/
 ├── index.html
+├── 404.html
+├── netlify.toml
+├── robots.txt
+├── sitemap.xml
 ├── README.md
 ├── css/
 │   └── styles.css
+├── js/
+│   ├── main.js
+│   └── roi.js
+├── tests/
+│   └── roi.test.js
 ├── assets/
-│   └── aurora-logo.svg
+│   ├── aurora-logo.svg
+│   ├── favicon.svg
+│   └── og-cover.svg
 └── docs/
-    └── entrega.pdf
+    ├── aurora-project.pdf
+    └── entrega-etapa-2.md
 ```
 
 ## Como visualizar o projeto
@@ -157,40 +187,35 @@ aurora-landing-page/
 Para visualizar a landing page localmente:
 
 1. Baixe ou clone este repositório.
-2. Abra o arquivo `index.html` no navegador.
-3. Navegue pelas seções da página.
+2. Rode um servidor estático na raiz: `npx --yes serve@14 .`
+3. Abra `http://localhost:3000` e navegue pelas seções.
 
-Também é possível abrir o projeto pelo VS Code utilizando a extensão **Live Server**.
+Abrir `index.html` direto pelo `file://` não é recomendado — o formulário e o
+carregamento dos scripts precisam de uma origem HTTP.
+
+Testes da calculadora de ROI: `node --test tests/roi.test.js`
 
 ## Status do projeto
 
-Projeto desenvolvido para entrega acadêmica da **Etapa 1** do Enterprise Challenge.
+Projeto desenvolvido para a entrega acadêmica da **Etapa 2** do Enterprise Challenge.
 
-Nesta etapa, o foco está em:
+Fazem parte desta etapa:
 
-- estrutura da landing page;
-- identidade visual;
-- navegação;
-- formulário de lead;
-- acessibilidade;
+- deploy online em URL pública;
+- formulário de lead com envio real;
+- todas as seções da Etapa 1 refinadas;
+- identidade visual aplicada;
+- responsividade;
+- recursos de acessibilidade implementados e identificados na página;
 - organização dos arquivos.
 
-Não fazem parte desta etapa:
+Não faz parte desta etapa:
 
-- deploy online;
-- vídeo-pitch;
-- integração real com backend;
-- envio real do formulário.
-
-Isso significa que o comportamento atual do formulário está coerente com a proposta da entrega acadêmica desta fase: demonstrar estrutura, interação, validação local e experiência de uso, sem implementação de persistência real.
+- vídeo-pitch.
 
 ## Repositório
 
-Link do repositório público:
-
-```txt
-INSERIR_LINK_DO_REPOSITÓRIO_AQUI
-```
+Link do repositório público: https://github.com/defxico/aurora-project
 
 ## Licença
 
