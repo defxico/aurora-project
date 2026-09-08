@@ -176,6 +176,22 @@ section { padding-block: 5.5rem; }
   padding-top: 130px; padding-bottom: 110px;
   position: relative; overflow: hidden;
 }
+.hero__aurora {
+  position: absolute; inset: -20% -10% auto -10%; height: 70%;
+  background:
+    radial-gradient(40% 60% at 20% 30%, rgba(83,64,121,.45), transparent 70%),
+    radial-gradient(45% 55% at 75% 20%, rgba(35,128,118,.35), transparent 70%),
+    radial-gradient(35% 45% at 55% 60%, rgba(137,39,94,.28), transparent 70%);
+  filter: blur(40px); opacity: .8;
+  animation: hero-drift 18s var(--ease-out) infinite alternate;
+  pointer-events: none;
+}
+@keyframes hero-drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to   { transform: translate3d(4%, 3%, 0) scale(1.08); }
+}
+.hero__grid { position: relative; display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 960px) { .hero__grid { grid-template-columns: 1.15fr .85fr; } }
 .hero__title {
   font-family: var(--ff-title);
   font-size: clamp(2.1rem, 6.5vw, 3.75rem);
@@ -189,6 +205,23 @@ section { padding-block: 5.5rem; }
   max-width: 520px; margin-bottom: 2.5rem;
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.hero__card {
+  background: rgba(17,13,34,.72);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(106,82,153,.25);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+.hero__card-label {
+  font-family: var(--ff-body); font-size: .7rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-dimmed);
+}
+.hero__kpi { display: flex; flex-direction: column; gap: .15rem; }
+.hero__kpi-val { font-family: var(--ff-title); font-size: 2rem; font-weight: 800; letter-spacing: -.03em; color: #fff; }
+.hero__kpi-val.c-teal { color: var(--teal); }
+.hero__kpi-val.c-magenta { color: var(--magenta); }
+.hero__kpi-label { font-family: var(--ff-body); font-size: .8rem; color: var(--text-muted); }
 
 .dores { background: transparent; }
 .dores .section-label { color: var(--magenta); }
