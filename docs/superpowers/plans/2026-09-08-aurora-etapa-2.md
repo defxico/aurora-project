@@ -885,7 +885,7 @@ test('turnover é limitado entre 0 e 100', () => {
 
 - [ ] **Step 2: Rodar o teste e confirmar que falha**
 
-Run: `node --test tests/`
+Run: `node --test tests/roi.test.js`
 Expected: FALHA com `Cannot find module '../js/roi.js'`.
 
 - [ ] **Step 3: Implementar `js/roi.js`**
@@ -924,7 +924,7 @@ Expected: FALHA com `Cannot find module '../js/roi.js'`.
 
 - [ ] **Step 4: Rodar o teste e confirmar que passa**
 
-Run: `node --test tests/`
+Run: `node --test tests/roi.test.js`
 Expected: PASS — 4 testes, 0 falhas.
 
 - [ ] **Step 5: Commit**
@@ -1117,7 +1117,7 @@ Recarregar `http://localhost:3000`:
 
 - [ ] **Step 7: Rodar os testes da calculadora de novo (regressão)**
 
-Run: `node --test tests/`
+Run: `node --test tests/roi.test.js`
 Expected: PASS.
 
 - [ ] **Step 8: Commit**
@@ -1300,7 +1300,7 @@ npx --yes serve@14 .
 # abrir http://localhost:3000
 ```
 
-Testes da calculadora de ROI: `node --test tests/`
+Testes da calculadora de ROI: `node --test tests/roi.test.js`
 
 ### Estrutura de arquivos
 
