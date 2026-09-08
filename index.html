@@ -468,6 +468,53 @@
     </div>
   </section>
 
+  <section id="calculadora" class="calc" aria-labelledby="calc-title">
+    <div class="container">
+      <p class="section-label section-label--teal reveal">Calculadora de retorno</p>
+      <h2 id="calc-title" class="section-title reveal reveal--blur">
+        Quanto o turnover custa<br />para a sua empresa hoje.
+      </h2>
+      <p class="section-sub reveal reveal-d1">
+        Ajuste os três campos e veja uma estimativa do custo anual de turnover e do quanto
+        a Aurora pode ajudar a evitar.
+      </p>
+
+      <form class="calc__card reveal reveal-d2" id="calc-form" novalidate>
+        <div class="calc__fields">
+          <div class="calc__field">
+            <label for="calc-colaboradores">Número de colaboradores</label>
+            <input type="number" id="calc-colaboradores" name="calc-colaboradores" min="1" step="1" inputmode="numeric" value="200" />
+          </div>
+          <div class="calc__field">
+            <label for="calc-turnover">Turnover anual (%)</label>
+            <input type="number" id="calc-turnover" name="calc-turnover" min="0" max="100" step="1" inputmode="numeric" value="20" />
+          </div>
+          <div class="calc__field">
+            <label for="calc-salario">Salário médio mensal (R$)</label>
+            <input type="number" id="calc-salario" name="calc-salario" min="0" step="100" inputmode="numeric" value="4000" />
+          </div>
+        </div>
+
+        <output class="calc__result" id="calc-result" for="calc-colaboradores calc-turnover calc-salario" aria-live="polite"></output>
+
+        <p class="calc__formula">
+          Cálculo: saídas por ano = colaboradores × turnover%. Custo atual = saídas × salário
+          mensal × 12 × 0,75 (custo médio de substituir um colaborador ≈ 75% da remuneração
+          anual). Economia estimada = custo atual × 32% (redução de turnover de referência da
+          Aurora).
+        </p>
+        <p class="calc__disclaimer">
+          Estimativa ilustrativa baseada em premissas de mercado; não constitui projeção
+          contratual.
+        </p>
+
+        <a href="#contato" class="btn-primary btn-primary--block" id="calc-cta">
+          <span>Levar esse cálculo para uma conversa</span><span aria-hidden="true">→</span>
+        </a>
+      </form>
+    </div>
+  </section>
+
   <section id="contato" class="form-section" aria-labelledby="form-title">
     <div class="container">
       <p class="section-label section-label--teal reveal">Fale com a Aurora</p>
@@ -639,6 +686,7 @@
 
 <a href="#contato" class="fab" id="fab" aria-label="Agendar demonstração">Agendar demo</a>
 
+<script src="js/roi.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

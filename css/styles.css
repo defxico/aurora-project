@@ -479,6 +479,44 @@ section { padding-block: 5.5rem; }
   color: var(--text-dimmed); max-width: 520px; margin-inline: auto;
 }
 
+.calc { background: #13102A; }
+.calc .section-label { color: var(--teal); }
+.calc .section-title { color: #fff; }
+.calc .section-sub { color: var(--text-muted); }
+.calc__card {
+  margin-top: 2.5rem; max-width: 640px; margin-inline: auto;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(106,82,153,.2);
+  border-radius: var(--radius-lg); padding: 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+@media (min-width: 768px) { .calc__card { padding: 2.5rem; } }
+.calc__fields { display: grid; gap: 1.25rem; }
+@media (min-width: 560px) { .calc__fields { grid-template-columns: repeat(3, 1fr); } }
+.calc__field { display: flex; flex-direction: column; gap: .4rem; }
+.calc__field label { font-family: var(--ff-body); font-size: .82rem; font-weight: 600; color: var(--text-on-dark); }
+.calc__field input {
+  padding: .75rem 1rem; border-radius: 8px;
+  border: 1px solid var(--border-dark); background: rgba(255,255,255,.05);
+  color: var(--text-on-dark); font-family: var(--ff-body); font-size: .95rem; width: 100%;
+  transition: border-color .2s, box-shadow .2s; outline: none;
+}
+.calc__field input:focus {
+  border-color: var(--teal); background: rgba(35,128,118,.06);
+  box-shadow: 0 0 0 3px rgba(35,128,118,.14);
+}
+.calc__result {
+  display: block; font-family: var(--ff-body); font-size: 1rem; line-height: 1.7;
+  color: var(--text-on-dark);
+  background: rgba(35,128,118,.1); border: 1px solid rgba(35,128,118,.28);
+  border-radius: var(--radius); padding: 1.25rem;
+}
+.calc__result strong { font-family: var(--ff-title); color: var(--teal); }
+.calc__result .calc__result-cost { color: #fff; }
+.calc__formula, .calc__disclaimer {
+  font-family: var(--ff-body); font-size: .78rem; line-height: 1.6; color: var(--text-muted);
+}
+.calc__disclaimer { color: var(--text-dimmed); font-style: italic; }
+
 .form-section { background: transparent; }
 .form-section .section-label { color: var(--teal); }
 .form-section .section-title { color: #fff; }

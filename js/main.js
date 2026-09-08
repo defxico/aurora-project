@@ -208,6 +208,11 @@ document.querySelectorAll('.quiz-next').forEach(btn => {
 function showResult() {
   document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
   const profile = profiles.find(p => quizScore >= p.range[0] && quizScore <= p.range[1]) || profiles[0];
+  const leadPerfil = document.getElementById('lead-perfil-diagnostico');
+  const formDiag = document.getElementById('form-diagnostico');
+  const formDiagVal = document.getElementById('form-diagnostico-valor');
+  if (leadPerfil) leadPerfil.value = profile.badge;
+  if (formDiag && formDiagVal) { formDiagVal.textContent = profile.badge; formDiag.hidden = false; }
   const result  = document.getElementById('quiz-result');
   if (!result) return;
   result.classList.add('active');
@@ -239,6 +244,10 @@ function resetQuiz() {
   });
   const result = document.getElementById('quiz-result');
   if (result) { result.classList.remove('active'); result.innerHTML = ''; }
+  const leadPerfil = document.getElementById('lead-perfil-diagnostico');
+  const formDiag = document.getElementById('form-diagnostico');
+  if (leadPerfil) leadPerfil.value = '';
+  if (formDiag) formDiag.hidden = true;
   document.querySelector('.quiz-step[data-step="1"]')?.classList.add('active');
   updateProgress(1);
 }
@@ -300,4 +309,37 @@ if (form) {
         if (formStatus) formStatus.textContent = 'Erro de rede ao enviar o formulário.';
       });
   });
+}
+
+const calcForm = document.getElementById('calc-form');
+if (calcForm && window.AuroraRoi) {
+  const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  const $col = document.getElementById('calc-colaboradores');
+  const $tur = document.getElementById('calc-turnover');
+  const $sal = document.getElementById('calc-salario');
+  const $out = document.getElementById('calc-result');
+  const $leadCol = document.getElementById('lead-colaboradores');
+  const $leadEco = document.getElementById('lead-economia');
+
+  function renderCalc() {
+    const r = window.AuroraRoi.calcularRoi({
+      colaboradores: parseFloat($col.value),
+      turnoverPct: parseFloat($tur.value),
+      salarioMensal: parseFloat($sal.value),
+    });
+    if (r.custoAtual <= 0) {
+      $out.innerHTML = 'Preencha os três campos com valores maiores que zero para ver a estimativa.';
+    } else {
+      $out.innerHTML =
+        'Sua empresa gasta aproximadamente <strong class="calc__result-cost">' + brl.format(r.custoAtual) +
+        '</strong> por ano com turnover (' + Math.round(r.saidasAno) + ' saídas/ano). ' +
+        'Com a Aurora, a estimativa de economia é de <strong>' + brl.format(r.economiaAurora) + '</strong> por ano.';
+    }
+    if ($leadCol) $leadCol.value = $col.value || '';
+    if ($leadEco) $leadEco.value = r.economiaAurora > 0 ? brl.format(r.economiaAurora) : '';
+  }
+
+  [$col, $tur, $sal].forEach(el => el.addEventListener('input', renderCalc));
+  calcForm.addEventListener('submit', e => e.preventDefault());
+  renderCalc();
 }
