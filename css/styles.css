@@ -313,6 +313,17 @@ section { padding-block: 5.5rem; }
   color: var(--dark);
 }
 @media (min-width: 768px) { .solucao__card { padding: 4.5rem 4rem; margin: 0 auto; max-width: 1120px; } }
+.solucao__inner {
+  padding-block: 5.5rem;
+  padding-inline: 1.5rem;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+.btn-primary--block {
+  display: flex;
+  justify-content: center;
+  margin-top: .5rem;
+}
 .solucao .section-label { color: var(--teal); }
 .solucao .section-title { color: var(--dark); }
 .solucao .section-sub   { color: rgba(13,11,20,.6); }
