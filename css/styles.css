@@ -372,7 +372,10 @@ section { padding-block: 5.5rem; }
 .solucao .section-sub   { color: rgba(13,11,20,.6); }
 
 .solucao__grid { margin-top: 3.5rem; display: grid; gap: 2.5rem; }
-@media (min-width: 768px) { .solucao__grid { grid-template-columns: 1fr 1fr; align-items: center; } }
+@media (min-width: 768px) {
+  .solucao__grid { grid-template-columns: 1fr; }
+  .solucao__visual { max-width: 640px; margin-inline: auto; }
+}
 
 .solucao__visual {
   border-radius: var(--radius-lg); overflow: hidden;
@@ -393,8 +396,14 @@ section { padding-block: 5.5rem; }
 .solucao__bar-fill.animate { transform: scaleX(1); }
 .solucao__bar-val { font-family: var(--ff-title); font-size: .8rem; font-weight: 700; color: var(--brand); width: 38px; text-align: right; }
 
-.solucao__points { display: flex; flex-direction: column; gap: 1.4rem; }
-.solucao__point  { display: flex; gap: 1rem; align-items: flex-start; }
+.solucao__points { display: grid; gap: 1.5rem; }
+@media (min-width: 560px) { .solucao__points { grid-template-columns: 1fr 1fr; } }
+.solucao__point  {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: rgba(83,64,121,.05); border: 1px solid rgba(83,64,121,.1);
+  border-radius: var(--radius); padding: 1.25rem;
+}
+.solucao__cta { max-width: 320px; margin: 2.5rem auto 0; }
 .solucao__point-icon { flex-shrink: 0; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
 .solucao__point-title { font-family: var(--ff-title); font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: .25rem; }
 .solucao__point-text  { font-family: var(--ff-body); font-size: .875rem; line-height: 1.65; color: rgba(13,11,20,.58); }
