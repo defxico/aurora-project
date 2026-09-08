@@ -80,10 +80,7 @@ A landing page possui as seguintes seções principais:
    - Envio real via Netlify Forms, com validação no navegador e mensagem de sucesso na
      própria página.
 
-10. **Acessibilidade**
-    - Lista os recursos de acessibilidade efetivamente aplicados na página.
-
-11. **Rodapé**
+10. **Rodapé**
     - Reúne links institucionais e navegação complementar.
 
 ## Identidade visual
@@ -121,8 +118,9 @@ Não foram utilizados frameworks ou bibliotecas externas para a construção da 
 
 ## Recursos de acessibilidade
 
-A landing page inclui uma seção dedicada (`#acessibilidade`) que identifica os recursos
-aplicados. Em resumo:
+Os recursos abaixo estão implementados no próprio código da página (verificáveis por
+inspeção). A identificação detalhada, com referências WCAG, está no dossiê de entrega
+(`docs/entrega-etapa-2.md`, seção 4).
 
 - uso de HTML semântico e link de pular para o conteúdo principal;
 - navegação e seções com `aria-label` / `aria-labelledby`;

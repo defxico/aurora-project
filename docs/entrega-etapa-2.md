@@ -63,7 +63,8 @@ Fluxo do problema à decisão de compra, com dois momentos interativos de qualif
 
 ## 4. Recursos de acessibilidade presentes
 
-> Espelha a seção "Acessibilidade" da própria landing page.
+> Todos verificáveis diretamente no código da página (`index.html` / `css/styles.css` /
+> `js/main.js`).
 
 | Recurso | Onde | Critério WCAG 2.1 |
 | --- | --- | --- |
@@ -74,6 +75,7 @@ Fluxo do problema à decisão de compra, com dois momentos interativos de qualif
 | Regiões `aria-live` (etapas do quiz, resultado da calculadora, status do formulário) | Quiz, calculadora, formulário | 4.1.3 |
 | `aria-current` no link de navegação ativo | Cabeçalho | 2.4.8 |
 | Elementos decorativos com `aria-hidden` | Diagramas SVG, card do Hero, sparklines | 1.1.1 |
+| Imagens com texto alternativo | Logotipo Aurora (`alt`), SVGs informativos com `role="img"` + `aria-label` | 1.1.1 |
 | Contraste AA e informação não transmitida só por cor | Página inteira | 1.4.3, 1.4.1 |
 | `label` associado, `aria-required`, `aria-invalid`, `aria-describedby` nos erros | Formulário | 3.3.1, 3.3.2, 1.3.1 |
 | Respeito a `prefers-reduced-motion` (todas as animações) | Página inteira | 2.3.3 |

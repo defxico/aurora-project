@@ -209,11 +209,17 @@ responsividade.
 - **Região de status do formulário**: garantir que erros e sucesso sejam anunciados
   (`aria-live` / `role="alert"` já presentes — validar com o novo fluxo AJAX).
 
-### 7.2 Nova seção `#acessibilidade`
+### 7.2 Identificação dos recursos de acessibilidade
 
-- Posição: antes do `<footer>`.
-- Conteúdo: parágrafo de abertura + lista agrupada das práticas **efetivamente aplicadas**,
-  cada item dizendo o quê e onde:
+> **Revisado após a implementação (2026-09-08):** a exigência "identificadas na página" é
+> lida como *verificável no código* (HTML semântico, ARIA, foco, `prefers-reduced-motion`),
+> não como uma seção de vitrine. Uma seção visível de meta-comentário não é conteúdo real
+> de landing page B2B. **Decisão: não há seção `#acessibilidade` nem link no footer.** Os
+> recursos ficam implementados no markup (verificáveis) e a identificação detalhada, com
+> referências WCAG, vai no dossiê `docs/entrega-etapa-2.md` (seção 4) — que é o material do
+> PDF de entrega.
+
+Recursos garantidos no código (o que estava planejado para a lista):
   - **Estrutura semântica** — `header`/`nav`/`main`/`section`/`footer`, headings
     hierárquicos, `skip-link` para o conteúdo.
   - **Navegação por teclado** — todos os interativos focáveis; quiz operável por setas /
