@@ -41,6 +41,10 @@
   }
   .lead { margin-top: 1.1rem; max-width: 46ch; color: var(--fog2); font-size: 1.1rem; }
 
+  /* evita palavra órfã na última linha dos textos de apoio */
+  .lead, .hero__sub, .sub__p, .numbers__foot, .calc__meta, .flow__cap,
+  .ch__d, .num__s, .ask__find { text-wrap: pretty; }
+
   .btn {
     display: inline-flex; align-items: center; gap: .5rem;
     font-weight: 700; font-size: .82rem; letter-spacing: .04em;
