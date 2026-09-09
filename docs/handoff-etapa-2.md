@@ -1,6 +1,6 @@
 # Aurora — Etapa 2 · Handoff para o PDF
 
-**Para:** Amanda, Giovanna, Mariana — montagem do PDF de entrega
+**Para:** Amanda, Ana Rubia, Giovanna, Mariana — montagem do PDF de entrega
 **De:** Francisco
 **Marca:** Aurora (fictícia) — plataforma de People Analytics para público B2B
 **Repositório:** https://github.com/defxico/aurora-project
@@ -342,6 +342,7 @@ Testes da calculadora: `node --test tests/roi.test.js` (rodar o arquivo explicit
 ## 7. Integrantes (ordem alfabética, com RM)
 
 - Amanda Ayumi Guedes Ueno — RM573609
+- Ana Rubia de Oliveira Freire — RM573171
 - Francisco Caetano Bernardes — RM571399
 - Giovanna Camargo Budin — RM571861
 - Mariana Costa Cruz Maciel — RM570455

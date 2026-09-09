@@ -21,15 +21,11 @@ A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz 
 
 ## Integrantes
 
-> Preencher em ordem alfabética, conforme solicitado na entrega.
-
-Amanda Ayumi Guedes Ueno - RM573609
-
-Francisco Caetano Bernardes - RM 571399
-
-Giovanna Camargo Budin - RM571861
-
-Mariana Costa Cruz Maciel - RM570455 
+- Amanda Ayumi Guedes Ueno — RM573609
+- Ana Rubia de Oliveira Freire — RM573171
+- Francisco Caetano Bernardes — RM571399
+- Giovanna Camargo Budin — RM571861
+- Mariana Costa Cruz Maciel — RM570455
 
 
 ## Objetivo da landing page

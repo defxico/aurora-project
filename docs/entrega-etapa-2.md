@@ -3,6 +3,7 @@
 ## 1. Integrantes
 
 - Amanda Ayumi Guedes Ueno — RM573609
+- Ana Rubia de Oliveira Freire — RM573171
 - Francisco Caetano Bernardes — RM571399
 - Giovanna Camargo Budin — RM571861
 - Mariana Costa Cruz Maciel — RM570455
