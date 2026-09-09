@@ -101,7 +101,7 @@ teclado, leitor de tela e o modo de movimento reduzido do sistema operacional.
 
 ## 5. Link do deploy
 
-`https://aurora-people-analytics.netlify.app/`  *(ajustar para a URL real após publicar na Netlify)*
+https://aurora-people-analytics.netlify.app/
 
 ## 6. Link do repositório
 

@@ -14,7 +14,7 @@ A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz 
 
 ## Deploy
 
-- **Landing page publicada:** `https://aurora-people-analytics.netlify.app/` *(ajustar para a URL real após publicar na Netlify)*
+- **Landing page publicada:** https://aurora-people-analytics.netlify.app/
 - **Hospedagem:** Netlify, com deploy automático a cada push na branch `main`.
 - **Formulário:** Netlify Forms — os leads chegam no painel do site em **Forms** e podem
   notificar por e-mail.

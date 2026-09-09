@@ -4,7 +4,7 @@
 **De:** Francisco
 **Marca:** Aurora (fictícia) — plataforma de People Analytics para público B2B
 **Repositório:** https://github.com/defxico/aurora-project
-**Deploy:** _(preencher quando o site estiver publicado na Netlify)_
+**Deploy:** https://aurora-people-analytics.netlify.app/
 
 Este documento reúne, em texto corrido, tudo que foi feito nesta etapa: **o que mudou no
 código**, o **novo direcionamento visual** (cores, tipografia, espaçamento) e **o que cada
@@ -337,7 +337,7 @@ Testes da calculadora: `node --test tests/roi.test.js` (rodar o arquivo explicit
 ## 6. Links
 
 - **Repositório:** https://github.com/defxico/aurora-project
-- **Deploy:** _(preencher — a URL pública da Netlify, ex.: `https://aurora-people-analytics.netlify.app/`)_
+- **Deploy:** https://aurora-people-analytics.netlify.app/
 
 ## 7. Integrantes (ordem alfabética, com RM)
 
