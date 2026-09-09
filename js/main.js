@@ -155,43 +155,6 @@
     });
   })();
 
-  /* ============ small multiples ============ */
-  (function plates() {
-    var NS = "http://www.w3.org/2000/svg";
-    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-    var cs = getComputedStyle(document.documentElement);
-    var MAG = cs.getPropertyValue("--magenta").trim(), FOG = cs.getPropertyValue("--fog2").trim();
-    var sm = [
-      { t: "Por área", lab: ["Eng", "Ops", "Adm", "Vendas", "CX"], v: [9, 11, 8, 19, 10], hi: 3 },
-      { t: "Por tempo de casa", lab: ["<1a", "1–2", "2–4", "4–7", "7+"], v: [22, 14, 9, 7, 6], hi: 0 },
-      { t: "Por faixa salarial", lab: ["F1", "F2", "F3", "F4", "F5"], v: [8, 11, 16, 9, 7], hi: 2 },
-      { t: "Por gestor", lab: ["A", "B", "C", "D", "E"], v: [7, 9, 8, 6, 20], hi: 4 }
-    ];
-    var g = document.getElementById("plates");
-    if (!g) return;
-    sm.forEach(function (s) {
-      var cell = document.createElement("div");
-      cell.className = "plate2";
-      var h = document.createElement("p"); h.className = "plate2__t"; h.textContent = s.t; cell.appendChild(h);
-      var W = 200, H = 82, pad = 1, gap = 8, top = 12, mx = Math.max.apply(null, s.v);
-      var bw = (W - pad * 2 - gap * (s.v.length - 1)) / s.v.length;
-      var svg = el("svg", { viewBox: "0 0 " + W + " " + H, width: "100%", role: "img" });
-      svg.setAttribute("aria-label", s.t + ": risco concentrado em " + s.lab[s.hi]);
-      s.v.forEach(function (val, i) {
-        var bh = (val / mx) * (H - 14 - top), bx = pad + i * (bw + gap);
-        svg.appendChild(el("rect", { x: bx, y: H - 14 - bh, width: bw, height: bh, fill: i === s.hi ? MAG : FOG, "fill-opacity": i === s.hi ? 1 : .28 }));
-        var tt = el("text", { x: bx + bw / 2, y: H - 3, fill: FOG, "font-size": 8.5, "text-anchor": "middle", "font-family": "Archivo, sans-serif" });
-        tt.textContent = s.lab[i]; svg.appendChild(tt);
-      });
-      cell.appendChild(svg);
-      g.appendChild(cell);
-    });
-    var cap = document.createElement("p");
-    cap.className = "plates__cap";
-    cap.innerHTML = 'Barra em <b>magenta</b>: onde o risco está concentrado neste trimestre. É por onde a conversa com a liderança começa.';
-    g.appendChild(cap);
-  })();
-
   /* ============ diagnóstico de maturidade (instrumento) ============ */
   (function maturity() {
     var sliders = [].slice.call(document.querySelectorAll(".mat__slider"));
@@ -391,16 +354,21 @@
       vt.textContent = tur + "%";
       vs.textContent = brl0.format(sal);
 
-      var saidas = col * tur / 100;
-      var rep = sal * 12 * 0.75;
-      var total = saidas * rep;
-      var rec = total * 0.32;
+      var roi = window.AuroraRoi.calcularRoi({
+        colaboradores: col,
+        turnoverPct: tur,
+        salarioMensal: sal
+      });
+      var saidas = roi.saidasAno;
+      var rep = saidas > 0 ? roi.custoAtual / saidas : 0;
+      var total = roi.custoAtual;
+      var rec = roi.economiaAurora;
 
       countTo(lSai, saidas, function (v) { return nf.format(Math.round(v)); });
       countTo(lRep, rep, function (v) { return brl0.format(Math.round(v / 100) * 100); });
       countTo(lTot, total, money);
       countTo(lRec, rec, money);
-      if (bar) bar.style.width = "32%";
+      if (bar) bar.style.width = (total > 0 ? Math.round((rec / total) * 100) : 0) + "%";
 
       var lc = document.getElementById("lead-col"); if (lc) lc.value = String(col);
       var le = document.getElementById("lead-eco"); if (le) le.value = money(rec);
