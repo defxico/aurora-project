@@ -67,7 +67,7 @@ aurora-project/
 ├── tests/
 │   └── roi.test.js         # 4 testes automáticos do cálculo de ROI
 ├── assets/
-│   ├── aurora-logo.svg     # marca "A" da Aurora, vetorizada (usada no site com o wordmark)
+│   ├── aurora-mark.svg     # marca "A" da Aurora, vetorizada (usada no site com o wordmark)
 │   ├── aurora-logo.png     # a mesma marca "A" em raster (arquivo de origem)
 │   ├── favicon.svg         # ícone da aba — a marca "A" sobre um quadrado claro
 │   └── og-cover.svg        # imagem de pré-visualização ao compartilhar o link

@@ -135,7 +135,7 @@ aurora-project/
 │   └── roi.js              # módulo calcularRoi (com testes)
 ├── tests/
 │   └── roi.test.js         # node:test — 4 casos
-├── assets/                 # aurora-logo.svg · aurora-logo.png · favicon.svg · og-cover.svg
+├── assets/                 # aurora-mark.svg · aurora-logo.png · favicon.svg · og-cover.svg
 ├── netlify.toml · robots.txt · sitemap.xml
 └── docs/
     ├── entrega-etapa-2.md
