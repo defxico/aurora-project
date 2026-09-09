@@ -50,67 +50,69 @@ O projeto busca apresentar:
 
 A landing page possui as seguintes seções principais:
 
-1. **Hero**
-   - Apresenta a proposta central da Aurora e os principais chamados para ação.
+1. **Hero — campo de risco**
+   - Três sliders (engajamento, carga de trabalho, semanas sem 1:1) movem um medidor que
+     projeta turnover e custo anual em tempo real, com veredito.
 
 2. **Desafios**
-   - Expõe dores comuns do RH, como dados fragmentados, turnover invisível e dificuldade de comprovar ROI.
+   - Expõe seis pontos cegos comuns do RH: dados fragmentados, turnover invisível,
+     dificuldade de comprovar ROI, entre outros.
 
 3. **Como funciona**
-   - Mostra, por meio de um diagrama visual, como os dados entram na plataforma e são transformados em insights acionáveis.
+   - Mostra o caminho dos dados (entradas → modelo Aurora → saídas), com linhas pulsando
+     entre as etapas.
 
 4. **Diagnóstico**
-   - Inclui um quiz interativo para avaliar a maturidade analítica da empresa. O
-     resultado acompanha o lead enviado pelo formulário.
+   - Quatro sliders de espectro alimentam um medidor de maturidade analítica e um perfil.
+     O resultado acompanha o lead enviado pelo formulário.
 
 5. **Solução**
-   - Apresenta a Aurora como plataforma integrada de People Analytics.
+   - "Pergunte à Aurora": cinco perguntas de negócio abrem um cartão com gráfico, achado
+     e ação recomendada.
 
 6. **Funcionalidades**
-   - Exibe os recursos principais da solução em formato visual.
+   - Hexágono de seis recursos com pulsos percorrendo as arestas e os raios até o centro.
 
-7. **Resultados**
-   - Apresenta indicadores de impacto esperado.
+7. **Números**
+   - Indicadores de impacto esperado (−32% de turnover, +47% de engajamento, 3× mais
+     rápido).
 
-8. **Calculadora de ROI**
-   - Estima o custo anual de turnover e a economia potencial com a Aurora, com a fórmula
-     exibida de forma transparente. O resultado acompanha o lead.
+8. **Calculadora**
+   - Um razonete que se monta linha a linha a partir de colaboradores, turnover e
+     salário. O cálculo vem de `js/roi.js` (com testes). O resultado acompanha o lead.
 
-9. **Formulário de lead**
-   - Envio real via Netlify Forms, com validação no navegador e mensagem de sucesso na
-     própria página.
+9. **Agendar demonstração**
+   - Formulário de lead com envio real via Netlify Forms, validação no navegador e
+     confirmação na própria página.
 
 10. **Rodapé**
-    - Reúne links institucionais e navegação complementar.
+    - Navegação complementar, nota de acessibilidade e links institucionais.
 
 ## Identidade visual
 
-A identidade visual da Aurora foi construída para transmitir tecnologia, confiança e visão estratégica.
-
-A paleta utiliza tons escuros combinados com roxo, verde e magenta, criando uma estética moderna e corporativa. A escolha visual reforça a ideia de análise de dados, inteligência e transformação organizacional.
+A direção visual atual, **"Campo de risco"**, usa fundo claro, tipografia forte e o
+magenta da marca como acento principal. Cada seção é um instrumento operável, não só um
+bloco de texto — a página "faz algo".
 
 ### Principais cores
 
-- Roxo institucional: `#534079`
-- Verde/teal: `#238076`
-- Magenta: `#89275E`
-- Fundo escuro: `#0D0B14`
-- Superfície clara: `#F8F7FF`
+- Fundo claro: `#F6F5F8`
+- Texto: `#17141D` (secundário `#5C5967`)
+- Magenta (acento principal): `#A81F62`
+- Teal (apoio): `#12796C`
+- Roxo (apoio): `#574587`
 
 ### Tipografia
 
-Foram utilizadas fontes do Google Fonts:
-
-- **Plus Jakarta Sans** para títulos e elementos de destaque;
-- **Open Sans** para textos corridos e conteúdos de leitura.
+- **Archivo** (Google Fonts), pesos 400 a 800 — títulos e texto.
 
 ## Tecnologias utilizadas
 
 - HTML5
-- CSS3
-- JavaScript (vanilla)
+- CSS3 (Custom Properties, `offset-path` para as animações de pulso)
+- JavaScript (vanilla, ES2020) + Web Animations API
 - SVG
-- Google Fonts
+- Google Fonts — **Archivo**
 - Netlify (hospedagem) + Netlify Forms (captação de lead)
 - Node.js apenas para rodar os testes da calculadora (`node --test`)
 
@@ -122,28 +124,28 @@ Os recursos abaixo estão implementados no próprio código da página (verific�
 inspeção). A identificação detalhada, com referências WCAG, está no dossiê de entrega
 (`docs/entrega-etapa-2.md`, seção 4).
 
-- uso de HTML semântico e link de pular para o conteúdo principal;
+- uso de HTML semântico e skip-link para o conteúdo principal;
 - navegação e seções com `aria-label` / `aria-labelledby`;
-- regiões `aria-live` para o quiz, a calculadora e o status do formulário;
-- navegação completa por teclado (inclui quiz e calculadora com setas / Home / End);
-- foco sempre visível (`:focus-visible`);
-- `label` associado a cada campo, com `aria-required`, `aria-invalid` e `aria-describedby`;
-- contraste validado em nível AA;
-- todas as animações respeitam `prefers-reduced-motion`;
-- layout utilizável até 200% de zoom, sem rolagem horizontal.
+- regiões `aria-live` nos medidores (hero, diagnóstico), no razonete e no erro do formulário;
+- sliders e abas ("Pergunte à Aurora", com `role="tab"`) operáveis por teclado;
+- foco sempre visível (`:focus-visible`) sobre o fundo claro;
+- `label` associado a cada campo do formulário;
+- contraste de texto validado em nível AA;
+- `prefers-reduced-motion`: pulsos desligados e contadores instantâneos;
+- layout sem rolagem horizontal de 360 px a 1280 px e até 200% de zoom.
 
 ## Funcionalidades implementadas
 
-- Navegação entre seções por âncoras;
-- Menu mobile com botão hamburguer;
-- Animações de entrada ao rolar a página;
-- Quiz interativo de maturidade analítica, com o resultado enviado junto do lead;
-- Calculadora de ROI com fórmula transparente;
-- Contadores animados de indicadores;
+- Navegação entre seções por âncoras, com destaque do link ativo ao rolar;
+- Modelo de risco no hero: sliders → medidor de turnover e custo projetados;
+- Diagnóstico de maturidade por sliders, com o perfil enviado junto do lead;
+- "Pergunte à Aurora": cartões de resposta a perguntas de negócio;
+- Calculadora de ROI com razonete animado (cálculo em `js/roi.js`, com testes);
+- Hexágono de funcionalidades com pulsos percorrendo arestas e raios;
+- Contadores animados nos números e na calculadora;
 - Formulário de captação de lead com validação no navegador e **envio real** (Netlify Forms);
-- Mensagem de sucesso exibida na própria página;
-- Botão flutuante de chamada para ação em dispositivos móveis;
-- Layout responsivo.
+- Confirmação exibida na própria página;
+- Layout responsivo e `prefers-reduced-motion` respeitado em todas as animações.
 
 ## Observação sobre o formulário
 
@@ -152,7 +154,7 @@ Na **Etapa 2** o formulário realiza **envio real**:
 - validação local no navegador (campos obrigatórios + consentimento LGPD);
 - envio via **Netlify Forms** (`fetch` no padrão AJAX), sem sair da página;
 - proteção anti-spam por honeypot;
-- campos ocultos enviados junto do lead: `perfil-diagnostico` (resultado do quiz),
+- campos ocultos enviados junto do lead: `perfil-diagnostico` (resultado do diagnóstico),
   `colaboradores` e `economia-estimada` (calculadora de ROI);
 - os leads ficam disponíveis no painel da Netlify em **Forms**.
 
@@ -160,26 +162,27 @@ Na **Etapa 2** o formulário realiza **envio real**:
 
 ```txt
 aurora-project/
-├── index.html
+├── index.html              # landing page (marcação + <head>)
 ├── 404.html
 ├── netlify.toml
 ├── robots.txt
 ├── sitemap.xml
 ├── README.md
 ├── css/
-│   └── styles.css
+│   └── styles.css          # design system "Campo de risco"
 ├── js/
-│   ├── main.js
-│   └── roi.js
+│   ├── main.js             # comportamento da página (IIFE)
+│   └── roi.js              # módulo calcularRoi (com testes)
 ├── tests/
-│   └── roi.test.js
+│   └── roi.test.js         # node:test — 4 casos
 ├── assets/
 │   ├── aurora-logo.svg
 │   ├── favicon.svg
 │   └── og-cover.svg
 └── docs/
-    ├── aurora-project.pdf
-    └── entrega-etapa-2.md
+    ├── entrega-etapa-2.md
+    ├── proposta-visual/     # protótipo aprovado (referência)
+    └── superpowers/         # specs e planos
 ```
 
 ## Como visualizar o projeto
@@ -187,8 +190,8 @@ aurora-project/
 Para visualizar a landing page localmente:
 
 1. Baixe ou clone este repositório.
-2. Rode um servidor estático na raiz: `npx --yes serve@14 .`
-3. Abra `http://localhost:3000` e navegue pelas seções.
+2. Rode um servidor estático na raiz: `npx --yes serve .`
+3. Abra o endereço mostrado no terminal (ex.: `http://localhost:3000`) e navegue pelas seções.
 
 Abrir `index.html` direto pelo `file://` não é recomendado — o formulário e o
 carregamento dos scripts precisam de uma origem HTTP.
