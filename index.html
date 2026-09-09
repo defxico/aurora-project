@@ -32,7 +32,7 @@
 <header class="nav">
   <a href="#conteudo" class="wordmark" aria-label="Aurora — início"><img src="assets/aurora-logo.svg" alt="Aurora" width="242" height="73" /></a>
   <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-sections">Seções</button>
-  <nav class="nav__links" id="nav-sections" aria-label="Seções">
+  <nav class="nav__links" id="nav-sections" aria-label="Navegação principal">
     <a href="#desafios">Desafios</a>
     <a href="#como-funciona">Como funciona</a>
     <a href="#diagnostico">Diagnóstico</a>
@@ -65,15 +65,15 @@
         <p class="panelbox__h">Os fatores</p>
         <div class="ctrl">
           <div class="ctrl__top"><b>Engajamento</b><span id="v-eng">58</span></div>
-          <input type="range" id="s-eng" min="0" max="100" value="58" aria-label="Engajamento" />
+          <input type="range" id="s-eng" min="0" max="100" value="58" aria-label="Engajamento" aria-valuetext="58 de 100" />
         </div>
         <div class="ctrl">
           <div class="ctrl__top"><b>Carga de trabalho</b><span id="v-load">46</span></div>
-          <input type="range" id="s-load" min="0" max="100" value="46" aria-label="Carga de trabalho" />
+          <input type="range" id="s-load" min="0" max="100" value="46" aria-label="Carga de trabalho" aria-valuetext="46 de 100" />
         </div>
         <div class="ctrl">
           <div class="ctrl__top"><b>Semanas sem 1:1</b><span id="v-oto">5</span></div>
-          <input type="range" id="s-oto" min="0" max="16" value="5" aria-label="Semanas sem reunião individual" />
+          <input type="range" id="s-oto" min="0" max="16" value="5" aria-label="Semanas sem reunião individual" aria-valuetext="5 de 16" />
         </div>
 
         <div class="gauge" aria-hidden="true">
@@ -198,14 +198,14 @@
 
       <div class="ask">
         <div class="ask__list" role="tablist" aria-label="Perguntas">
-          <button class="ask__q" role="tab" aria-selected="true" data-i="0">Quem está em risco de sair em Vendas?</button>
-          <button class="ask__q" role="tab" aria-selected="false" data-i="1">Onde o engajamento caiu esta semana?</button>
-          <button class="ask__q" role="tab" aria-selected="false" data-i="2">Qual o ROI do programa de mentoria?</button>
-          <button class="ask__q" role="tab" aria-selected="false" data-i="3">Vamos perder alguém-chave nos próximos 90 dias?</button>
-          <button class="ask__q" role="tab" aria-selected="false" data-i="4">O aumento de headcount em Eng está valendo a pena?</button>
+          <button class="ask__q" role="tab" id="ask-q-0" aria-controls="ask-panel" aria-selected="true" data-i="0">Quem está em risco de sair em Vendas?</button>
+          <button class="ask__q" role="tab" id="ask-q-1" aria-controls="ask-panel" aria-selected="false" data-i="1">Onde o engajamento caiu esta semana?</button>
+          <button class="ask__q" role="tab" id="ask-q-2" aria-controls="ask-panel" aria-selected="false" data-i="2">Qual o ROI do programa de mentoria?</button>
+          <button class="ask__q" role="tab" id="ask-q-3" aria-controls="ask-panel" aria-selected="false" data-i="3">Vamos perder alguém-chave nos próximos 90 dias?</button>
+          <button class="ask__q" role="tab" id="ask-q-4" aria-controls="ask-panel" aria-selected="false" data-i="4">O aumento de headcount em Eng está valendo a pena?</button>
         </div>
 
-        <div class="ask__card" role="tabpanel" aria-live="polite">
+        <div class="ask__card" role="tabpanel" id="ask-panel" tabindex="0" aria-labelledby="ask-q-0" aria-live="polite">
           <p class="ask__tag">Resposta da Aurora</p>
           <div class="ask__viz" id="ask-viz" aria-hidden="true"></div>
           <p class="ask__find" id="ask-find"></p>
@@ -367,14 +367,14 @@
         <p class="t">People analytics para decisões que a diretoria assina.</p>
         <a href="#assine" class="foot__cta">Agendar uma demonstração →</a>
       </div>
-      <nav class="foot__col" aria-label="Seções">
-        <h4>Seções</h4>
+      <nav class="foot__col" aria-labelledby="foot-nav-secoes">
+        <h3 id="foot-nav-secoes">Seções</h3>
         <a href="#desafios">Desafios</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#diagnostico">Diagnóstico</a>
       </nav>
-      <nav class="foot__col" aria-label="Aurora">
-        <h4>Aurora</h4>
+      <nav class="foot__col" aria-labelledby="foot-nav-aurora">
+        <h3 id="foot-nav-aurora">Aurora</h3>
         <a href="#solucao">A plataforma</a>
         <a href="#features">Funcionalidades</a>
         <a href="#calculadora">Calculadora</a>

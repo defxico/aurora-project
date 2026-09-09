@@ -31,6 +31,7 @@
       s.addEventListener("input", function () {
         setter(parseInt(s.value, 10));
         v.textContent = s.value;
+        s.setAttribute("aria-valuetext", s.value + " de " + s.max);
         update();
       });
     }
@@ -218,6 +219,7 @@
     var find = document.getElementById("ask-find");
     var act = document.getElementById("ask-act");
     var src = document.getElementById("ask-src");
+    var card = document.getElementById("ask-panel");
     if (!qs.length || !viz) return;
     var NS = "http://www.w3.org/2000/svg";
     var cs = getComputedStyle(document.documentElement);
@@ -295,6 +297,7 @@
 
     function select(i) {
       qs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); b.tabIndex = k === i ? 0 : -1; });
+      if (card) card.setAttribute("aria-labelledby", "ask-q-" + i);
       var a = A[i];
       drawViz(a.viz);
       find.textContent = a.find;
