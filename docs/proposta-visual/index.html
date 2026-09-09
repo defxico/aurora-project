@@ -1,0 +1,1194 @@
+<title>Aurora — Campo de Risco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" />
+
+<style>
+  :root {
+    color-scheme: light;
+    --void:   #F6F5F8;   /* fundo claro */
+    --panel:  #EDECF1;
+    --panel2: #E5E4EB;
+    --line:   #D9D8E1;
+    --fog:    #17141D;    /* texto escuro */
+    --fog2:   #5C5967;
+    --teal:   #12796C;
+    --magenta:#A81F62;    /* acento (texto/borda/preenchimento) */
+    --mag-bright: #D63A7A;/* só display grande / canvas */
+    --roxo:   #574587;
+    --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+
+    --px: clamp(1.25rem, 6vw, 6rem);
+    --sec: clamp(4rem, 10vw, 9rem);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--void); color: var(--fog);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--magenta); color: #fff; }
+  h1,h2,h3,h4,p { margin: 0; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; color: inherit; }
+  canvas { display: block; }
+
+  .hold { max-width: 92rem; margin-inline: auto; padding-inline: var(--px); }
+  .kick {
+    font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--fog2);
+  }
+  .kick--teal { color: var(--teal); }
+  .kick--mag { color: var(--magenta); }
+  .h2 {
+    font-weight: 800; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.02;
+    letter-spacing: -.02em; text-wrap: balance; max-width: 20ch;
+  }
+  .lead { margin-top: 1.1rem; max-width: 46ch; color: var(--fog2); font-size: 1.1rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-weight: 700; font-size: .82rem; letter-spacing: .04em;
+    background: var(--fog); color: var(--void); text-decoration: none;
+    padding: .95rem 1.5rem; border: 0;
+  }
+  .btn:hover { background: var(--magenta); color: #fff; }
+  .btn--mag { background: var(--magenta); color: #fff; }
+  .btn--mag:hover { background: var(--fog); color: var(--void); }
+  .btn--line { background: transparent; color: var(--fog); box-shadow: inset 0 0 0 1px var(--line); }
+  .btn--line:hover { background: transparent; box-shadow: inset 0 0 0 1px var(--fog); color: var(--fog); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.05rem var(--px); background: rgba(246,245,248,.82); backdrop-filter: blur(8px);
+  }
+  .wordmark { font-weight: 800; font-size: 1.1rem; letter-spacing: .04em; text-decoration: none; }
+  .wordmark b { color: var(--teal); font-weight: 800; }
+  .nav__links { display: none; gap: 1.6rem; }
+  .nav__links a { font-size: .8rem; font-weight: 600; color: var(--fog2); text-decoration: none; }
+  .nav__links a:hover { color: var(--fog); }
+  .nav__go { font-size: .78rem; font-weight: 700; color: var(--fog); text-decoration: none; border-bottom: 2px solid var(--magenta); padding-bottom: 2px; }
+  @media (min-width: 880px) { .nav__links { display: flex; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top: clamp(3rem, 8vw, 6rem); padding-bottom: var(--sec); }
+  .hero__inner {
+    display: grid; gap: clamp(2.5rem, 5vw, 4rem);
+  }
+  @media (min-width: 1000px) { .hero__inner { grid-template-columns: 1.15fr .85fr; align-items: end; } }
+  .hero h1 {
+    font-weight: 800; font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: .98;
+    letter-spacing: -.03em; text-wrap: balance; max-width: 15ch;
+  }
+  .hero h1 em { font-style: normal; color: var(--magenta); }
+  .hero__sub { margin-top: 1.4rem; max-width: 40ch; color: var(--fog2); font-size: 1.15rem; }
+  .hero__cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .panelbox {
+    background: var(--void);
+    box-shadow: inset 0 0 0 1px var(--line), 0 24px 60px rgba(23,20,29,.08);
+    padding: 1.6rem 1.7rem 1.8rem;
+  }
+  .gauge { margin-top: 1.6rem; }
+  .gauge__scale { display: flex; justify-content: space-between; font-size: .66rem; font-weight: 600; color: var(--fog2); font-variant-numeric: tabular-nums; }
+  .gauge__track { position: relative; height: 10px; margin-top: .35rem; background: var(--panel2); overflow: hidden; }
+  .gauge__base { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--fog); z-index: 2; }
+  .gauge__fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--mag-bright); transition: width .35s ease; }
+  .gauge__note { margin-top: .5rem; font-size: .64rem; color: var(--fog2); }
+  .panelbox__h { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--fog2); }
+  .ctrl { margin-top: 1.15rem; }
+  .ctrl__top { display: flex; justify-content: space-between; align-items: baseline; font-size: .82rem; }
+  .ctrl__top b { font-weight: 600; }
+  .ctrl__top span { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--teal); }
+  .ctrl input[type=range] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 3px; margin-top: .55rem;
+    background: var(--line); outline: none;
+  }
+  .ctrl input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--fog); cursor: pointer; border: 0;
+  }
+  .ctrl input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--fog); cursor: pointer; border: 0; }
+  .readout {
+    margin-top: 1.5rem; padding-top: 1.25rem; box-shadow: inset 0 1px 0 var(--line);
+    display: grid; gap: .55rem;
+  }
+  .readout__row { display: flex; justify-content: space-between; align-items: baseline; font-size: .9rem; }
+  .readout__row span:first-child { color: var(--fog2); }
+  .readout__row b { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+  .readout__row b.up { color: var(--magenta); }
+  #verdict { font-weight: 700; letter-spacing: .02em; }
+
+  /* ---------- desafios ---------- */
+  .challenges { padding-block: var(--sec); }
+  .chgrid { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1px; background: var(--line); }
+  @media (min-width: 680px) { .chgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1040px) { .chgrid { grid-template-columns: repeat(3, 1fr); } }
+  .ch { background: var(--void); padding: 1.75rem 1.6rem 2rem; transition: background .2s; }
+  .ch:hover { background: var(--panel); }
+  .ch__n { font-size: .8rem; font-weight: 700; color: var(--magenta); font-variant-numeric: tabular-nums; }
+  .ch__t { margin-top: .7rem; font-weight: 700; font-size: 1.18rem; line-height: 1.2; }
+  .ch__d { margin-top: .55rem; color: var(--fog2); font-size: .92rem; }
+
+  /* ---------- números ---------- */
+  .numbers { background: var(--magenta); color: #fff; padding-block: var(--sec); }
+  .numbers .kick { color: rgba(255,255,255,.75); }
+  .numbers h2 { margin-top: .9rem; font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -.02em; max-width: 24ch; }
+  .numgrid { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; gap: clamp(2rem, 4vw, 3rem); }
+  @media (min-width: 780px) { .numgrid { grid-template-columns: repeat(3, 1fr); } }
+  .num__v { font-weight: 800; font-size: clamp(3.4rem, 9vw, 6.5rem); line-height: .85; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .num__l { margin-top: 1rem; font-weight: 700; font-size: .9rem; letter-spacing: .04em; }
+  .num__s { margin-top: .5rem; font-size: .9rem; color: rgba(255,255,255,.8); max-width: 26ch; }
+  .numbers__foot { margin-top: 2.25rem; font-size: .74rem; color: rgba(255,255,255,.7); max-width: 62ch; }
+
+  /* ---------- método ---------- */
+  .method { padding-block: var(--sec); }
+  .method__grid { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 2.5rem 3rem; }
+  @media (min-width: 900px) { .method__grid { grid-template-columns: 1fr 1fr; } }
+  .caplist { display: grid; gap: 0; }
+  .cap { display: grid; grid-template-columns: 1.8rem 1fr; gap: .2rem 1rem; padding-block: 1rem; box-shadow: inset 0 1px 0 var(--line); }
+  .cap:first-child { box-shadow: none; }
+  .cap__n { grid-row: 1 / 3; font-weight: 700; color: var(--teal); font-size: .95rem; }
+  .cap__t { font-weight: 700; font-size: 1.02rem; }
+  .cap__d { grid-column: 2; color: var(--fog2); font-size: .88rem; }
+  .plates { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); align-self: start; box-shadow: inset 0 0 0 1px var(--line); }
+  .plate2 { background: var(--void); padding: 1.1rem 1.2rem 1rem; }
+  .plate2__t { font-size: .64rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fog2); margin-bottom: .5rem; }
+  .plates__cap { grid-column: 1 / -1; margin-top: 1rem; font-size: .82rem; color: var(--fog2); }
+  .plates__cap b { color: var(--magenta); font-weight: 700; }
+
+  /* ---------- como funciona (fluxo) ---------- */
+  .flow { padding-block: var(--sec); position: relative; overflow: hidden; }
+  .flow__grid { position: relative; z-index: 1; margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1.5rem; }
+  @media (min-width: 900px) { .flow__grid { grid-template-columns: 1fr minmax(9rem, 12rem) 1fr; align-items: center; column-gap: clamp(2rem, 6vw, 6rem); } }
+  .flow__col h3 { font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fog2); margin-bottom: .6rem; }
+  .flow__item { padding-block: .8rem; box-shadow: inset 0 1px 0 var(--line); }
+  .flow__item:first-of-type { box-shadow: none; }
+  .flow__item b { font-weight: 700; font-size: 1rem; display: block; }
+  .flow__item span { font-size: .82rem; color: var(--fog2); }
+  .flow__core {
+    position: relative; z-index: 1; text-align: center; padding: 1.7rem 1rem;
+    background: var(--void); color: var(--fog);
+  }
+  .flow__core .m { font-weight: 800; font-size: 1.05rem; letter-spacing: .12em; }
+  .flow__core .s { font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--fog2); margin-top: .3rem; }
+  .flow__cap { position: relative; z-index: 1; margin-top: 1.5rem; font-size: .88rem; color: var(--fog2); max-width: 80ch; }
+
+  .flow__lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; display: none; }
+  @media (min-width: 900px) {
+    .flow__lines { display: block; }
+    .flow__item { box-shadow: none; }
+  }
+  .flow__trace { fill: none; stroke: var(--line); stroke-width: 1; }
+  .flow__pulse { fill: none; stroke: var(--fog); stroke-width: 2.75; stroke-linecap: round; }
+  @media (prefers-reduced-motion: reduce) { .flow__pulse { display: none; } }
+
+  /* ---------- solução: barras de indicador ---------- */
+  .solbars { align-self: start; }
+  .solbars__h { font-size: .64rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fog2); margin-bottom: 1rem; }
+  .solbar { display: grid; grid-template-columns: 7rem 1fr auto; gap: .9rem; align-items: center; margin-bottom: .9rem; }
+  .solbar__l { font-size: .82rem; font-weight: 600; color: var(--fog2); }
+  .solbar__t { height: 8px; background: var(--panel2); overflow: hidden; }
+  .solbar__f { height: 100%; background: var(--magenta); }
+  .solbar__v { font-size: .82rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* ---------- funcionalidades ---------- */
+  .feat { padding-block: var(--sec); }
+  .hex { width: 100%; max-width: 60rem; margin: clamp(2.5rem, 5vw, 4rem) auto 0; display: block; overflow: visible; }
+  .hex__lines line { stroke: var(--line); stroke-width: 1; }
+  .hex__lines .hex__spoke { stroke-dasharray: 3 4; }
+  .hex__nodes circle { fill: var(--fog); }
+  .hex__core { fill: none; stroke: var(--fog); stroke-width: 1.5; }
+  .hex__core-t { font: 700 10px/1 var(--sans); letter-spacing: 1.5px; fill: var(--fog2);
+    paint-order: stroke; stroke: var(--void); stroke-width: 4px; stroke-linejoin: round; }
+  .hex-t { font: 700 14px/1 var(--sans); fill: var(--fog);
+    paint-order: stroke; stroke: var(--void); stroke-width: 4px; stroke-linejoin: round; }
+  .hex-d { font: 400 10.5px/1 var(--sans); fill: var(--fog2);
+    paint-order: stroke; stroke: var(--void); stroke-width: 3px; stroke-linejoin: round; }
+  .hex__pulse { fill: var(--fog); }
+  .feat__list { display: none; }
+  @media (max-width: 760px) {
+    .hex { display: none; }
+    .feat__list { display: grid; gap: 1px; background: var(--line); box-shadow: inset 0 0 0 1px var(--line); margin-top: clamp(2rem, 5vw, 3rem); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hex__pulse { display: none; } }
+
+  /* ---------- diagnóstico (instrumento) ---------- */
+  .quiz { background: var(--panel); padding-block: var(--sec); }
+  .mat { margin-top: clamp(2rem, 4vw, 3.5rem); display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  @media (min-width: 960px) { .mat { grid-template-columns: 1.05fr .95fr; align-items: start; } }
+  .mat__axes { display: grid; gap: clamp(1.75rem, 3vw, 2.5rem); }
+  .mat__q { font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+  .mat__poles { display: flex; justify-content: space-between; gap: 1rem; font-size: .72rem; font-weight: 600; color: var(--fog2); margin: .55rem 0 .5rem; }
+  .mat__poles span:last-child { text-align: right; }
+  .mat__slider { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; background: var(--line); outline: none; cursor: pointer; }
+  .mat__slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--fog); border: 0; cursor: pointer; }
+  .mat__slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--fog); border: 0; cursor: pointer; }
+  .mat__slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--magenta); }
+
+  .mat__panel { background: var(--void); box-shadow: inset 0 0 0 1px var(--line); padding: 1.6rem 1.7rem 1.8rem; }
+  @media (min-width: 960px) { .mat__panel { position: sticky; top: 5rem; } }
+  .mat__zones { display: flex; margin-top: 1.1rem; font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--fog2); }
+  .mat__zones span:nth-child(1) { width: 40%; }
+  .mat__zones span:nth-child(2) { width: 30%; }
+  .mat__zones span:nth-child(3) { width: 30%; text-align: right; }
+  .mat__track { position: relative; height: 16px; margin-top: .4rem; background: var(--panel2); overflow: hidden; }
+  .mat__track::before, .mat__track::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--void); z-index: 2; }
+  .mat__track::before { left: 40%; }
+  .mat__track::after { left: 70%; }
+  .mat__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--magenta); transition: width .35s cubic-bezier(.4,0,.2,1); }
+  @media (prefers-reduced-motion: reduce) { .mat__fill { transition: none; } }
+  .mat__verdict { margin-top: 1.6rem; }
+  .mat__badge { font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--magenta); }
+  .mat__title { margin: .55rem 0 .6rem; font-weight: 800; font-size: 1.35rem; line-height: 1.15; letter-spacing: -.02em; text-wrap: balance; }
+  .mat__desc { font-size: .92rem; line-height: 1.6; color: var(--fog2); }
+  .mat__cta { margin-top: 1.4rem; }
+
+  /* ---------- pergunte à Aurora ---------- */
+  .ask { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: clamp(1.75rem, 3vw, 2.5rem); }
+  @media (min-width: 940px) { .ask { grid-template-columns: 1fr 1.15fr; align-items: start; } }
+  .ask__list { display: grid; gap: .5rem; align-content: start; }
+  .ask__q {
+    text-align: left; width: 100%; padding: .95rem 1.1rem; background: transparent;
+    box-shadow: inset 0 0 0 1px var(--line); font-size: .95rem; line-height: 1.35;
+    color: var(--fog2); transition: background .15s, box-shadow .15s, color .15s;
+  }
+  .ask__q:hover { background: var(--panel2); color: var(--fog); }
+  .ask__q[aria-selected="true"] {
+    color: var(--fog); font-weight: 700;
+    box-shadow: inset 0 0 0 1px var(--fog), inset 4px 0 0 var(--magenta);
+  }
+  .ask__card { background: var(--void); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(1.5rem, 3vw, 2rem); }
+  .ask__tag { font-size: .64rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--magenta); }
+  .ask__viz { margin: 1rem 0 1.2rem; }
+  .ask__viz svg { width: 100%; height: auto; }
+  .ask__find { font-weight: 700; font-size: clamp(1.05rem, 1.8vw, 1.3rem); line-height: 1.35; letter-spacing: -.01em; }
+  .ask__act {
+    margin-top: 1.2rem; padding-top: 1.1rem; box-shadow: inset 0 1px 0 var(--line);
+    display: grid; gap: .25rem;
+  }
+  .ask__act span { font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--fog2); }
+  .ask__act b { font-weight: 600; font-size: 1rem; line-height: 1.45; }
+  .ask__src { margin-top: 1rem; font-size: .76rem; color: var(--fog2); }
+  .ask__src::before { content: "fonte: "; color: var(--fog2); }
+
+  /* ---------- calculadora ---------- */
+  .calc { padding-block: var(--sec); }
+  .calc { display: block; }
+  .calc__ctrls { margin-top: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: clamp(1.5rem, 3vw, 2rem); max-width: 46rem; }
+  @media (min-width: 720px) { .calc__ctrls { grid-template-columns: repeat(3, 1fr); } }
+  .calc__ctop { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; }
+  .calc__ctop label { font-size: .62rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--fog2); white-space: nowrap; }
+  .calc__ctop span { font-weight: 700; font-size: 1rem; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .calc__ctrl input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; margin-top: .6rem; background: var(--line); outline: none; cursor: pointer; }
+  .calc__ctrl input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--fog); border: 0; cursor: pointer; }
+  .calc__ctrl input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--fog); border: 0; cursor: pointer; }
+
+  .calc__ledger {
+    margin-top: clamp(2.25rem, 4vw, 3rem); max-width: 46rem;
+    box-shadow: inset 0 0 0 1px var(--line); padding: .4rem clamp(1.1rem, 3vw, 1.8rem) 1.4rem;
+  }
+  .calc__row {
+    display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: .1rem 1rem;
+    padding-block: 1rem; box-shadow: inset 0 1px 0 var(--line);
+  }
+  .calc__row:first-child { box-shadow: none; }
+  .calc__row > span:first-child { font-weight: 600; font-size: .98rem; }
+  .calc__op { grid-column: 1; font-size: .72rem; color: var(--fog2); }
+  .calc__row b { grid-row: 1 / 3; grid-column: 2; align-self: center; font-weight: 700; font-size: 1.15rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .calc__row--tot { box-shadow: inset 0 2px 0 var(--fog); margin-top: .2rem; }
+  .calc__row--tot > span:first-child { font-weight: 800; }
+  .calc__row--tot b { font-size: clamp(1.35rem, 2.6vw, 1.8rem); letter-spacing: -.02em; }
+  .calc__rec { color: var(--magenta); }
+  .calc__bar { height: 12px; margin-top: 1.1rem; background: var(--fog); position: relative; overflow: hidden; }
+  .calc__bar-rec { position: absolute; left: 0; top: 0; bottom: 0; width: 32%; background: var(--magenta); transition: width .3s ease; }
+  @media (prefers-reduced-motion: reduce) { .calc__bar-rec { transition: none; } }
+
+  .calc__meta { margin-top: 1.1rem; max-width: 60ch; font-size: .74rem; color: var(--fog2); line-height: 1.6; }
+  .calc__cta { margin-top: 1.5rem; }
+
+  /* ---------- assine / form ---------- */
+  .subscribe { background: var(--panel); padding-block: var(--sec); }
+  .subscribe .hold { text-align: center; }
+  .subscribe .kick { display: block; }
+  .sub__title { margin: .8rem auto 0; font-weight: 800; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .sub__p { margin: 1.1rem auto 0; max-width: 46ch; color: var(--fog2); font-size: 1.1rem; }
+  .card { margin: clamp(2rem, 4vw, 3rem) auto 0; max-width: 42rem; background: var(--void); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(1.5rem, 4vw, 2.5rem); text-align: left; }
+  .subscribe .submit { justify-self: center; }
+  .diag { font-size: .8rem; color: var(--fog2); box-shadow: inset 0 0 0 1px var(--line); padding: .6rem .85rem; margin-bottom: 1.4rem; }
+  .diag b { color: var(--magenta); }
+  .form__grid { display: grid; gap: 1.2rem; }
+  @media (min-width: 560px) { .form__grid { grid-template-columns: 1fr 1fr; } }
+  .field { display: flex; flex-direction: column; gap: .3rem; }
+  .field.span2 { grid-column: 1 / -1; }
+  .field label { font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fog2); }
+  .field label .req { color: var(--magenta); }
+  .field input, .field select, .field textarea {
+    font-family: var(--sans); font-size: 1rem; color: var(--fog); background: transparent;
+    border: 0; box-shadow: inset 0 -1px 0 var(--line); padding: .5rem 0; outline: none; width: 100%;
+  }
+  .field textarea { box-shadow: inset 0 0 0 1px var(--line); padding: .6rem .7rem; resize: vertical; min-height: 84px; font-size: .95rem; }
+  .field input:focus, .field select:focus, .field textarea:focus { box-shadow: inset 0 -2px 0 var(--magenta); }
+  .field textarea:focus { box-shadow: inset 0 0 0 1px var(--magenta); }
+  .field select option { background: var(--void); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--fog2); opacity: .55; }
+  .consent { grid-column: 1 / -1; display: flex; gap: .6rem; align-items: flex-start; margin-top: .2rem; }
+  .consent input { width: 16px; height: 16px; margin-top: 3px; flex-shrink: 0; accent-color: var(--magenta); }
+  .consent label { font-size: .8rem; color: var(--fog2); text-transform: none; letter-spacing: 0; font-weight: 400; line-height: 1.5; }
+  .consent a { color: var(--magenta); }
+  .submit { grid-column: 1 / -1; justify-self: start; margin-top: .4rem; font-weight: 700; font-size: .78rem; letter-spacing: .06em; background: var(--magenta); color: #fff; border: 0; padding: 1rem 1.7rem; }
+  .submit:hover { background: var(--fog); color: var(--void); }
+  .form__err { grid-column: 1 / -1; font-size: .8rem; color: #C81E3A; }
+  .card__done { font-size: 1.1rem; }
+  .card__done b { color: var(--magenta); }
+
+  /* ---------- footer ---------- */
+  .foot { padding-block: clamp(3rem, 6vw, 5rem); box-shadow: inset 0 1px 0 var(--line); }
+  .foot__grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 720px) { .foot__grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; } }
+  .foot__mark { font-weight: 800; font-size: 1.35rem; letter-spacing: .04em; }
+  .foot__mark b { color: var(--teal); }
+  .foot p.t { margin-top: .6rem; color: var(--fog2); font-size: .95rem; line-height: 1.55; max-width: 30ch; }
+  .foot__cta { display: inline-block; margin-top: 1.2rem; font-weight: 700; font-size: .82rem; letter-spacing: .02em;
+    text-decoration: none; color: var(--fog); border-bottom: 2px solid var(--magenta); padding-bottom: 2px; }
+  .foot__cta:hover { color: var(--magenta); }
+  .foot h4 { font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--fog2); margin-bottom: .9rem; }
+  .foot__col a { display: block; text-decoration: none; font-size: .9rem; padding-block: .32rem; color: var(--fog); width: fit-content; }
+  .foot__col a:hover { color: var(--magenta); }
+  .foot__a11y { margin-top: 2.75rem; font-size: .7rem; line-height: 1.65; color: var(--fog2); max-width: 74ch; }
+  .foot__a11y b { color: var(--fog); font-weight: 600; }
+  .foot__a11y code { font-family: ui-monospace, "SFMono-Regular", monospace; font-size: .92em; }
+  .foot__fine { margin-top: 1.25rem; padding-top: 1.15rem; box-shadow: inset 0 1px 0 var(--line); font-size: .7rem; letter-spacing: .03em; color: var(--fog2); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .a11y { margin-top: 1rem; font-size: .72rem; color: var(--fog2); line-height: 1.6; max-width: 60ch; }
+
+  :where(a, input, select, textarea, button):focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; }
+
+  .stamp {
+    position: fixed; right: .7rem; bottom: .7rem; z-index: 60;
+    font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--fog2); background: var(--void); box-shadow: inset 0 0 0 1px var(--line); padding: .3rem .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
+</style>
+
+<header class="nav">
+  <a href="#" class="wordmark">AUR<b>O</b>RA</a>
+  <nav class="nav__links" aria-label="Seções">
+    <a href="#desafios">Desafios</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#features">Funcionalidades</a>
+    <a href="#numeros">Números</a>
+  </nav>
+  <a href="#assine" class="nav__go">Agendar demonstração</a>
+</header>
+
+<main>
+  <!-- ===== HERO / CAMPO DE RISCO ===== -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hold hero__inner">
+      <div>
+        <p class="kick kick--teal">Modelo de risco · ao vivo</p>
+        <h1 id="hero-h">O risco de saída não avisa. <em>Aurora mostra ele se formando.</em></h1>
+        <p class="hero__sub">
+          Ajuste os três fatores de uma equipe e veja o risco de saída — e o custo em
+          reais — se formar em tempo real.
+        </p>
+        <div class="hero__cta">
+          <a href="#assine" class="btn btn--mag">Agendar demonstração</a>
+          <a href="#como-funciona" class="btn btn--line">Ver como o modelo funciona</a>
+        </div>
+      </div>
+
+      <div class="panelbox">
+        <p class="panelbox__h">Os fatores</p>
+        <div class="ctrl">
+          <div class="ctrl__top"><b>Engajamento</b><span id="v-eng">58</span></div>
+          <input type="range" id="s-eng" min="0" max="100" value="58" aria-label="Engajamento" />
+        </div>
+        <div class="ctrl">
+          <div class="ctrl__top"><b>Carga de trabalho</b><span id="v-load">46</span></div>
+          <input type="range" id="s-load" min="0" max="100" value="46" aria-label="Carga de trabalho" />
+        </div>
+        <div class="ctrl">
+          <div class="ctrl__top"><b>Semanas sem 1:1</b><span id="v-oto">5</span></div>
+          <input type="range" id="s-oto" min="0" max="16" value="5" aria-label="Semanas sem reunião individual" />
+        </div>
+
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge__scale"><span>0%</span><span>15%</span><span>30%</span></div>
+          <div class="gauge__track">
+            <div class="gauge__base" style="left:40%"></div>
+            <div class="gauge__fill" id="g-fill" style="width:47%"></div>
+          </div>
+          <p class="gauge__note">barra: turnover projetado &nbsp;·&nbsp; marca: 12% de hoje</p>
+        </div>
+
+        <div class="readout" aria-live="polite">
+          <div class="readout__row"><span>Turnover projetado</span><b id="r-turn">14%</b></div>
+          <div class="readout__row"><span>Custo anual de turnover</span><b id="r-cost" class="up">R$ —</b></div>
+          <div class="readout__row"><span>Veredito</span><b id="verdict">estável</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESAFIOS ===== -->
+  <section class="challenges" id="desafios">
+    <div class="hold">
+      <p class="kick kick--mag">O problema</p>
+      <h2 class="h2">O RH decide sobre pessoas no escuro.</h2>
+      <p class="lead">Seis pontos cegos aparecem em quase toda operação — e todos têm o mesmo final: o problema só fica visível depois de custar caro.</p>
+      <div class="chgrid">
+        <div class="ch"><p class="ch__n">01</p><p class="ch__t">Dados fragmentados, visão nenhuma</p><p class="ch__d">Informação espalhada em sistemas que não conversam entre si — nenhuma análise integrada do capital humano.</p></div>
+        <div class="ch"><p class="ch__n">02</p><p class="ch__t">Turnover só aparece quando já é tarde</p><p class="ch__d">A saída fica visível apenas no pedido de demissão — sem espaço para agir, reter ou planejar a reposição.</p></div>
+        <div class="ch"><p class="ch__n">03</p><p class="ch__t">Engajamento medido uma vez por ano</p><p class="ch__d">A pesquisa anual não captura o que acontece semana a semana. O problema cresce no escuro.</p></div>
+        <div class="ch"><p class="ch__n">04</p><p class="ch__t">Decisões que demoram dias</p><p class="ch__d">Gerar um relatório de headcount leva dias. Cruzar absenteísmo com produtividade, semanas.</p></div>
+        <div class="ch"><p class="ch__n">05</p><p class="ch__t">ROI de RH que ninguém prova</p><p class="ch__d">A diretoria pede impacto financeiro e não há como demonstrar o retorno real de cada iniciativa.</p></div>
+        <div class="ch"><p class="ch__n">06</p><p class="ch__t">Sem antecipação, só reação</p><p class="ch__d">Sem análise preditiva, os problemas só aparecem depois de explodir — e o RH fica apagando incêndios.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMO FUNCIONA ===== -->
+  <section class="flow" id="como-funciona">
+    <div class="hold">
+      <p class="kick kick--teal">Como funciona</p>
+      <h2 class="h2">Seus dados entram. Decisões saem.</h2>
+      <p class="lead">Aurora integra fontes dispersas de RH, cruza indicadores em tempo real e entrega insights acionáveis — para cada perfil, no momento certo.</p>
+      <svg class="flow__lines" id="flow-lines" aria-hidden="true"></svg>
+      <div class="flow__grid">
+        <div class="flow__col">
+          <h3>As entradas</h3>
+          <div class="flow__item"><b>HRIS / HCM</b><span>Admissões, cargos, histórico</span></div>
+          <div class="flow__item"><b>Folha de pagamento</b><span>Custos, benefícios, turnover</span></div>
+          <div class="flow__item"><b>ATS / Recrutamento</b><span>Tempo de contratação, pipeline</span></div>
+          <div class="flow__item"><b>Pulse surveys</b><span>Engajamento, NPS interno</span></div>
+        </div>
+        <div class="flow__core"><p class="m">AURORA</p><p class="s">O modelo</p></div>
+        <div class="flow__col">
+          <h3>As saídas</h3>
+          <div class="flow__item"><b>Risco de saída</b><span>Alertas preditivos por colaborador</span></div>
+          <div class="flow__item"><b>Pulso de engajamento</b><span>Semana a semana, por equipe</span></div>
+          <div class="flow__item"><b>ROI de RH calculado</b><span>Impacto financeiro de cada ação</span></div>
+          <div class="flow__item"><b>Decisão em tempo real</b><span>Dashboard pronto para a diretoria</span></div>
+        </div>
+      </div>
+      <p class="flow__cap">Da coleta ao relatório executivo — sem exportação manual, sem planilha, sem atraso.</p>
+    </div>
+  </section>
+
+  <!-- ===== DIAGNÓSTICO ===== -->
+  <section class="quiz" id="diagnostico">
+    <div class="hold">
+      <p class="kick kick--mag">Diagnóstico</p>
+      <h2 class="h2">Onde a sua empresa está na curva de maturidade.</h2>
+      <p class="lead">Posicione os quatro eixos abaixo. O diagnóstico se forma enquanto você ajusta — sem página seguinte, sem "enviar".</p>
+
+      <div class="mat">
+        <div class="mat__axes">
+          <div class="mat__axis">
+            <p class="mat__q">Como você decide sobre pessoas</p>
+            <div class="mat__poles"><span>Percepção do gestor</span><span>Modelo preditivo</span></div>
+            <input type="range" class="mat__slider" id="mat-0" min="0" max="100" value="32"
+                   aria-label="Como você decide sobre pessoas — da percepção do gestor ao modelo preditivo" />
+          </div>
+          <div class="mat__axis">
+            <p class="mat__q">Quando o turnover aparece no radar</p>
+            <div class="mat__poles"><span>No aviso prévio</span><span>Semanas antes</span></div>
+            <input type="range" class="mat__slider" id="mat-1" min="0" max="100" value="24"
+                   aria-label="Quando o turnover aparece no radar — do aviso prévio a semanas antes" />
+          </div>
+          <div class="mat__axis">
+            <p class="mat__q">Sua postura diante de problemas de equipe</p>
+            <div class="mat__poles"><span>Sempre reativa</span><span>Alertas preventivos</span></div>
+            <input type="range" class="mat__slider" id="mat-2" min="0" max="100" value="30"
+                   aria-label="Sua postura diante de problemas de equipe — de sempre reativa a alertas preventivos" />
+          </div>
+          <div class="mat__axis">
+            <p class="mat__q">Impacto financeiro para a diretoria</p>
+            <div class="mat__poles"><span>Lista de ações</span><span>ROI de RH automático</span></div>
+            <input type="range" class="mat__slider" id="mat-3" min="0" max="100" value="28"
+                   aria-label="Impacto financeiro para a diretoria — de lista de ações a ROI de RH automático" />
+          </div>
+        </div>
+
+        <div class="mat__panel">
+          <p class="panelbox__h">Maturidade analítica</p>
+          <div class="mat__zones" aria-hidden="true"><span>Intuitiva</span><span>Em transição</span><span>Quase lá</span></div>
+          <div class="mat__track" aria-hidden="true"><div class="mat__fill" id="mat-fill"></div></div>
+          <div class="mat__verdict" aria-live="polite">
+            <p class="mat__badge" id="mat-badge">—</p>
+            <p class="mat__title" id="mat-title">Ajuste os eixos para ver o diagnóstico.</p>
+            <p class="mat__desc" id="mat-desc"></p>
+          </div>
+          <a href="#assine" class="btn btn--mag mat__cta" id="mat-cta" hidden>Levar o diagnóstico para a conversa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOLUÇÃO / PERGUNTE À AURORA ===== -->
+  <section class="method" id="solucao">
+    <div class="hold">
+      <p class="kick kick--teal">A plataforma</p>
+      <h2 class="h2">Aurora não devolve um número. Devolve onde agir.</h2>
+      <p class="lead">Você pergunta em linguagem de RH. A Aurora cruza as fontes e responde com o dado e a próxima ação. Escolha uma pergunta:</p>
+
+      <div class="ask">
+        <div class="ask__list" role="tablist" aria-label="Perguntas">
+          <button class="ask__q" role="tab" aria-selected="true" data-i="0">Quem está em risco de sair em Vendas?</button>
+          <button class="ask__q" role="tab" aria-selected="false" data-i="1">Onde o engajamento caiu esta semana?</button>
+          <button class="ask__q" role="tab" aria-selected="false" data-i="2">Qual o ROI do programa de mentoria?</button>
+          <button class="ask__q" role="tab" aria-selected="false" data-i="3">Vamos perder alguém-chave nos próximos 90 dias?</button>
+          <button class="ask__q" role="tab" aria-selected="false" data-i="4">O aumento de headcount em Eng está valendo a pena?</button>
+        </div>
+
+        <div class="ask__card" role="tabpanel" aria-live="polite">
+          <p class="ask__tag">Resposta da Aurora</p>
+          <div class="ask__viz" id="ask-viz" aria-hidden="true"></div>
+          <p class="ask__find" id="ask-find"></p>
+          <p class="ask__act"><span>Próxima ação</span><b id="ask-act"></b></p>
+          <p class="ask__src" id="ask-src"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FUNCIONALIDADES ===== -->
+  <section class="feat" id="features">
+    <div class="hold">
+      <p class="kick kick--mag">Funcionalidades</p>
+      <h2 class="h2">Seis funcionalidades. Um só modelo no centro.</h2>
+      <p class="lead">Da coleta de dados ao relatório executivo — tudo ligado ao mesmo núcleo, sem precisar de uma equipe de dados dedicada.</p>
+
+      <svg class="hex" id="hex" viewBox="0 0 1040 580" role="img"
+           aria-label="Rede das seis funcionalidades da Aurora conectadas ao centro do modelo: predição de turnover, pulse surveys, mapa organizacional, ROI de RH, planos de ação e conformidade.">
+        <g class="hex__lines">
+          <line x1="520" y1="90"  x2="693" y2="190" /><line x1="693" y1="190" x2="693" y2="390" />
+          <line x1="693" y1="390" x2="520" y2="490" /><line x1="520" y1="490" x2="347" y2="390" />
+          <line x1="347" y1="390" x2="347" y2="190" /><line x1="347" y1="190" x2="520" y2="90"  />
+          <line class="hex__spoke" x1="520" y1="90"  x2="520" y2="290" />
+          <line class="hex__spoke" x1="693" y1="190" x2="520" y2="290" />
+          <line class="hex__spoke" x1="693" y1="390" x2="520" y2="290" />
+          <line class="hex__spoke" x1="520" y1="490" x2="520" y2="290" />
+          <line class="hex__spoke" x1="347" y1="390" x2="520" y2="290" />
+          <line class="hex__spoke" x1="347" y1="190" x2="520" y2="290" />
+        </g>
+        <circle class="hex__core" cx="520" cy="290" r="7" />
+        <text class="hex__core-t" x="520" y="315" text-anchor="middle">MODELO AURORA</text>
+        <g class="hex__nodes">
+          <circle cx="520" cy="90" r="6" /><circle cx="693" cy="190" r="6" /><circle cx="693" cy="390" r="6" />
+          <circle cx="520" cy="490" r="6" /><circle cx="347" cy="390" r="6" /><circle cx="347" cy="190" r="6" />
+        </g>
+        <g class="hex__labels">
+          <text class="hex-t" x="520" y="58"  text-anchor="middle">Predição de turnover</text>
+          <text class="hex-d" x="520" y="73"  text-anchor="middle">risco de saída com antecedência</text>
+          <text class="hex-t" x="713" y="184" text-anchor="start">Pulse surveys contínuos</text>
+          <text class="hex-d" x="713" y="199" text-anchor="start">engajamento semana a semana</text>
+          <text class="hex-t" x="713" y="384" text-anchor="start">Mapa organizacional</text>
+          <text class="hex-d" x="713" y="399" text-anchor="start">estruturas e lideranças, ao vivo</text>
+          <text class="hex-t" x="520" y="516" text-anchor="middle">ROI de RH calculado</text>
+          <text class="hex-d" x="520" y="531" text-anchor="middle">impacto financeiro de cada ação</text>
+          <text class="hex-t" x="327" y="384" text-anchor="end">Planos de ação guiados</text>
+          <text class="hex-d" x="327" y="399" text-anchor="end">ações com benchmarks do setor</text>
+          <text class="hex-t" x="327" y="184" text-anchor="end">Conformidade e segurança</text>
+          <text class="hex-d" x="327" y="199" text-anchor="end">LGPD, SSO, criptografia</text>
+        </g>
+      </svg>
+
+      <div class="feat__list">
+        <div class="ch"><p class="ch__n">01</p><p class="ch__t">Predição de turnover</p><p class="ch__d">Absenteísmo, NPS interno e desempenho cruzados em tempo real para identificar risco de saída com antecedência.</p></div>
+        <div class="ch"><p class="ch__n">02</p><p class="ch__t">Pulse surveys contínuos</p><p class="ch__d">Pesquisas rápidas e recorrentes que medem engajamento semana a semana, por equipe.</p></div>
+        <div class="ch"><p class="ch__n">03</p><p class="ch__t">Mapa organizacional</p><p class="ch__d">Estruturas formais e informais, colaboradores-chave e gaps de liderança visíveis em tempo real.</p></div>
+        <div class="ch"><p class="ch__n">04</p><p class="ch__t">ROI de RH calculado</p><p class="ch__d">Custo de turnover evitado, ganho de produtividade e economia em recrutamento quantificados automaticamente.</p></div>
+        <div class="ch"><p class="ch__n">05</p><p class="ch__t">Planos de ação guiados</p><p class="ch__d">Aurora sugere ações concretas com benchmarks do setor e estimativa de impacto.</p></div>
+        <div class="ch"><p class="ch__n">06</p><p class="ch__t">Conformidade e segurança</p><p class="ch__d">LGPD by design, SSO, criptografia em repouso e em trânsito, controles de acesso granulares.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULTADOS ===== -->
+  <section class="numbers" id="numeros">
+    <div class="hold">
+      <p class="kick">O impacto</p>
+      <h2>O que muda quando o dado chega antes da decisão.</h2>
+      <div class="numgrid">
+        <div><p class="num__v">−32%</p><p class="num__l">Redução de turnover</p><p class="num__s">Agindo sobre o risco de saída semanas antes do pedido.</p></div>
+        <div><p class="num__v">+47%</p><p class="num__l">Engajamento acompanhado</p><p class="num__s">Pulses curtos, semana a semana, por equipe.</p></div>
+        <div><p class="num__v">3×</p><p class="num__l">Velocidade de decisão</p><p class="num__s">De semanas para um relatório pronto para a diretoria em horas.</p></div>
+      </div>
+      <p class="numbers__foot">Números ilustrativos, derivados das premissas do modelo Aurora. Não constituem projeção contratual — o resultado real depende do contexto de cada operação.</p>
+    </div>
+  </section>
+
+  <!-- ===== CALCULADORA ===== -->
+  <section class="calc" id="calculadora">
+    <div class="hold">
+      <p class="kick kick--teal">Calculadora de retorno</p>
+      <h2 class="h2">Monte o cenário. Veja a conta se fechar.</h2>
+      <p class="lead">Três controles definem a operação. A aritmética aparece linha a linha — e a última linha é o que o turnover custa por ano.</p>
+
+      <form class="calc" id="calc-form" novalidate>
+        <div class="calc__ctrls">
+          <div class="calc__ctrl">
+            <div class="calc__ctop"><label for="c-col">Colaboradores</label><span id="c-col-v">1.800</span></div>
+            <input type="range" id="c-col" min="100" max="20000" step="50" value="1800" />
+          </div>
+          <div class="calc__ctrl">
+            <div class="calc__ctop"><label for="c-tur">Turnover anual</label><span id="c-tur-v">18%</span></div>
+            <input type="range" id="c-tur" min="1" max="60" step="1" value="18" />
+          </div>
+          <div class="calc__ctrl">
+            <div class="calc__ctop"><label for="c-sal">Salário mensal</label><span id="c-sal-v">R$ 5.200</span></div>
+            <input type="range" id="c-sal" min="1500" max="30000" step="100" value="5200" />
+          </div>
+        </div>
+
+        <div class="calc__ledger" aria-live="polite">
+          <div class="calc__row"><span>Saídas por ano</span><span class="calc__op">colab. × turnover</span><b id="l-saidas">324</b></div>
+          <div class="calc__row"><span>Custo de repor cada saída</span><span class="calc__op">salário × 12 × 0,75</span><b id="l-rep">R$ 46.800</b></div>
+          <div class="calc__row calc__row--tot"><span>Custo anual de turnover</span><span class="calc__op">saídas × reposição</span><b id="l-total">R$ 15,2 mi</b></div>
+          <div class="calc__row"><span>Recuperável com a Aurora</span><span class="calc__op">−32% de turnover evitado</span><b id="l-rec" class="calc__rec">R$ 4,9 mi</b></div>
+          <div class="calc__bar" aria-hidden="true"><div class="calc__bar-rec" id="calc-bar-rec"></div></div>
+        </div>
+
+        <p class="calc__meta">Estimativa ilustrativa baseada em premissas de mercado (custo de substituir um colaborador ≈ 75% da remuneração anual; redução de turnover de referência da Aurora de 32%). Não constitui projeção contratual.</p>
+        <a href="#assine" class="btn btn--mag calc__cta" id="calc-cta">Levar esta conta para uma conversa</a>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== ASSINE / FORM ===== -->
+  <section class="subscribe" id="assine">
+    <div class="hold">
+      <p class="kick kick--mag">Demonstração</p>
+      <h2 class="sub__title">Veja Aurora sobre os seus dados.</h2>
+      <p class="sub__p">30 minutos com o time de dados da Aurora, sobre um recorte da sua operação. Você sai com o primeiro mapa de risco.</p>
+
+      <form class="card" id="lead" name="agendar-demonstracao" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="agendar-demonstracao" />
+        <p hidden><label>Não preencha: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+        <input type="hidden" name="perfil-diagnostico" id="lead-perfil" />
+        <input type="hidden" name="colaboradores" id="lead-col" />
+        <input type="hidden" name="economia-estimada" id="lead-eco" />
+        <div class="diag" id="diag" hidden>Diagnóstico do quiz: <b id="diag-val"></b></div>
+        <div class="form__grid">
+          <div class="field"><label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label><input type="text" id="f-nome" name="nome" placeholder="Seu nome" autocomplete="name" required /></div>
+          <div class="field"><label for="f-email">E-mail corporativo <span class="req" aria-hidden="true">*</span></label><input type="email" id="f-email" name="email" placeholder="voce@empresa.com" autocomplete="email" required /></div>
+          <div class="field"><label for="f-empresa">Empresa <span class="req" aria-hidden="true">*</span></label><input type="text" id="f-empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" required /></div>
+          <div class="field"><label for="f-cargo">Cargo</label><input type="text" id="f-cargo" name="cargo" placeholder="Seu cargo" autocomplete="organization-title" /></div>
+          <div class="field span2"><label for="f-tam">Tamanho da empresa</label>
+            <select id="f-tam" name="tamanho">
+              <option value="">Selecione</option>
+              <option value="100-499">100–499 colaboradores</option>
+              <option value="500-999">500–999 colaboradores</option>
+              <option value="1000-4999">1.000–4.999 colaboradores</option>
+              <option value="5000+">5.000+ colaboradores</option>
+            </select>
+          </div>
+          <div class="field span2"><label for="f-msg">O que você quer resolver?</label><textarea id="f-msg" name="mensagem" placeholder="Descreva o principal desafio de people analytics da sua empresa..."></textarea></div>
+          <div class="consent"><input type="checkbox" id="f-lgpd" name="lgpd" required /><label for="f-lgpd">Concordo com o <a href="#">tratamento dos meus dados</a> conforme a Política de Privacidade da Aurora, em conformidade com a LGPD.</label></div>
+          <p class="form__err" id="form-err" role="alert" hidden>Existem campos obrigatórios com erro. Confira os itens marcados.</p>
+          <button type="submit" class="submit">Agendar demonstração</button>
+        </div>
+      </form>
+      <div class="card" id="lead-done" hidden><p class="card__done"><b>Recebido.</b> O time da Aurora responde em até 1 dia útil com dois horários.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="hold">
+    <div class="foot__grid">
+      <div>
+        <p class="foot__mark">AUR<b>O</b>RA</p>
+        <p class="t">People analytics para decisões que a diretoria assina.</p>
+        <a href="#assine" class="foot__cta">Agendar uma demonstração →</a>
+      </div>
+      <nav class="foot__col" aria-label="Seções">
+        <h4>Seções</h4>
+        <a href="#desafios">Desafios</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="#solucao">A plataforma</a>
+        <a href="#calculadora">Calculadora</a>
+      </nav>
+      <nav class="foot__col" aria-label="Aurora">
+        <h4>Aurora</h4>
+        <a href="#">Sobre</a>
+        <a href="#">Segurança &amp; LGPD</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#assine">Contato</a>
+      </nav>
+    </div>
+    <p class="foot__a11y">
+      <b>Acessibilidade:</b> HTML semântico; navegação por teclado (sliders, quiz e abas operáveis);
+      foco visível; regiões <code>aria-live</code> nos instrumentos e no formulário; rótulo em todos
+      os campos; contraste AA; e <code>prefers-reduced-motion</code> respeitado — as animações congelam.
+    </p>
+    <div class="foot__fine"><span>© 2026 Aurora People Analytics</span><span>Proposta de direção visual · conteúdo ilustrativo</span></div>
+  </div>
+</footer>
+
+<div class="stamp" aria-hidden="true">Aurora · proposta de direção visual</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ============ MODELO DE RISCO (hero) ============ */
+  (function riskModel() {
+    if (!document.getElementById("s-eng")) return;
+    var eng = 58, load = 46, oto = 5;
+    function risk() {
+      var r = (1 - eng / 100) * 0.42 + (load / 100) * 0.34 + (oto / 16) * 0.24;
+      return Math.max(0, Math.min(1, r));
+    }
+    var brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+    function update() {
+      var rk = risk();
+      var turn = 10 + rk * 16;                 // 10%..26%
+      var cost = 1800 * (turn / 100) * 5200 * 12 * 0.75;
+      document.getElementById("r-turn").textContent = turn.toFixed(0) + "%";
+      document.getElementById("r-cost").textContent = brl.format(cost);
+      var fill = document.getElementById("g-fill");
+      if (fill) fill.style.width = Math.min(100, turn / 30 * 100).toFixed(1) + "%";
+      var vd = document.getElementById("verdict");
+      if (rk < 0.33) { vd.textContent = "estável"; vd.style.color = "var(--teal)"; }
+      else if (rk < 0.62) { vd.textContent = "atenção"; vd.style.color = "var(--roxo)"; }
+      else { vd.textContent = "risco alto"; vd.style.color = "var(--magenta)"; }
+      var le = document.getElementById("lead-eco");
+      if (le) le.value = brl.format(cost * 0.32);
+    }
+    function bind(id, valId, setter) {
+      var s = document.getElementById(id), v = document.getElementById(valId);
+      s.addEventListener("input", function () {
+        setter(parseInt(s.value, 10));
+        v.textContent = s.value;
+        update();
+      });
+    }
+    bind("s-eng", "v-eng", function (x) { eng = x; });
+    bind("s-load", "v-load", function (x) { load = x; });
+    bind("s-oto", "v-oto", function (x) { oto = x; });
+    update();
+  })();
+
+  /* ============ pulsos do "como funciona" ============ */
+  (function flowPulses() {
+    var sec = document.getElementById("como-funciona");
+    var svg = document.getElementById("flow-lines");
+    if (!sec || !svg) return;
+    var NS = "http://www.w3.org/2000/svg";
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var DIRS = [1, -1, 1, -1];             // 1 = entra→sai, -1 = sai→entra (volta)
+    var DURS = [5200, 6000, 4800, 6600];   // lento; ritmos diferentes = disparos dessincronizados
+
+    function draw() {
+      if (getComputedStyle(svg).display === "none") return;
+      var core = sec.querySelector(".flow__core");
+      var cols = sec.querySelectorAll(".flow__col");
+      if (!core || cols.length < 2) return;
+      var ins = cols[0].querySelectorAll(".flow__item");
+      var outs = cols[1].querySelectorAll(".flow__item");
+      if (ins.length < 4 || outs.length < 4) return;
+
+      var sr = sec.getBoundingClientRect();
+      var cr = core.getBoundingClientRect();
+      var W = sr.width, Hs = sr.height;
+      var cx = (cr.left - sr.left).toFixed(1), cxr = (cr.right - sr.left).toFixed(1);
+      var cy = (cr.top - sr.top).toFixed(1), cb = (cr.bottom - sr.top).toFixed(1);
+
+      svg.setAttribute("viewBox", "0 0 " + W.toFixed(1) + " " + Hs.toFixed(1));
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      // cada rota percorre arestas do quadrado; juntas, formam o quadrado inteiro
+      // 0: topo   1: esquerda+base   2: esquerda+topo   3: base+direita
+      var edges = [
+        function (y1, y2) { return "L " + cx + " " + cy + " L " + cxr + " " + cy + " "; },
+        function (y1, y2) { return "L " + cx + " " + cy + " L " + cx + " " + cb + " L " + cxr + " " + cb + " "; },
+        function (y1, y2) { return "L " + cx + " " + cb + " L " + cx + " " + cy + " L " + cxr + " " + cy + " "; },
+        function (y1, y2) { return "L " + cx + " " + cb + " L " + cxr + " " + cb + " L " + cxr + " " + cy + " "; }
+      ];
+      var assign = [0, 3, 1, 2];
+
+      for (var i = 0; i < 4; i++) {
+        var y1 = ((ins[i].getBoundingClientRect().bottom - sr.top) - 1).toFixed(1);
+        var y2 = ((outs[assign[i]].getBoundingClientRect().bottom - sr.top) - 1).toFixed(1);
+        var d = "M -40 " + y1 + " L " + cx + " " + y1 + " " + edges[i](y1, y2)
+              + "L " + cxr + " " + y2 + " L " + (W + 40).toFixed(1) + " " + y2;
+
+        var tr = document.createElementNS(NS, "path");
+        tr.setAttribute("d", d); tr.setAttribute("class", "flow__trace");
+        svg.appendChild(tr);
+
+        var pu = document.createElementNS(NS, "path");
+        pu.setAttribute("d", d);
+        pu.setAttribute("class", "flow__pulse");
+        svg.appendChild(pu);
+
+        if (reduced || !pu.animate) continue;
+        var len = pu.getTotalLength();
+        var P = 48;
+        pu.style.strokeDasharray = P + " " + (len + P * 2);
+        var span = len + P;
+        var a = DIRS[i] > 0 ? P : -(span);
+        var b = DIRS[i] > 0 ? -(span) : P;
+        pu.animate(
+          [
+            { strokeDashoffset: a, offset: 0 },
+            { strokeDashoffset: b, offset: 0.55 },
+            { strokeDashoffset: b, offset: 1 }   // segura fora do caminho → intervalo entre disparos
+          ],
+          { duration: DURS[i], iterations: Infinity, delay: i * 900, easing: "cubic-bezier(.45,.05,.35,1)" }
+        );
+      }
+    }
+
+    draw();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+    setTimeout(draw, 350);
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(draw, 150); });
+  })();
+
+  /* ============ pulsos do hexágono (funcionalidades) ============ */
+  (function hexPulses() {
+    var svg = document.getElementById("hex");
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.CSS || !CSS.supports || !CSS.supports("offset-path", "path('M0 0 L1 1')")) return;
+    var NS = "http://www.w3.org/2000/svg";
+    var N = [[520, 90], [693, 190], [693, 390], [520, 490], [347, 390], [347, 190]];
+    var C = [520, 290];
+    var segs = [];
+    for (var i = 0; i < 6; i++) segs.push([N[i], N[(i + 1) % 6], "edge"]);   // arestas
+    for (i = 0; i < 6; i++) segs.push([N[i], C, "spoke"]);                    // raios ao centro
+
+    segs.forEach(function (s, k) {
+      var rev = (k % 2 === 1);                       // metade vai, metade volta
+      var from = rev ? s[1] : s[0];
+      var to = rev ? s[0] : s[1];
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("r", s[2] === "edge" ? 3 : 3.4);
+      dot.setAttribute("class", "hex__pulse");
+      dot.style.offsetPath = "path('M " + from[0] + " " + from[1] + " L " + to[0] + " " + to[1] + "')";
+      dot.style.offsetRotate = "0deg";
+      svg.appendChild(dot);
+      var dur = 6000 + (k % 4) * 1400;               // pulsar lento, ritmos variados
+      dot.animate(
+        [
+          { offsetDistance: "0%", opacity: 0, offset: 0 },
+          { opacity: 1, offset: 0.06 },
+          { opacity: 1, offset: 0.46 },
+          { offsetDistance: "100%", opacity: 0, offset: 0.52 },
+          { offsetDistance: "100%", opacity: 0, offset: 1 }   // intervalo entre disparos
+        ],
+        { duration: dur, iterations: Infinity, delay: k * 800, easing: "linear" }
+      );
+    });
+  })();
+
+  /* ============ small multiples ============ */
+  (function plates() {
+    var NS = "http://www.w3.org/2000/svg";
+    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    var cs = getComputedStyle(document.documentElement);
+    var MAG = cs.getPropertyValue("--magenta").trim(), FOG = cs.getPropertyValue("--fog2").trim();
+    var sm = [
+      { t: "Por área", lab: ["Eng", "Ops", "Adm", "Vendas", "CX"], v: [9, 11, 8, 19, 10], hi: 3 },
+      { t: "Por tempo de casa", lab: ["<1a", "1–2", "2–4", "4–7", "7+"], v: [22, 14, 9, 7, 6], hi: 0 },
+      { t: "Por faixa salarial", lab: ["F1", "F2", "F3", "F4", "F5"], v: [8, 11, 16, 9, 7], hi: 2 },
+      { t: "Por gestor", lab: ["A", "B", "C", "D", "E"], v: [7, 9, 8, 6, 20], hi: 4 }
+    ];
+    var g = document.getElementById("plates");
+    if (!g) return;
+    sm.forEach(function (s) {
+      var cell = document.createElement("div");
+      cell.className = "plate2";
+      var h = document.createElement("p"); h.className = "plate2__t"; h.textContent = s.t; cell.appendChild(h);
+      var W = 200, H = 82, pad = 1, gap = 8, top = 12, mx = Math.max.apply(null, s.v);
+      var bw = (W - pad * 2 - gap * (s.v.length - 1)) / s.v.length;
+      var svg = el("svg", { viewBox: "0 0 " + W + " " + H, width: "100%", role: "img" });
+      svg.setAttribute("aria-label", s.t + ": risco concentrado em " + s.lab[s.hi]);
+      s.v.forEach(function (val, i) {
+        var bh = (val / mx) * (H - 14 - top), bx = pad + i * (bw + gap);
+        svg.appendChild(el("rect", { x: bx, y: H - 14 - bh, width: bw, height: bh, fill: i === s.hi ? MAG : FOG, "fill-opacity": i === s.hi ? 1 : .28 }));
+        var tt = el("text", { x: bx + bw / 2, y: H - 3, fill: FOG, "font-size": 8.5, "text-anchor": "middle", "font-family": "Archivo, sans-serif" });
+        tt.textContent = s.lab[i]; svg.appendChild(tt);
+      });
+      cell.appendChild(svg);
+      g.appendChild(cell);
+    });
+    var cap = document.createElement("p");
+    cap.className = "plates__cap";
+    cap.innerHTML = 'Barra em <b>magenta</b>: onde o risco está concentrado neste trimestre. É por onde a conversa com a liderança começa.';
+    g.appendChild(cap);
+  })();
+
+  /* ============ diagnóstico de maturidade (instrumento) ============ */
+  (function maturity() {
+    var sliders = [].slice.call(document.querySelectorAll(".mat__slider"));
+    if (sliders.length < 4) return;
+    var profiles = [
+      { max: 40, badge: "Gestão Intuitiva", title: "Sua empresa decide pela percepção.",
+        desc: "O RH opera de forma reativa, sem dados estruturados. O turnover é invisível. Aurora pode mudar isso em semanas — começando pela integração dos sistemas e os primeiros dashboards de liderança." },
+      { max: 70, badge: "Em Transição", title: "Você tem dados, mas chegam tarde.",
+        desc: "Existem relatórios, mas são manuais, esporádicos e lentos. Com Aurora, você automatiza o que já faz e ganha análise preditiva em tempo real — sem construir do zero." },
+      { max: 101, badge: "Quase lá", title: "Sua estrutura é boa. Aurora turbina.",
+        desc: "Você já tem base analítica sólida. O próximo passo é integrar predição de risco, ROI de RH automático e planos de ação guiados." }
+    ];
+    var fill = document.getElementById("mat-fill");
+    var elBadge = document.getElementById("mat-badge");
+    var elTitle = document.getElementById("mat-title");
+    var elDesc = document.getElementById("mat-desc");
+    var cta = document.getElementById("mat-cta");
+    var touched = {};
+
+    function poleWord(v) { return v < 34 ? "mais para a esquerda" : v > 66 ? "mais para a direita" : "no meio"; }
+
+    function update(started) {
+      var sum = 0;
+      sliders.forEach(function (s) { sum += parseInt(s.value, 10); });
+      var score = Math.round(sum / sliders.length);
+      if (fill) fill.style.width = score + "%";
+
+      var p = profiles.find(function (x) { return score < x.max; }) || profiles[2];
+      if (started) {
+        elBadge.textContent = p.badge;
+        elTitle.textContent = p.title;
+        elDesc.textContent = p.desc;
+      }
+
+      var done = Object.keys(touched).length >= sliders.length;
+      if (done) {
+        cta.hidden = false;
+        var lp = document.getElementById("lead-perfil");
+        var dg = document.getElementById("diag");
+        var dv = document.getElementById("diag-val");
+        if (lp) lp.value = p.badge;
+        if (dg && dv) { dv.textContent = p.badge; dg.hidden = false; }
+      }
+    }
+
+    sliders.forEach(function (s) {
+      s.setAttribute("aria-valuetext", poleWord(parseInt(s.value, 10)));
+      s.addEventListener("input", function () {
+        touched[s.id] = true;
+        s.setAttribute("aria-valuetext", poleWord(parseInt(s.value, 10)));
+        update(true);
+      });
+    });
+    update(false);
+  })();
+
+  /* ============ pergunte à Aurora ============ */
+  (function ask() {
+    var qs = [].slice.call(document.querySelectorAll(".ask__q"));
+    var viz = document.getElementById("ask-viz");
+    var find = document.getElementById("ask-find");
+    var act = document.getElementById("ask-act");
+    var src = document.getElementById("ask-src");
+    if (!qs.length || !viz) return;
+    var NS = "http://www.w3.org/2000/svg";
+    var cs = getComputedStyle(document.documentElement);
+    var MAG = cs.getPropertyValue("--magenta").trim();
+    var TEAL = cs.getPropertyValue("--teal").trim();
+    var FOG = cs.getPropertyValue("--fog2").trim();
+    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+    function tx(e, s) { e.textContent = s; return e; }
+
+    var A = [
+      { viz: { t: "bars", v: [6, 9, 7, 19, 10], hi: [3], lab: ["Eng", "Ops", "Adm", "Vendas", "CX"] },
+        find: "7 pessoas em Vendas com risco alto — 3 concentradas no time do gestor B.",
+        act: "Conversa de retenção com as 3 e revisão de carga no time B, ainda esta semana.",
+        src: "absenteísmo + queda de NPS interno + semanas desde o último 1:1" },
+      { viz: { t: "spark", v: [62, 61, 59, 56, 50, 45, 42] },
+        find: "Engajamento de CX caiu 12 pontos em duas semanas, puxado por sobrecarga pós-lançamento.",
+        act: "Redistribuir a fila de atendimento e congelar novas demandas por um sprint.",
+        src: "pulse survey semanal + volume de tickets por pessoa" },
+      { viz: { t: "fig", big: "3,4×", small: "retorno sobre o custo do programa" },
+        find: "Mentorados têm 41% menos turnover no 1º ano. Retorno de R$ 1,9 mi — 3,4× o custo.",
+        act: "Expandir a mentoria para Ops e CX, onde o turnover de early-career é maior.",
+        src: "turnover evitado × custo de reposição − custo do programa" },
+      { viz: { t: "bars", v: [4, 5, 4, 18, 17], hi: [3, 4], lab: ["P1", "P2", "P3", "chave A", "chave B"] },
+        find: "Dois colaboradores-chave estão com risco alto e sem plano de sucessão.",
+        act: "Iniciar plano de sucessão e revisão de pacote para os dois — agora, não no próximo ciclo.",
+        src: "grafo de dependências + risco de saída + mapa de sucessão" },
+      { viz: { t: "spark", v: [100, 103, 101, 98, 95, 93, 91] },
+        find: "Headcount de Eng +28% em 6 meses; o throughput por pessoa caiu 9%. O onboarding está represado.",
+        act: "Pausar a contratação e investir em ramp-up: pareamento e documentação dos 2 sistemas críticos.",
+        src: "PRs por pessoa + tempo até a 1ª entrega + carga de code review" }
+    ];
+
+    function drawViz(spec) {
+      while (viz.firstChild) viz.removeChild(viz.firstChild);
+      if (spec.t === "fig") {
+        var wrap = document.createElement("div");
+        wrap.style.display = "flex";
+        wrap.style.alignItems = "baseline";
+        wrap.style.gap = ".7rem";
+        var big = document.createElement("span");
+        big.textContent = spec.big;
+        big.style.font = "800 clamp(2.4rem,6vw,3.6rem)/1 var(--sans)";
+        big.style.letterSpacing = "-.03em";
+        big.style.color = "var(--magenta)";
+        var small = document.createElement("span");
+        small.textContent = spec.small;
+        small.style.fontSize = ".8rem";
+        small.style.color = "var(--fog2)";
+        wrap.appendChild(big); wrap.appendChild(small);
+        viz.appendChild(wrap);
+        return;
+      }
+      var W = 320, H = 84, svg = el("svg", { viewBox: "0 0 " + W + " " + H, role: "img" });
+      if (spec.t === "bars") {
+        var pad = 1, gap = 9, top = 12, mx = Math.max.apply(null, spec.v);
+        var bw = (W - pad * 2 - gap * (spec.v.length - 1)) / spec.v.length;
+        spec.v.forEach(function (val, i) {
+          var bh = (val / mx) * (H - 16 - top), bx = pad + i * (bw + gap);
+          var on = spec.hi.indexOf(i) >= 0;
+          svg.appendChild(el("rect", { x: bx, y: H - 14 - bh, width: bw, height: bh, fill: on ? MAG : FOG, "fill-opacity": on ? 1 : .25 }));
+          svg.appendChild(tx(el("text", { x: bx + bw / 2, y: H - 3, fill: FOG, "font-size": 9, "text-anchor": "middle", "font-family": "Archivo, sans-serif" }), spec.lab[i]));
+        });
+      } else {
+        var mn = Math.min.apply(null, spec.v), mxx = Math.max.apply(null, spec.v);
+        var pts = spec.v.map(function (val, i) {
+          return [i / (spec.v.length - 1) * (W - 8) + 4, 8 + (H - 24) * (1 - (val - mn) / (mxx - mn || 1))];
+        });
+        var falling = spec.v[spec.v.length - 1] < spec.v[0];
+        var col = falling ? MAG : TEAL;
+        svg.appendChild(el("path", { d: pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" "), fill: "none", stroke: col, "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round" }));
+        svg.appendChild(el("circle", { cx: pts[pts.length - 1][0], cy: pts[pts.length - 1][1], r: 3, fill: col }));
+      }
+      viz.appendChild(svg);
+    }
+
+    function select(i) {
+      qs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); b.tabIndex = k === i ? 0 : -1; });
+      var a = A[i];
+      drawViz(a.viz);
+      find.textContent = a.find;
+      act.textContent = a.act;
+      src.textContent = a.src;
+    }
+
+    qs.forEach(function (b, i) {
+      b.addEventListener("click", function () { select(i); });
+      b.addEventListener("keydown", function (e) {
+        var d = e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : e.key === "ArrowUp" || e.key === "ArrowLeft" ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var ni = (i + d + qs.length) % qs.length;
+        qs[ni].focus(); select(ni);
+      });
+    });
+    select(0);
+  })();
+
+  /* ============ calculadora (conta que se monta) ============ */
+  (function calc() {
+    var cf = document.getElementById("calc-form");
+    if (!cf) return;
+    var $c = document.getElementById("c-col"), $t = document.getElementById("c-tur"), $s = document.getElementById("c-sal");
+    var vc = document.getElementById("c-col-v"), vt = document.getElementById("c-tur-v"), vs = document.getElementById("c-sal-v");
+    var lSai = document.getElementById("l-saidas"), lRep = document.getElementById("l-rep"),
+        lTot = document.getElementById("l-total"), lRec = document.getElementById("l-rec"),
+        bar = document.getElementById("calc-bar-rec");
+    var nf = new Intl.NumberFormat("pt-BR");
+    var brl0 = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function money(v) {
+      if (v >= 1e6) return "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + " mi";
+      return brl0.format(Math.round(v / 100) * 100);
+    }
+    function countTo(elm, target, fmt) {
+      var from = elm._prev || 0;
+      elm._prev = target;
+      elm.textContent = fmt(target);                 // valor final já correto
+      if (reduced || from === target) return;
+      if (elm._raf) cancelAnimationFrame(elm._raf);
+      var start = performance.now(), dur = 380;
+      function step(now) {
+        var p = Math.min(1, (now - start) / dur);
+        var e = 1 - Math.pow(1 - p, 3);
+        elm.textContent = p < 1 ? fmt(from + (target - from) * e) : fmt(target);
+        if (p < 1) elm._raf = requestAnimationFrame(step);
+      }
+      elm._raf = requestAnimationFrame(step);
+    }
+
+    function render() {
+      var col = +$c.value, tur = +$t.value, sal = +$s.value;
+      vc.textContent = nf.format(col);
+      vt.textContent = tur + "%";
+      vs.textContent = brl0.format(sal);
+
+      var saidas = col * tur / 100;
+      var rep = sal * 12 * 0.75;
+      var total = saidas * rep;
+      var rec = total * 0.32;
+
+      countTo(lSai, saidas, function (v) { return nf.format(Math.round(v)); });
+      countTo(lRep, rep, function (v) { return brl0.format(Math.round(v / 100) * 100); });
+      countTo(lTot, total, money);
+      countTo(lRec, rec, money);
+      if (bar) bar.style.width = "32%";
+
+      var lc = document.getElementById("lead-col"); if (lc) lc.value = String(col);
+      var le = document.getElementById("lead-eco"); if (le) le.value = money(rec);
+    }
+
+    [$c, $t, $s].forEach(function (e) { e.addEventListener("input", render); });
+    cf.addEventListener("submit", function (e) { e.preventDefault(); });
+    render();
+  })();
+
+  /* ============ formulário (demo) ============ */
+  var form = document.getElementById("lead");
+  if (form) {
+    var err = document.getElementById("form-err");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var ok = true;
+      ["f-nome", "f-empresa"].forEach(function (id) {
+        var i = document.getElementById(id);
+        var bad = !i.value.trim() || i.value.trim().length < 2;
+        i.style.boxShadow = bad ? "inset 0 -2px 0 #C81E3A" : "";
+        if (bad) ok = false;
+      });
+      var em = document.getElementById("f-email");
+      var badEm = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value);
+      em.style.boxShadow = badEm ? "inset 0 -2px 0 #C81E3A" : "";
+      if (badEm) ok = false;
+      if (!document.getElementById("f-lgpd").checked) ok = false;
+      if (!ok) { if (err) err.hidden = false; return; }
+      if (err) err.hidden = true;
+      form.hidden = true;
+      var done = document.getElementById("lead-done");
+      done.hidden = false;
+      done.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+    });
+  }
+
+  /* ============ nav scroll-spy ============ */
+  var links = [].slice.call(document.querySelectorAll(".nav__links a[href^='#']"));
+  var map = links.map(function (a) { return [a, document.querySelector(a.getAttribute("href"))]; }).filter(function (p) { return p[1]; });
+  if (map.length && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        map.forEach(function (p) { p[0].style.color = p[1] === e.target ? "var(--fog)" : ""; });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach(function (p) { io.observe(p[1]); });
+  }
+})();
+</script>
