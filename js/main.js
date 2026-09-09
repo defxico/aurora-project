@@ -379,12 +379,16 @@
     render();
   })();
 
-  /* ============ formulário (demo) ============ */
+  /* ============ formulário (Netlify Forms) ============ */
   var form = document.getElementById("lead");
   if (form) {
     var err = document.getElementById("form-err");
+    var submitBtn = form.querySelector(".submit");
+    var submitLabel = submitBtn ? submitBtn.textContent : "";
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
       var ok = true;
       ["f-nome", "f-empresa"].forEach(function (id) {
         var i = document.getElementById(id);
@@ -397,12 +401,36 @@
       em.style.boxShadow = badEm ? "inset 0 -2px 0 #C81E3A" : "";
       if (badEm) ok = false;
       if (!document.getElementById("f-lgpd").checked) ok = false;
-      if (!ok) { if (err) err.hidden = false; return; }
+
+      if (!ok) {
+        if (err) {
+          err.textContent = "Existem campos obrigatórios com erro. Confira os itens marcados.";
+          err.hidden = false;
+        }
+        return;
+      }
       if (err) err.hidden = true;
-      form.hidden = true;
-      var done = document.getElementById("lead-done");
-      done.hidden = false;
-      done.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Enviando…"; }
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          form.hidden = true;
+          var done = document.getElementById("lead-done");
+          done.hidden = false;
+          done.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+        })
+        .catch(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitLabel; }
+          if (err) {
+            err.textContent = "Não foi possível enviar agora. Tente novamente em instantes.";
+            err.hidden = false;
+          }
+        });
     });
   }
 
