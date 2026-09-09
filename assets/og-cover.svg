@@ -1,18 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0D0B14"/>
-      <stop offset="0.55" stop-color="#171232"/>
-      <stop offset="1" stop-color="#0C1A18"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#534079"/>
-      <stop offset="1" stop-color="#238076"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="980" cy="150" r="120" fill="url(#accent)" opacity="0.25"/>
-  <text x="90" y="270" fill="#FFFFFF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="72" font-weight="800">Aurora</text>
-  <text x="90" y="340" fill="#F0EEF8" font-family="Open Sans, Arial, sans-serif" font-size="34">People Analytics para decisões estratégicas</text>
-  <text x="90" y="400" fill="rgba(240,238,248,0.6)" font-family="Open Sans, Arial, sans-serif" font-size="26">Reduza turnover · aumente engajamento · decida 3× mais rápido</text>
+  <rect width="1200" height="630" fill="#F6F5F8"/>
+  <circle cx="980" cy="140" r="130" fill="#A81F62" opacity="0.12"/>
+  <circle cx="980" cy="140" r="130" fill="none" stroke="#12796C" stroke-width="6" opacity="0.5"/>
+  <text x="90" y="250" fill="#17141D" font-family="Archivo, Arial, sans-serif" font-size="86" font-weight="800" letter-spacing="-3">Aurora</text>
+  <text x="90" y="322" fill="#17141D" font-family="Archivo, Arial, sans-serif" font-size="34" font-weight="600">People Analytics para decisões que a diretoria assina.</text>
+  <text x="90" y="386" fill="#5C5967" font-family="Archivo, Arial, sans-serif" font-size="26" font-weight="500">Reduza turnover · aumente engajamento · decida 3× mais rápido</text>
+  <rect x="90" y="430" width="150" height="6" fill="#A81F62"/>
 </svg>
