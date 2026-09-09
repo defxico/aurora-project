@@ -176,7 +176,6 @@ aurora-project/
 ├── tests/
 │   └── roi.test.js         # node:test — 4 casos
 ├── assets/
-│   ├── aurora-logo.svg
 │   ├── favicon.svg
 │   └── og-cover.svg
 └── docs/

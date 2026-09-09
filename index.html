@@ -30,13 +30,16 @@
 <a href="#conteudo" class="skip-link">Ir para o conteúdo principal</a>
 
 <header class="nav">
-  <a href="#" class="wordmark">AUR<b>O</b>RA</a>
-  <nav class="nav__links" aria-label="Seções">
+  <a href="#conteudo" class="wordmark" aria-label="Aurora — início">AUR<b>O</b>RA</a>
+  <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-sections">Seções</button>
+  <nav class="nav__links" id="nav-sections" aria-label="Seções">
     <a href="#desafios">Desafios</a>
     <a href="#como-funciona">Como funciona</a>
     <a href="#diagnostico">Diagnóstico</a>
+    <a href="#solucao">A plataforma</a>
     <a href="#features">Funcionalidades</a>
     <a href="#numeros">Números</a>
+    <a href="#calculadora">Calculadora</a>
   </nav>
   <a href="#assine" class="nav__go">Agendar demonstração</a>
 </header>
@@ -346,7 +349,7 @@
             </select>
           </div>
           <div class="field span2"><label for="f-msg">O que você quer resolver?</label><textarea id="f-msg" name="mensagem" placeholder="Descreva o principal desafio de people analytics da sua empresa..."></textarea></div>
-          <div class="consent"><input type="checkbox" id="f-lgpd" name="lgpd" required /><label for="f-lgpd">Concordo com o <a href="#">tratamento dos meus dados</a> conforme a Política de Privacidade da Aurora, em conformidade com a LGPD.</label></div>
+          <div class="consent"><input type="checkbox" id="f-lgpd" name="lgpd" required /><label for="f-lgpd">Concordo com o tratamento dos meus dados conforme a Política de Privacidade da Aurora, em conformidade com a LGPD.</label></div>
           <p class="form__err" id="form-err" role="alert" hidden>Existem campos obrigatórios com erro. Confira os itens marcados.</p>
           <button type="submit" class="submit">Agendar demonstração</button>
         </div>
@@ -369,19 +372,17 @@
         <a href="#desafios">Desafios</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#diagnostico">Diagnóstico</a>
-        <a href="#solucao">A plataforma</a>
-        <a href="#calculadora">Calculadora</a>
       </nav>
       <nav class="foot__col" aria-label="Aurora">
         <h4>Aurora</h4>
-        <a href="#">Sobre</a>
-        <a href="#">Segurança &amp; LGPD</a>
-        <a href="#">Política de Privacidade</a>
+        <a href="#solucao">A plataforma</a>
+        <a href="#features">Funcionalidades</a>
+        <a href="#calculadora">Calculadora</a>
         <a href="#assine">Contato</a>
       </nav>
     </div>
     <p class="foot__a11y">
-      <b>Acessibilidade:</b> HTML semântico; navegação por teclado (sliders, quiz e abas operáveis);
+      <b>Acessibilidade:</b> HTML semântico; navegação por teclado (sliders, diagnóstico e abas operáveis);
       foco visível; regiões <code>aria-live</code> nos instrumentos e no formulário; rótulo em todos
       os campos; contraste AA; e <code>prefers-reduced-motion</code> respeitado — as animações congelam.
     </p>

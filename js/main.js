@@ -434,6 +434,29 @@
     });
   }
 
+  /* ============ menu de seções (mobile) ============ */
+  var navToggle = document.querySelector(".nav__toggle");
+  var navLinks = document.getElementById("nav-sections");
+  if (navToggle && navLinks) {
+    function closeNav() {
+      navLinks.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+    navToggle.addEventListener("click", function () {
+      var open = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) closeNav();
+    });
+    document.addEventListener("click", function (e) {
+      if (navLinks.classList.contains("is-open") && !navLinks.contains(e.target) && e.target !== navToggle) closeNav();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && navLinks.classList.contains("is-open")) { closeNav(); navToggle.focus(); }
+    });
+  }
+
   /* ============ nav scroll-spy ============ */
   var links = [].slice.call(document.querySelectorAll(".nav__links a[href^='#']"));
   var map = links.map(function (a) { return [a, document.querySelector(a.getAttribute("href"))]; }).filter(function (p) { return p[1]; });
