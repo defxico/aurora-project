@@ -293,7 +293,7 @@
   .ask__src::before { content: "fonte: "; color: var(--fog2); }
 
   /* ---------- calculadora ---------- */
-  .calc { padding-block: var(--sec); }
+  #calculadora { padding-block: var(--sec); }
   .calc { display: block; }
   .calc__ctrls { margin-top: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: clamp(1.5rem, 3vw, 2rem); max-width: 46rem; }
   @media (min-width: 720px) { .calc__ctrls { grid-template-columns: repeat(3, 1fr); } }
