@@ -67,8 +67,9 @@ aurora-project/
 ├── tests/
 │   └── roi.test.js         # 4 testes automáticos do cálculo de ROI
 ├── assets/
-│   ├── aurora-logo.svg     # logotipo (marca + "aurora"), recolorido para a tinta do site
-│   ├── favicon.svg         # ícone da aba — o símbolo circular da marca
+│   ├── aurora-logo.svg     # marca "A" da Aurora, vetorizada (usada no site com o wordmark)
+│   ├── aurora-logo.png     # a mesma marca "A" em raster (arquivo de origem)
+│   ├── favicon.svg         # ícone da aba — a marca "A" sobre um quadrado claro
 │   └── og-cover.svg        # imagem de pré-visualização ao compartilhar o link
 ├── netlify.toml            # configuração de publicação + cabeçalhos de cache e segurança
 ├── robots.txt · sitemap.xml
@@ -111,11 +112,14 @@ aurora-project/
 
 - HTML semântico (`header` / `main` / `section` / `nav` / `footer`), um único `h1`.
 - **Skip link** "Ir para o conteúdo principal" como primeiro elemento focável.
-- Todos os **sliders** são `input[type=range]` nativos — funcionam com as setas do teclado
-  e têm rótulo associado.
-- As abas de "Pergunte à Aurora" usam `role="tab"` e navegam com as **setas**.
-- Regiões `aria-live` nos medidores (hero, diagnóstico), no razonete da calculadora e na
-  mensagem de erro do formulário — o leitor de tela anuncia as mudanças.
+- Todos os **sliders** são `input[type=range]` nativos — funcionam com as setas do teclado,
+  têm rótulo associado e `aria-valuetext`.
+- As abas de "Pergunte à Aurora" seguem o padrão ARIA completo (`role="tablist/tab/tabpanel"`,
+  `aria-controls`, `aria-labelledby`) e navegam com as **setas**.
+- Regiões `aria-live` nos medidores (hero, diagnóstico) e no razonete da calculadora;
+  `role="alert"` na mensagem de erro do formulário — o leitor de tela anuncia as mudanças.
+- Marcos de navegação com nomes distintos ("Navegação principal", "Seções", "Aurora").
+- Hierarquia de títulos sem saltos de nível.
 - Foco sempre visível (contorno magenta) sobre o fundo claro.
 - **`prefers-reduced-motion`**: com o modo de movimento reduzido do sistema ligado, os
   pulsos das linhas param e os contadores vão direto ao valor final.
@@ -189,10 +193,10 @@ alto visual da página.
 
 ### 3.5 Logo e favicon
 
-- **Logo**: o logotipo oficial da Aurora (a marca radial + a palavra "aurora"), recolorido
-  para a tinta do site (`#17141D`), no topo à esquerda e no rodapé.
-- **Favicon** (ícone da aba): o **símbolo circular** da marca — o mesmo desenho radial da
-  logo — sobre um quadradinho arredondado claro.
+- **Logo**: a marca "A" da Aurora (o triângulo em gradiente teal → magenta → roxo com o
+  corte diagonal escuro), **vetorizada** a partir do arquivo original, ao lado do wordmark
+  "aurora" em Archivo peso 800 — no topo à esquerda e no rodapé.
+- **Favicon** (ícone da aba): a mesma marca "A" sobre um quadradinho arredondado claro.
 
 ### 3.6 Movimento
 

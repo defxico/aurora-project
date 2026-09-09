@@ -91,7 +91,7 @@ Cada seção é operável, não só lida:
 | Foco sempre visível (`:focus-visible`, contorno magenta) sobre fundo claro | Todos os interativos | 2.4.7 |
 | `aria-label` / `aria-labelledby` nas seções e na navegação | Página inteira | 1.3.1, 4.1.2 |
 | Elementos decorativos (hexágono, linhas de fluxo) com `aria-hidden` | SVGs de animação | 1.1.1 |
-| SVGs informativos com `role="img"` + `aria-label`; logotipo com `alt` | Hexágono, logo | 1.1.1 |
+| SVG informativo do hexágono com `role="img"` + `aria-label`; marca do logo como decorativa (`alt=""`), com o texto "aurora" visível ao lado | Hexágono, cabeçalho e rodapé | 1.1.1 |
 | `label` associado a cada campo; `required` nos obrigatórios | Formulário | 1.3.1, 3.3.2 |
 | `prefers-reduced-motion`: pulsos desligados, contadores instantâneos, transições congeladas | Hexágono, "como funciona", calculadora, medidores | 2.3.3 |
 | Contraste de texto AA na paleta clara; informação não transmitida só por cor | Página inteira | 1.4.1, 1.4.3 |
@@ -135,7 +135,7 @@ aurora-project/
 │   └── roi.js              # módulo calcularRoi (com testes)
 ├── tests/
 │   └── roi.test.js         # node:test — 4 casos
-├── assets/                 # aurora-logo.svg · favicon.svg · og-cover.svg
+├── assets/                 # aurora-logo.svg · aurora-logo.png · favicon.svg · og-cover.svg
 ├── netlify.toml · robots.txt · sitemap.xml
 └── docs/
     ├── entrega-etapa-2.md

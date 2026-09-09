@@ -63,8 +63,9 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.05rem var(--px); background: rgba(246,245,248,.82); backdrop-filter: blur(8px);
   }
-  .wordmark { display: flex; text-decoration: none; }
-  .wordmark img { height: 1.75rem; width: auto; display: block; }
+  .wordmark { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+  .wordmark__mark { height: 1.6rem; width: auto; display: block; }
+  .wordmark__txt { font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; color: var(--fog); }
   .nav__toggle {
     font: inherit; font-size: .8rem; font-weight: 700; color: var(--fog);
     background: none; border: 0; cursor: pointer; padding: 0;
@@ -366,7 +367,9 @@
   .foot { padding-block: clamp(3rem, 6vw, 5rem); box-shadow: inset 0 1px 0 var(--line); }
   .foot__grid { display: grid; gap: 2.5rem; }
   @media (min-width: 720px) { .foot__grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; } }
-  .foot__mark img { height: 1.9rem; width: auto; display: block; }
+  .foot__mark { display: flex; align-items: center; gap: .55rem; }
+  .foot__mark-img { height: 1.75rem; width: auto; display: block; }
+  .foot__mark span { font-weight: 800; font-size: 1.5rem; letter-spacing: -.01em; color: var(--fog); }
   .foot p.t { margin-top: .6rem; color: var(--fog2); font-size: .95rem; line-height: 1.55; max-width: 30ch; }
   .foot__cta { display: inline-block; margin-top: 1.2rem; font-weight: 700; font-size: .82rem; letter-spacing: .02em;
     text-decoration: none; color: var(--fog); border-bottom: 2px solid var(--magenta); padding-bottom: 2px; }

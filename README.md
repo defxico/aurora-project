@@ -172,7 +172,8 @@ aurora-project/
 ├── tests/
 │   └── roi.test.js         # node:test — 4 casos
 ├── assets/
-│   ├── aurora-logo.svg
+│   ├── aurora-logo.svg     # marca "A" vetorizada
+│   ├── aurora-logo.png     # marca "A" (fonte raster)
 │   ├── favicon.svg
 │   └── og-cover.svg
 └── docs/

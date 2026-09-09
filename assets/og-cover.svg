@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#F6F5F8"/>
-  <circle cx="980" cy="140" r="130" fill="#A81F62" opacity="0.12"/>
-  <circle cx="980" cy="140" r="130" fill="none" stroke="#12796C" stroke-width="6" opacity="0.5"/>
+  <g transform="translate(900 70) scale(0.7541)">
+<defs>
+    <linearGradient id="p" gradientUnits="userSpaceOnUse" x1="112" y1="34" x2="34" y2="256">
+      <stop offset="0" stop-color="#3DC9CF"/><stop offset=".42" stop-color="#C24FC1"/><stop offset="1" stop-color="#FE47B7"/>
+    </linearGradient>
+    <linearGradient id="u" gradientUnits="userSpaceOnUse" x1="152" y1="34" x2="245" y2="256">
+      <stop offset="0" stop-color="#3DC9CF"/><stop offset=".48" stop-color="#7C46C5"/><stop offset="1" stop-color="#7132BE"/>
+    </linearGradient>
+  </defs>
+  <path d="M 133 30 L 148 39 L 257 242 L 258 256 L 251 265 L 233 268 L 138 235 L 184 178 Z" fill="url(#u)"/>
+  <path d="M 133 30 L 118 38 L 16 227 L 7 245 L 10 259 L 24 268 L 65 265 L 101 253 L 138 235 L 184 178 Z" fill="url(#p)"/>
+  <path d="M 191.3 180.5 L 180.7 171.5 L 130.0 235.4 L 136.0 240.6 Z" fill="#372550"/>
+  </g>
   <text x="90" y="250" fill="#17141D" font-family="Archivo, Arial, sans-serif" font-size="86" font-weight="800" letter-spacing="-3">Aurora</text>
   <text x="90" y="322" fill="#17141D" font-family="Archivo, Arial, sans-serif" font-size="34" font-weight="600">People Analytics para decisões que a diretoria assina.</text>
   <text x="90" y="386" fill="#5C5967" font-family="Archivo, Arial, sans-serif" font-size="26" font-weight="500">Reduza turnover · aumente engajamento · decida 3× mais rápido</text>

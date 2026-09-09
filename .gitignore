@@ -1,0 +1,4 @@
+# Materiais de referência pesados — não versionar nem publicar
+assets/*.pdf
+node_modules/
+.DS_Store
