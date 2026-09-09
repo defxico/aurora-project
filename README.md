@@ -181,6 +181,7 @@ aurora-project/
 │   └── og-cover.svg
 └── docs/
     ├── entrega-etapa-2.md
+    ├── handoff-etapa-2.md   # matéria-prima do PDF (código, design, seções)
     ├── proposta-visual/     # protótipo aprovado (referência)
     └── superpowers/         # specs e planos
 ```
