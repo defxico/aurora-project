@@ -4,6 +4,11 @@ Projeto desenvolvido para o **People First Cup — Enterprise Challenge — Etap
 
 A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz de transformar dados de RH em decisões estratégicas, ajudando empresas a reduzir turnover, acompanhar engajamento, prever riscos e demonstrar o impacto financeiro das iniciativas de pessoas.
 
+Na Etapa 2 a página ganhou deploy público, formulário com envio real, código reorganizado em `css/` e `js/` (com testes) e uma nova direção visual — **"Campo de risco"** —, em que **cada seção é um instrumento que o visitante opera**, não apenas texto.
+
+- **Site publicado:** https://aurora-people-analytics.netlify.app/
+- **Documentação da entrega:** [`docs/entrega-etapa-2.md`](docs/entrega-etapa-2.md) (dossiê formal) · [`docs/handoff-etapa-2.md`](docs/handoff-etapa-2.md) (detalhamento) · `docs/aurora-etapa-2-pdf.pdf`
+
 ## Informações do projeto
 
 **Curso:** Web Design
@@ -40,7 +45,7 @@ O projeto busca apresentar:
 - indicadores de impacto esperado;
 - formulário de captação de lead;
 - navegação fluida entre as seções;
-- recursos básicos de acessibilidade.
+- recursos de acessibilidade implementados e identificados na página.
 
 ## Estrutura da página
 
@@ -62,9 +67,9 @@ A landing page possui as seguintes seções principais:
    - Quatro sliders de espectro alimentam um medidor de maturidade analítica e um perfil.
      O resultado acompanha o lead enviado pelo formulário.
 
-5. **Solução**
-   - "Pergunte à Aurora": cinco perguntas de negócio abrem um cartão com gráfico, achado
-     e ação recomendada.
+5. **A plataforma**
+   - "Pergunte à Aurora": cinco perguntas de negócio abrem um cartão com gráfico, achado,
+     próxima ação e a linha "fonte:" (os dados cruzados para chegar ali).
 
 6. **Funcionalidades**
    - Hexágono de seis recursos com pulsos percorrendo as arestas e os raios até o centro.
@@ -86,9 +91,10 @@ A landing page possui as seguintes seções principais:
 
 ## Identidade visual
 
-A direção visual atual, **"Campo de risco"**, usa fundo claro, tipografia forte e o
-magenta da marca como acento principal. Cada seção é um instrumento operável, não só um
-bloco de texto — a página "faz algo".
+A direção visual **"Campo de risco"** foi a resposta à crítica de "cara genérica de site
+gerado por plataforma": fundo claro, tipografia forte, layout assimétrico e o magenta da
+marca como acento principal, usado com intenção. Cada seção é um instrumento operável, não
+só um bloco de texto — a página "faz algo".
 
 ### Principais cores
 
@@ -100,7 +106,18 @@ bloco de texto — a página "faz algo".
 
 ### Tipografia
 
-- **Archivo** (Google Fonts), pesos 400 a 800 — títulos e texto.
+- **Archivo** (Google Fonts), pesos 400 a 800 — títulos em 800, texto em 400.
+
+### Marca
+
+- A marca "A" da Aurora (triângulo em gradiente teal → magenta → roxo com o corte
+  diagonal) foi **vetorizada** em `assets/aurora-mark.svg` e aparece ao lado do wordmark
+  "aurora" no topo e no rodapé. O favicon usa a mesma marca.
+
+### Espaçamento
+
+- Ritmo vertical uniforme entre seções, controlado por um único token que se adapta à
+  largura da tela (`--sec`). Margem lateral também elástica (`--px`).
 
 ## Tecnologias utilizadas
 
@@ -120,15 +137,19 @@ Os recursos abaixo estão implementados no próprio código da página (verific�
 inspeção). A identificação detalhada, com referências WCAG, está no dossiê de entrega
 (`docs/entrega-etapa-2.md`, seção 4).
 
-- uso de HTML semântico e skip-link para o conteúdo principal;
-- navegação e seções com `aria-label` / `aria-labelledby`;
-- regiões `aria-live` nos medidores (hero, diagnóstico), no razonete e no erro do formulário;
-- sliders e abas ("Pergunte à Aurora", com `role="tab"`) operáveis por teclado;
+- `lang="pt-BR"`, HTML semântico, um único `<h1>` e hierarquia de títulos sem saltos;
+- skip-link "Ir para o conteúdo principal" como primeiro elemento focável;
+- marcos de navegação com nomes distintos ("Navegação principal", "Seções", "Aurora");
+- sliders operáveis por teclado, com rótulo e `aria-valuetext`;
+- abas de "Pergunte à Aurora" com padrão ARIA completo (`tablist`/`tab`/`tabpanel`,
+  `aria-controls`, `aria-labelledby`) e navegação por setas;
+- regiões `aria-live` nos medidores e no razonete; `role="alert"` no erro do formulário;
 - foco sempre visível (`:focus-visible`) sobre o fundo claro;
 - `label` associado a cada campo do formulário;
 - contraste de texto validado em nível AA;
 - `prefers-reduced-motion`: pulsos desligados e contadores instantâneos;
-- layout sem rolagem horizontal de 360 px a 1280 px e até 200% de zoom.
+- layout sem rolagem horizontal de 360 px a 1280 px e até 200% de zoom;
+- nota no rodapé identificando esses recursos para o visitante.
 
 ## Funcionalidades implementadas
 
@@ -160,27 +181,30 @@ Na **Etapa 2** o formulário realiza **envio real**:
 aurora-project/
 ├── index.html              # landing page (marcação + <head>)
 ├── 404.html
-├── netlify.toml
+├── netlify.toml            # publish dir, cabeçalhos de cache e segurança
 ├── robots.txt
 ├── sitemap.xml
+├── .gitignore
 ├── README.md
 ├── css/
 │   └── styles.css          # design system "Campo de risco"
 ├── js/
-│   ├── main.js             # comportamento da página (IIFE)
-│   └── roi.js              # módulo calcularRoi (com testes)
+│   ├── main.js             # comportamento da página (IIFE, um módulo por seção)
+│   └── roi.js              # módulo calcularRoi (usado pela calculadora, com testes)
 ├── tests/
 │   └── roi.test.js         # node:test — 4 casos
 ├── assets/
-│   ├── aurora-mark.svg     # marca "A" vetorizada
-│   ├── aurora-logo.png     # marca "A" (fonte raster)
+│   ├── aurora-mark.svg     # marca "A" vetorizada (usada com o wordmark)
+│   ├── aurora-logo.png     # a mesma marca "A" em raster (arquivo de origem)
 │   ├── favicon.svg
 │   └── og-cover.svg
 └── docs/
-    ├── entrega-etapa-2.md
-    ├── handoff-etapa-2.md   # matéria-prima do PDF (código, design, seções)
-    ├── proposta-visual/     # protótipo aprovado (referência)
-    └── superpowers/         # specs e planos
+    ├── entrega-etapa-2.md      # dossiê formal (base do PDF)
+    ├── handoff-etapa-2.md      # detalhamento: código, design e o que cada seção faz
+    ├── aurora-etapa-2-pdf.pdf  # PDF de entrega
+    ├── aurora-project.pdf      # entrega da Etapa 1
+    ├── proposta-visual/        # protótipo aprovado da nova direção (referência)
+    └── superpowers/            # registro das decisões de projeto (spec + plano)
 ```
 
 ## Como visualizar o projeto
