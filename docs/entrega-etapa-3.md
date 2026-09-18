@@ -130,7 +130,7 @@ https://github.com/defxico/aurora-project
 
 ## 7. Link do vídeo-pitch
 
-[link do vídeo-pitch — a inserir pelo grupo]
+https://www.youtube.com/watch?v=8UdoenfdURI
 
 ## 8. Como executar localmente
 
