@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Aurora — Enterprise Challenge Etapa 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" />
+<style>
+  :root {
+    --bg: #F6F5F8;
+    --ink: #17141D;
+    --ink2: #5C5967;
+    --magenta: #A81F62;
+    --teal: #12796C;
+    --roxo: #574587;
+    --grad: linear-gradient(90deg, var(--magenta), var(--roxo), var(--teal));
+  }
+  * { box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; font-family: 'Archivo', sans-serif; color: var(--ink); }
+  .page {
+    width: 210mm; height: 297mm; padding: 18mm 16mm;
+    position: relative; page-break-after: always;
+    display: flex; flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Capa */
+  .cover {
+    background: linear-gradient(160deg, #EDE4F0 0%, #D9C9E3 45%, #C9B4D9 100%);
+    justify-content: space-between;
+  }
+  .cover__top { display: flex; justify-content: flex-end; font-size: 10pt; color: var(--ink2); }
+  .cover__mid { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6mm; }
+  .cover__eyebrow { font-size: 10pt; font-weight: 700; letter-spacing: .08em; color: var(--teal); text-transform: uppercase; }
+  .cover__title { font-size: 13pt; font-weight: 700; color: var(--roxo); text-transform: uppercase; letter-spacing: .04em; }
+  .cover__brand { display: flex; align-items: center; gap: 6mm; margin-top: 10mm; }
+  .cover__brand img { height: 16mm; }
+  .cover__brand .wordmark { font-size: 30pt; font-weight: 800; }
+  .cover__brand .wordmark span { color: var(--magenta); }
+  .cover__divider { width: 1px; height: 16mm; background: var(--ink2); opacity: .4; }
+  .cover__card { background: #17141D; border-radius: 4px; padding: 6mm 8mm; color: #F6F5F8; }
+  .cover__card h3 { font-size: 9pt; letter-spacing: .1em; color: var(--magenta); margin: 0 0 4mm; }
+  .cover__row { display: flex; justify-content: space-between; padding: 3mm 0; border-top: 1px solid rgba(255,255,255,.12); font-size: 11pt; }
+  .cover__row:first-of-type { border-top: none; }
+  .cover__row b { color: var(--teal); font-weight: 700; }
+
+  /* Páginas internas */
+  .content .head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 4mm; border-bottom: 3px solid transparent;
+    border-image: var(--grad) 1;
+    font-size: 10pt; color: var(--ink2);
+  }
+  .content .head .brand { display: flex; align-items: center; gap: 3mm; font-size: 13pt; font-weight: 800; color: var(--ink); }
+  .content .head .brand img { height: 7mm; }
+  .content .breadcrumb { font-size: 9pt; color: var(--teal); font-weight: 700; margin-top: 6mm; }
+  .content h1 { font-size: 22pt; font-weight: 800; color: var(--roxo); margin: 2mm 0 8mm; }
+  .content .block { border-left: 3px solid var(--magenta); padding: 0 0 0 6mm; margin-bottom: 7mm; }
+  .content .block.teal { border-color: var(--teal); }
+  .content .block.roxo { border-color: var(--roxo); }
+  .content .block h4 { font-size: 9pt; letter-spacing: .05em; text-transform: uppercase; color: var(--magenta); margin: 0 0 2mm; }
+  .content .block.teal h4 { color: var(--teal); }
+  .content .block.roxo h4 { color: var(--roxo); }
+  .content .block p { font-size: 10.5pt; line-height: 1.55; color: var(--ink); margin: 0 0 3mm; }
+  .content table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 6mm; }
+  .content thead th { background: var(--grad); color: #fff; text-align: left; padding: 3mm 4mm; font-size: 9pt; }
+  .content tbody td { padding: 3mm 4mm; border-bottom: 1px solid #E5E2EA; }
+  .content tbody tr:nth-child(even) { background: #FAF9FB; }
+  .content .foot { margin-top: auto; padding-top: 4mm; border-top: 1px solid #E5E2EA; display: flex; justify-content: space-between; font-size: 8.5pt; color: var(--ink2); }
+  .content .linkcard { padding: 5mm 6mm; border-radius: 3px; color: #fff; margin-bottom: 4mm; font-size: 11pt; }
+  .content .linkcard a { color: #fff; }
+  .content .linkcard.deploy { background: linear-gradient(90deg, #0D5A50, var(--teal)); }
+  .content .linkcard.repo { background: linear-gradient(90deg, var(--roxo), #7A63A8); }
+  .content .linkcard.video { background: linear-gradient(90deg, var(--magenta), #C24178); }
+  .content code, .content pre { font-family: 'Courier New', monospace; font-size: 9pt; }
+  .content pre { background: #F1EFF4; padding: 3mm; border-radius: 3px; overflow: hidden; }
+  .content .filetree { font-family: 'Courier New', monospace; font-size: 9pt; border-left: 3px solid var(--roxo); padding-left: 6mm; line-height: 1.6; white-space: pre; }
+  .sumario ol { list-style: none; padding: 0; margin: 0; counter-reset: item; }
+  .sumario li { font-size: 11pt; padding: 3mm 0; border-bottom: 1px solid #E5E2EA; }
+  .sumario li b { color: var(--magenta); margin-right: 4mm; }
+</style>
+</head>
+<body>
+
+  <!-- Página 1: Capa -->
+  <section class="page cover">
+    <div class="cover__top">FIAP · 2026</div>
+    <div class="cover__mid">
+      <div class="cover__eyebrow">People First Cup</div>
+      <div class="cover__title">Enterprise Challenge — Etapa 3 · Entrega Final</div>
+      <div class="cover__brand">
+        <img src="../assets/aurora-mark.svg" alt="" />
+        <div class="cover__divider"></div>
+        <div class="wordmark">aur<span>o</span>ra</div>
+      </div>
+    </div>
+    <div class="cover__card">
+      <h3>INTEGRANTES</h3>
+      <div class="cover__row"><span>Amanda Ayumi Guedes Ueno</span><b>RM573609</b></div>
+      <div class="cover__row"><span>Ana Rubia de Oliveira Freire</span><b>RM573171</b></div>
+      <div class="cover__row"><span>Francisco Caetano Bernardes</span><b>RM571399</b></div>
+      <div class="cover__row"><span>Giovanna Camargo Budin</span><b>RM571861</b></div>
+      <div class="cover__row"><span>Mariana Costa Cruz Maciel</span><b>RM570455</b></div>
+    </div>
+  </section>
+
+  <!-- Página 2: Sumário -->
+  <section class="page content sumario">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>02</div>
+    </div>
+    <div class="breadcrumb">02 · Sumário</div>
+    <h1>Sumário</h1>
+    <ol>
+      <li><b>01</b> Integrantes e Contexto</li>
+      <li><b>02</b> Contextualização e Justificativa</li>
+      <li><b>03</b> O que foi validado na Etapa 3</li>
+      <li><b>04</b> Recursos de Acessibilidade</li>
+      <li><b>05</b> Links de Entrega (deploy, repositório, vídeo-pitch)</li>
+      <li><b>06</b> Como Executar Localmente</li>
+    </ol>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>02</span></div>
+  </section>
+
+  <!-- Página 3: Integrantes e Contexto -->
+  <section class="page content">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>03</div>
+    </div>
+    <div class="breadcrumb">01 · Integrantes e Contexto</div>
+    <h1>Integrantes e Contexto</h1>
+    <table>
+      <thead><tr><th>NOME</th><th>RM</th></tr></thead>
+      <tbody>
+        <tr><td>Amanda Ayumi Guedes Ueno</td><td>RM573609</td></tr>
+        <tr><td>Ana Rubia de Oliveira Freire</td><td>RM573171</td></tr>
+        <tr><td>Francisco Caetano Bernardes</td><td>RM571399</td></tr>
+        <tr><td>Giovanna Camargo Budin</td><td>RM571861</td></tr>
+        <tr><td>Mariana Costa Cruz Maciel</td><td>RM570455</td></tr>
+      </tbody>
+    </table>
+    <div class="block">
+      <h4>Contexto e Proposta de Valor</h4>
+      <p>A Aurora é uma plataforma (fictícia) de People Analytics voltada a empresas de médio e grande porte. Ela integra fontes dispersas de dados de RH (HRIS, folha, ATS, pulse surveys), cruza indicadores em tempo real e entrega insights acionáveis — reduzindo turnover, aumentando engajamento e acelerando decisões da liderança. A proposta de valor para o público B2B: transformar dados de pessoas em decisão estratégica com impacto financeiro demonstrável.</p>
+    </div>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>03</span></div>
+  </section>
+
+  <!-- Página 4: Contextualização e Justificativa -->
+  <section class="page content">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>04</div>
+    </div>
+    <div class="breadcrumb">02 · Contextualização e Justificativa</div>
+    <h1>Contextualização e Justificativa</h1>
+    <div class="block teal">
+      <h4>Plataforma de Publicação — Netlify</h4>
+      <p>Deploy por integração com o repositório GitHub, com publicação automática a cada push na branch main. O formulário usa Netlify Forms, sem necessidade de backend próprio — mantendo o projeto 100% HTML/CSS/JS, conforme o enunciado. HTTPS automático, previews por pull request e plano gratuito suficiente para o escopo.</p>
+    </div>
+    <div class="block roxo">
+      <h4>Stack — HTML + CSS + JavaScript Vanilla</h4>
+      <p>Nenhum framework ou bundler. O JavaScript foi extraído para js/main.js e a lógica da calculadora isolada em js/roi.js, com testes automatizados via node --test tests/roi.test.js.</p>
+    </div>
+    <div class="block">
+      <h4>Identidade Visual — Direção "Campo de Risco"</h4>
+      <p>Fundo claro #F6F5F8, texto quase-preto #17141D, magenta #A81F62 como cor de acento principal, teal #12796C e roxo #574587 como apoio. Tipografia Archivo, pesos 700–800. Layout assimétrico e tipografia editorial forte, em que cada seção é um instrumento que o visitante opera — não apenas texto.</p>
+    </div>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>04</span></div>
+  </section>
+
+  <!-- Página 5: O que foi validado na Etapa 3 -->
+  <section class="page content">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>05</div>
+    </div>
+    <div class="breadcrumb">03 · O que foi validado na Etapa 3</div>
+    <h1>O que foi validado na Etapa 3</h1>
+    <div class="block">
+      <h4>QA de Verificação</h4>
+      <p>Sem mudanças estruturais na landing page: a Etapa 2 já atendia aos requisitos técnicos da Etapa 3. O trabalho desta etapa foi um QA de verificação, executado ao vivo na página publicada.</p>
+    </div>
+    <div class="block teal">
+      <h4>Console e Formulário</h4>
+      <p>Sem erros JavaScript durante carregamento e uso. Submissão do formulário testada de ponta a ponta: mensagem "Recebido. O time da Aurora responde em até 1 dia útil com dois horários." exibida inline após o envio, confirmando o Netlify Forms em produção.</p>
+    </div>
+    <div class="block roxo">
+      <h4>Interatividade, Responsividade e Movimento Reduzido</h4>
+      <p>Sliders do modelo de risco e abas "Pergunte à Aurora" testados e funcionando. Responsividade e prefers-reduced-motion confirmados por inspeção do código-fonte: breakpoints mobile-first em todas as seções e bloco global zerando animações quando o sistema operacional pede movimento reduzido.</p>
+    </div>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>05</span></div>
+  </section>
+
+  <!-- Página 6: Acessibilidade -->
+  <section class="page content">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>06</div>
+    </div>
+    <div class="breadcrumb">04 · Recursos de Acessibilidade</div>
+    <h1>Recursos de Acessibilidade</h1>
+    <table>
+      <thead><tr><th>Recurso</th><th>Onde</th><th>WCAG 2.1</th></tr></thead>
+      <tbody>
+        <tr><td>HTML semântico, um único h1</td><td>Página inteira</td><td>1.3.1</td></tr>
+        <tr><td>Skip-link "Ir para o conteúdo principal"</td><td>Topo do body</td><td>2.4.1</td></tr>
+        <tr><td>Sliders nativos com rótulo e aria-valuetext</td><td>Hero, Diagnóstico, Calculadora</td><td>2.1.1, 4.1.2</td></tr>
+        <tr><td>Abas com padrão ARIA completo</td><td>A plataforma</td><td>2.1.1, 4.1.2</td></tr>
+        <tr><td>Regiões aria-live nos medidores e no razonete</td><td>Hero, Diagnóstico, Calculadora</td><td>4.1.3</td></tr>
+        <tr><td>role="alert" no erro do formulário</td><td>Agendar demonstração</td><td>4.1.3</td></tr>
+        <tr><td>Foco sempre visível (:focus-visible)</td><td>Todos os interativos</td><td>2.4.7</td></tr>
+        <tr><td>label associado a cada campo</td><td>Formulário</td><td>1.3.1, 3.3.2</td></tr>
+        <tr><td>prefers-reduced-motion respeitado</td><td>Hexágono, medidores, calculadora</td><td>2.3.3</td></tr>
+        <tr><td>Contraste AA; informação não só por cor</td><td>Página inteira</td><td>1.4.1, 1.4.3</td></tr>
+        <tr><td>Sem rolagem horizontal de 360px a 1280px, zoom 200%</td><td>Página inteira</td><td>1.4.4, 1.4.10</td></tr>
+      </tbody>
+    </table>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>06</span></div>
+  </section>
+
+  <!-- Página 7: Links de entrega -->
+  <section class="page content">
+    <div class="head">
+      <div class="brand"><img src="../assets/aurora-mark.svg" alt="" />aurora</div>
+      <div>Enterprise Challenge · Etapa 3</div>
+      <div>07</div>
+    </div>
+    <div class="breadcrumb">05 · Links de Entrega</div>
+    <h1>Links de Entrega</h1>
+    <div class="linkcard deploy"><b>Deploy · Netlify</b><br />https://aurora-people-analytics.netlify.app/</div>
+    <div class="linkcard repo"><b>Repositório GitHub</b><br />https://github.com/defxico/aurora-project</div>
+    <div class="linkcard video"><b>Vídeo-pitch</b><br />[link do vídeo-pitch — a inserir pelo grupo]</div>
+    <div class="block">
+      <h4>Como Executar Localmente</h4>
+      <p>Clone o repositório e sirva o projeto localmente:</p>
+    </div>
+    <pre>git clone https://github.com/defxico/aurora-project.git
+cd aurora-project
+npx --yes serve .
+# abrir o endereço mostrado no terminal (ex.: http://localhost:3000)
+
+# testes automatizados da calculadora de ROI:
+node --test tests/roi.test.js</pre>
+    <div class="foot"><span>Aurora · Enterprise Challenge Etapa 3 · FIAP · 2026</span><span>07</span></div>
+  </section>
+
+</body>
+</html>

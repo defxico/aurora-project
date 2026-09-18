@@ -418,7 +418,8 @@ vídeo-pitch":
     --grad: linear-gradient(90deg, var(--magenta), var(--roxo), var(--teal));
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Archivo', sans-serif; color: var(--ink); }
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; font-family: 'Archivo', sans-serif; color: var(--ink); }
   .page {
     width: 210mm; height: 297mm; padding: 18mm 16mm;
     position: relative; page-break-after: always;
