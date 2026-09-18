@@ -1,20 +1,20 @@
 # Aurora — Landing Page B2B
 
-Projeto desenvolvido para o **People First Cup — Enterprise Challenge — Etapa 2**, com o objetivo de publicar online uma landing page para a marca fictícia **Aurora**, voltada ao público B2B, com formulário de captação de lead funcionando.
+Projeto desenvolvido para o **People First Cup — Enterprise Challenge — Etapa 3 (entrega final)**, com o objetivo de publicar online uma landing page para a marca fictícia **Aurora**, voltada ao público B2B, com formulário de captação de lead funcionando.
 
 A proposta da Aurora é apresentar uma plataforma de **People Analytics** capaz de transformar dados de RH em decisões estratégicas, ajudando empresas a reduzir turnover, acompanhar engajamento, prever riscos e demonstrar o impacto financeiro das iniciativas de pessoas.
 
-Na Etapa 2 a página ganhou deploy público, formulário com envio real, código reorganizado em `css/` e `js/` (com testes) e uma nova direção visual — **"Campo de risco"** —, em que **cada seção é um instrumento que o visitante opera**, não apenas texto.
+Na Etapa 2 a página ganhou deploy público, formulário com envio real, código reorganizado em `css/` e `js/` (com testes) e uma nova direção visual — **"Campo de risco"** —, em que **cada seção é um instrumento que o visitante opera**, não apenas texto. Na Etapa 3, entrega final do challenge, a landing page foi revalidada por um QA completo (console, formulário, responsividade e acessibilidade) sem necessidade de mudanças de código, e o time gravou o vídeo-pitch de apresentação.
 
 - **Site publicado:** https://aurora-people-analytics.netlify.app/
-- **Documentação da entrega:** [`docs/entrega-etapa-2.md`](docs/entrega-etapa-2.md) (dossiê formal) · [`docs/handoff-etapa-2.md`](docs/handoff-etapa-2.md) (detalhamento) · `docs/aurora-etapa-2-pdf.pdf`
+- **Documentação da entrega:** [`docs/entrega-etapa-3.md`](docs/entrega-etapa-3.md) (dossiê formal) · `docs/aurora-etapa-3-pdf.pdf` — entrega anterior em [`docs/entrega-etapa-2.md`](docs/entrega-etapa-2.md) e [`docs/handoff-etapa-2.md`](docs/handoff-etapa-2.md)
 
 ## Informações do projeto
 
 **Curso:** Web Design
 **Turma:** 1TWDOA
 **Challenge:** People First Cup — Enterprise Challenge
-**Etapa:** 2
+**Etapa:** 3 (entrega final)
 **Tema:** Landing page B2B para Aurora
 
 ## Deploy
@@ -199,12 +199,14 @@ aurora-project/
 │   ├── favicon.svg
 │   └── og-cover.svg
 └── docs/
-    ├── entrega-etapa-2.md      # dossiê formal (base do PDF)
-    ├── handoff-etapa-2.md      # detalhamento: código, design e o que cada seção faz
-    ├── aurora-etapa-2-pdf.pdf  # PDF de entrega
-    ├── aurora-project.pdf      # entrega da Etapa 1
-    ├── proposta-visual/        # protótipo aprovado da nova direção (referência)
-    └── superpowers/            # registro das decisões de projeto (spec + plano)
+    ├── entrega-etapa-3.md      # dossiê formal da entrega final (base do PDF)
+    ├── aurora-etapa-3-pdf.pdf  # PDF de entrega da Etapa 3
+    ├── entrega-etapa-2.md      # dossiê da Etapa 2 (histórico)
+    ├── handoff-etapa-2.md      # detalhamento da Etapa 2: código, design e o que cada seção faz
+    ├── aurora-etapa-2-pdf.pdf  # PDF de entrega da Etapa 2 (histórico)
+    ├── aurora-project.pdf      # entrega da Etapa 1 (histórico)
+    ├── proposta-visual/        # protótipo aprovado da direção visual (referência)
+    └── superpowers/            # registro das decisões de projeto (specs + planos)
 ```
 
 ## Como visualizar o projeto
@@ -222,21 +224,19 @@ Testes da calculadora de ROI: `node --test tests/roi.test.js`
 
 ## Status do projeto
 
-Projeto desenvolvido para a entrega acadêmica da **Etapa 2** do Enterprise Challenge.
+Projeto desenvolvido para a entrega acadêmica final da **Etapa 3** do Enterprise
+Challenge.
 
 Fazem parte desta etapa:
 
-- deploy online em URL pública;
-- formulário de lead com envio real;
-- todas as seções da Etapa 1 refinadas;
-- identidade visual aplicada;
-- responsividade;
-- recursos de acessibilidade implementados e identificados na página;
-- organização dos arquivos.
+- landing page completa, publicada e revalidada por QA (deploy, formulário,
+  responsividade e acessibilidade sem regressões);
+- vídeo-pitch de 2 a 3 minutos, publicado em plataforma de vídeo online;
+- dossiê de entrega (`docs/entrega-etapa-3.md`) e PDF (`docs/aurora-etapa-3-pdf.pdf`)
+  com a contextualização, a justificativa das decisões e os links pedidos no enunciado.
 
-Não faz parte desta etapa:
-
-- vídeo-pitch.
+Etapa 2 (histórico): primeira entrega com deploy público, formulário com envio real e a
+direção visual "Campo de risco" — ver `docs/entrega-etapa-2.md`.
 
 ## Repositório
 
